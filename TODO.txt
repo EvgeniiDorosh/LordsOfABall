@@ -1,0 +1,2 @@
+Paddle:
+- Create area effectors (left and right) with very small magnitude to avoid ball stucking between floor and roof (when x position doesn't change);

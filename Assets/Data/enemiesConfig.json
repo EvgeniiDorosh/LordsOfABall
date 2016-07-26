@@ -1,0 +1,192 @@
+{
+	"parameters" : [
+		{
+			"name" : "Skeleton",
+			"attack" : 1,
+			"defense" : 2,
+			"mnimumDamage" : 1,
+			"maximumDamage" : 1,
+			"health" : 4
+		},
+		{
+			"name" : "SkeletalLegionary",
+			"attack" : 2,
+			"defense" : 6,
+			"mnimumDamage" : 1,
+			"maximumDamage" : 3,
+			"health" : 5
+		},
+		{
+			"name" : "SkeletalBowman",
+			"attack" : 1,
+			"defense" : 2,
+			"mnimumDamage" : 1,
+			"maximumDamage" : 2,
+			"health" : 4
+		},
+		{
+			"name" : "SkeletalCrossbowman",
+			"attack" : 2,
+			"defense" : 3,
+			"mnimumDamage" : 1,
+			"maximumDamage" : 3,
+			"health" : 6
+		},
+		{
+			"name" : "Zombie",
+			"attack" : 1,
+			"defense" : 2,
+			"minimumDamage" : 1,
+			"maximumDamage" : 2,
+			"health" : 17
+		},
+		{
+			"name" : "InfectedZombie",
+			"attack" : 2,
+			"defense" : 2,
+			"minimumDamage" : 2,
+			"maximumDamage" : 3,
+			"health" : 17
+		},
+		{
+			"name" : "RottenZombie",
+			"attack" : 2,
+			"defense" : 3,
+			"minimumDamage" : 1,
+			"maximumDamage" : 3,
+			"health" : 23
+		},
+		{
+			"name" : "Ghost",
+			"attack" : 4,
+			"defense" : 4,
+			"minimumDamage" : 3,
+			"maximumDamage" : 7,
+			"health" : 8
+		},
+		{
+			"name" : "Apparition",
+			"attack" : 4,
+			"defense" : 4,
+			"minimumDamage" : 4,
+			"maximumDamage" : 6,
+			"health" : 19
+		},
+		{
+			"name" : "Poltergeist",
+			"attack" : 6,
+			"defense" : 5,
+			"minimumDamage" : 4,
+			"maximumDamage" : 6,
+			"health" : 20
+		},
+		{
+			"name" : "CursedWitch",
+			"attack" : 8,
+			"defense" : 7,
+			"minimumDamage" : 4,
+			"maximumDamage" : 6,
+			"health" : 20
+		},
+		{
+			"name" : "Vampire",
+			"attack" : 6,
+			"defense" : 6,
+			"minimumDamage" : 6,
+			"maximumDamage" : 8,
+			"health" : 30
+		},
+		{
+			"name" : "VampireCount",
+			"attack" : 9,
+			"defense" : 9,
+			"minimumDamage" : 7,
+			"maximumDamage" : 11,
+			"health" : 35
+		},
+		{
+			"name" : "Dreadlord",
+			"attack" : 9,
+			"defense" : 9,
+			"minimumDamage" : 5,
+			"maximumDamage" : 13,
+			"health" : 40
+		},
+		{
+			"name" : "Lich",
+			"attack" : 15,
+			"defense" : 15,
+			"minimumDamage" : 12,
+			"maximumDamage" : 17,
+			"health" : 50
+		},
+		{
+			"name" : "Archlich",
+			"attack" : 19,
+			"defense" : 19,
+			"minimumDamage" : 17,
+			"maximumDamage" : 20,
+			"health" : 55,
+			"mana" : 16,
+			"spellPower" : 0
+		},
+		{
+			"name" : "Demilich",
+			"attack" : 21,
+			"defense" : 19,
+			"minimumDamage" : 17,
+			"maximumDamage" : 21,
+			"health" : 55,
+			"mana" : 19,
+			"spellPower" : 0
+		},
+		{
+			"name" : "DeathEnvoy",
+			"attack" : 24,
+			"defense" : 22,
+			"minimumDamage" : 21,
+			"maximumDamage" : 25,
+			"health" : 95
+		},
+		{
+			"name" : "DeathHerald",
+			"attack" : 26,
+			"defense" : 24,
+			"minimumDamage" : 25,
+			"maximumDamage" : 30,
+			"health" : 100
+		},
+		{
+			"name" : "DeathProclaimer",
+			"attack" : 23,
+			"defense" : 23,
+			"minimumDamage" : 22,
+			"maximumDamage" : 27,
+			"health" : 110
+		},
+		{
+			"name" : "SkeletalDragon",
+			"attack" : 27,
+			"defense" : 28,
+			"minimumDamage" : 15,
+			"maximumDamage" : 30,
+			"health" : 150
+		},
+		{
+			"name" : "ShadowDragon",
+			"attack" : 30,
+			"defense" : 28,
+			"minimumDamage" : 25,
+			"maximumDamage" : 35,
+			"health" : 160
+		},
+		{
+			"name" : "MirageDragon",
+			"attack" : 31,
+			"defense" : 27,
+			"minimumDamage" : 27,
+			"maximumDamage" : 36,
+			"health" : 150
+		}
+	]
+}
