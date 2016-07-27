@@ -4,6 +4,7 @@ using System.Collections;
 public class Abyss : MonoBehaviour {
 
 	private bool isReflexive;
+	private BoxCollider2D boxCollider;
 
 	public bool IsReflexive {
 		get { 
@@ -11,17 +12,19 @@ public class Abyss : MonoBehaviour {
 		}
 		set { 
 			isReflexive = value;
-			GetComponent<BoxCollider2D> ().isTrigger = !value;
+			boxCollider.isTrigger = !value;
 		}
 	}
 
 	void Awake() {
+		boxCollider = GetComponent<BoxCollider2D> ();
 		IsReflexive = false;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.CompareTag ("Ball")) {
-			Destroy (other.gameObject);
+		GameObject otherGameObject = other.gameObject;
+		if (otherGameObject.CompareTag ("Ball")) {
+			otherGameObject.GetComponent<Ball>().Demolish();
 		}
 	}
 }

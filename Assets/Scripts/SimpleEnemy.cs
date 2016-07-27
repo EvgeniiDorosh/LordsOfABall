@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class SimpleEnemy : MonoBehaviour, Damageable {
 
-	public static readonly List<SimpleEnemy> enemies = new List<SimpleEnemy>();
+	public static readonly List<GameObject> enemies = new List<GameObject>();
 
 	public string creatureName;
 	private BaseCreatureParameters initialParameters;
 	public BaseCreatureParameters currentParameters;
 
 	void Awake() {
-		enemies.Add (this);
+		enemies.Add (this.gameObject);
 	}
 
 	void Start () {
@@ -29,7 +29,7 @@ public class SimpleEnemy : MonoBehaviour, Damageable {
 	}
 
 	void OnDestroy() {
-		enemies.Remove (this);
+		enemies.Remove (this.gameObject);
 	}
 
 	public void ApplyDamage(float damage) {

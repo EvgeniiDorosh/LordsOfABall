@@ -43,6 +43,7 @@ public class BallLauncher : MonoBehaviour {
 	public void SetupBall() {
 		caughtBall = Instantiate (ball, ballInitialSpot.position, Quaternion.identity) as GameObject;
 		caughtBall.GetComponent<Transform> ().SetParent (this.transform);
+		hasBall = true;
 	}
 
 	void LaunchBall(GameObject ball) {

@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Ball : MonoBehaviour {
+
+	public static readonly List<GameObject> balls = new List<GameObject>();
 
 	private const float TORQUE = 20.0f;
 
@@ -17,6 +20,7 @@ public class Ball : MonoBehaviour {
 	public GameObject knockLight;
 
 	void Awake () {
+		balls.Add (this.gameObject);
 		rigitbody = GetComponent<Rigidbody2D> ();
 		audioSource = GetComponent<AudioSource> ();
 		velocity = velocity > 0 ? velocity : initialVelocity;
@@ -36,7 +40,8 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
-	void OnDestroy() {
+	public void Demolish()  {
+		balls.Remove (this.gameObject);
 		EventManager.TriggerEvent (LevelEvent.ballWasDestroyed);
 	}
 
