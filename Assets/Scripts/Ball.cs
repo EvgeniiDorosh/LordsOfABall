@@ -42,7 +42,8 @@ public class Ball : MonoBehaviour {
 
 	public void Demolish()  {
 		balls.Remove (this.gameObject);
-		EventManager.TriggerEvent (LevelEvent.ballWasDestroyed);
+		Messenger.Invoke(BallEvent.ballWasDestroyed);
+		Destroy (gameObject);
 	}
 
 	public void Launch(Vector2 direction) {

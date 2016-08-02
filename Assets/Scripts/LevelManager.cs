@@ -8,23 +8,26 @@ public class LevelManager : MonoBehaviour {
 
 	void Awake () {
 		clonePaddle = Instantiate (paddle, Vector2.zero, Quaternion.identity) as GameObject;
+	}
+
+	void OnEnable() {
 		AddListeners ();
 	}
 
+	void OnDisable() {
+		RemoveListeners ();
+	}
+
 	void AddListeners() {
-		EventManager.StartListening (LevelEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
+		Messenger.AddListener(BallEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
 	}
 
 	void RemoveListeners() {
-		EventManager.StopListening (LevelEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
+		Messenger.RemoveListener(BallEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
 	}
 	
 	void Update () {
 	
-	}
-
-	void OnDestroy() {
-		RemoveListeners ();
 	}
 
 	void CheckAllBallAreDestroyed() {
