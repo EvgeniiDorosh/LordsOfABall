@@ -7,7 +7,7 @@ public class Attacker : MonoBehaviour, IAttacker {
 
 	[SerializeField]
 	private BaseCreatureParameters initialParameters;
-	protected BaseCreatureParameters InitialParameters {
+	protected virtual BaseCreatureParameters InitialParameters {
 		get {
 			return initialParameters;
 		}
@@ -18,7 +18,7 @@ public class Attacker : MonoBehaviour, IAttacker {
 
 	[SerializeField]
 	private BaseCreatureParameters currentParameters;
-	protected BaseCreatureParameters CurrentParameters {
+	protected virtual BaseCreatureParameters CurrentParameters {
 		get {
 			return currentParameters;
 		}

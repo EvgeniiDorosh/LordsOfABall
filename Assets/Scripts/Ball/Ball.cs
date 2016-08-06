@@ -7,23 +7,27 @@ public class Ball : Attacker {
 	
 	public static readonly List<GameObject> balls = new List<GameObject>();
 
+	[SerializeField]
 	private BallParameters initialParameters;
 	override protected BaseCreatureParameters InitialParameters {
 		get {
 			return initialParameters;
 		}
 		set {
-			initialParameters = value;
+			initialParameters = value as BallParameters;
+			base.InitialParameters = value;
 		}
 	}
 
+	[SerializeField]
 	private BallParameters currentParameters;
 	override protected BaseCreatureParameters CurrentParameters {
 		get {
 			return currentParameters;
 		}
 		set {
-			currentParameters = value;
+			currentParameters = value as BallParameters;
+			base.CurrentParameters = value;
 		}
 	}
 
