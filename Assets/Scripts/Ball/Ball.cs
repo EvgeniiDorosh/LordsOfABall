@@ -3,9 +3,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Ball : MonoBehaviour {
-
+public class Ball : Attacker {
+	
 	public static readonly List<GameObject> balls = new List<GameObject>();
+
+	private BallParameters initialParameters;
+	override protected BaseCreatureParameters InitialParameters {
+		get {
+			return initialParameters;
+		}
+		set {
+			initialParameters = value;
+		}
+	}
+
+	private BallParameters currentParameters;
+	override protected BaseCreatureParameters CurrentParameters {
+		get {
+			return currentParameters;
+		}
+		set {
+			currentParameters = value;
+		}
+	}
 
 	private const float TORQUE = 20.0f;
 
@@ -26,8 +46,9 @@ public class Ball : MonoBehaviour {
 		velocity = velocity > 0 ? velocity : initialVelocity;
 	}
 	
-	void Update () {
-		
+	void Start () {
+		initialParameters = ConfigsParser.instance.ballConfig.GetInitialParameters();
+		currentParameters = initialParameters.Clone<BallParameters> ();
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {

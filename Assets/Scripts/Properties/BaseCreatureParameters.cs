@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-[System.Serializable]
+[Serializable]
 public class BaseCreatureParameters {
 	
 	/**
@@ -123,8 +123,8 @@ public class BaseCreatureParameters {
 		}
 	}
 
-	public BaseCreatureParameters Clone() {
-		BaseCreatureParameters result = new BaseCreatureParameters ();
+	public virtual T Clone<T>() where T : BaseCreatureParameters, new() {
+		T result = new T ();
 		result.health = this.health;
 		result.attack = this.attack;
 		result.defense = this.defense;

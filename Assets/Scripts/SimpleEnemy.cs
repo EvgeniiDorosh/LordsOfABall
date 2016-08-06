@@ -2,13 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SimpleEnemy : MonoBehaviour, Damageable {
+public class SimpleEnemy : Damageable {
 
 	public static readonly List<GameObject> enemies = new List<GameObject>();
 
 	public string creatureName;
-	private BaseCreatureParameters initialParameters;
-	public BaseCreatureParameters currentParameters;
 
 	void Awake() {
 		enemies.Add (this.gameObject);
@@ -16,12 +14,7 @@ public class SimpleEnemy : MonoBehaviour, Damageable {
 
 	void Start () {
 		initialParameters = ConfigsParser.instance.enemiesConfig.GetParametersByName (creatureName);
-		currentParameters = initialParameters.Clone ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		currentParameters = initialParameters.Clone<BaseCreatureParameters> ();
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {

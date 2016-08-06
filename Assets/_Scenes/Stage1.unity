@@ -421,6 +421,7 @@ GameObject:
   - 222: {fileID: 111919510}
   - 114: {fileID: 111919509}
   - 114: {fileID: 111919508}
+  - 114: {fileID: 111919511}
   m_Layer: 5
   m_Name: BonusValue
   m_TagString: Untagged
@@ -457,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 0.5, y: 0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &111919509
@@ -502,6 +503,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 111919506}
+--- !u!114 &111919511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111919506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8075b22896705b847b5c663ffe8dc22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: attack
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!4 &118082506 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -886,6 +901,7 @@ GameObject:
   - 222: {fileID: 142783650}
   - 114: {fileID: 142783649}
   - 114: {fileID: 142783648}
+  - 114: {fileID: 142783651}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -966,6 +982,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 142783646}
+--- !u!114 &142783651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 142783646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: speed
 --- !u!4 &146500116 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -2056,192 +2084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesJSONConfig: {fileID: 4900000, guid: 407d6d1c4aeacb84e89d27ab0635d55d, type: 3}
-  enemiesConfig:
-    parameters:
-    - name: 536b656c65746f6e
-      attack: 1
-      defense: 2
-      minimumDamage: 0
-      maximumDamage: 1
-      health: 4
-      mana: 0
-      spellPower: 0
-    - name: 536b656c6574616c4c6567696f6e617279
-      attack: 2
-      defense: 6
-      minimumDamage: 0
-      maximumDamage: 3
-      health: 5
-      mana: 0
-      spellPower: 0
-    - name: 536b656c6574616c426f776d616e
-      attack: 1
-      defense: 2
-      minimumDamage: 0
-      maximumDamage: 2
-      health: 4
-      mana: 0
-      spellPower: 0
-    - name: 536b656c6574616c43726f7373626f776d616e
-      attack: 2
-      defense: 3
-      minimumDamage: 0
-      maximumDamage: 3
-      health: 6
-      mana: 0
-      spellPower: 0
-    - name: 5a6f6d626965
-      attack: 1
-      defense: 2
-      minimumDamage: 1
-      maximumDamage: 2
-      health: 17
-      mana: 0
-      spellPower: 0
-    - name: 496e6665637465645a6f6d626965
-      attack: 2
-      defense: 2
-      minimumDamage: 2
-      maximumDamage: 3
-      health: 17
-      mana: 0
-      spellPower: 0
-    - name: 526f7474656e5a6f6d626965
-      attack: 2
-      defense: 3
-      minimumDamage: 1
-      maximumDamage: 3
-      health: 23
-      mana: 0
-      spellPower: 0
-    - name: 47686f7374
-      attack: 4
-      defense: 4
-      minimumDamage: 3
-      maximumDamage: 7
-      health: 8
-      mana: 0
-      spellPower: 0
-    - name: 41707061726974696f6e
-      attack: 4
-      defense: 4
-      minimumDamage: 4
-      maximumDamage: 6
-      health: 19
-      mana: 0
-      spellPower: 0
-    - name: 506f6c7465726765697374
-      attack: 6
-      defense: 5
-      minimumDamage: 4
-      maximumDamage: 6
-      health: 20
-      mana: 0
-      spellPower: 0
-    - name: 4375727365645769746368
-      attack: 8
-      defense: 7
-      minimumDamage: 4
-      maximumDamage: 6
-      health: 20
-      mana: 0
-      spellPower: 0
-    - name: 56616d70697265
-      attack: 6
-      defense: 6
-      minimumDamage: 6
-      maximumDamage: 8
-      health: 30
-      mana: 0
-      spellPower: 0
-    - name: 56616d70697265436f756e74
-      attack: 9
-      defense: 9
-      minimumDamage: 7
-      maximumDamage: 11
-      health: 35
-      mana: 0
-      spellPower: 0
-    - name: 44726561646c6f7264
-      attack: 9
-      defense: 9
-      minimumDamage: 5
-      maximumDamage: 13
-      health: 40
-      mana: 0
-      spellPower: 0
-    - name: 4c696368
-      attack: 15
-      defense: 15
-      minimumDamage: 12
-      maximumDamage: 17
-      health: 50
-      mana: 0
-      spellPower: 0
-    - name: 417263686c696368
-      attack: 19
-      defense: 19
-      minimumDamage: 17
-      maximumDamage: 20
-      health: 55
-      mana: 16
-      spellPower: 0
-    - name: 44656d696c696368
-      attack: 21
-      defense: 19
-      minimumDamage: 17
-      maximumDamage: 21
-      health: 55
-      mana: 19
-      spellPower: 0
-    - name: 4465617468456e766f79
-      attack: 24
-      defense: 22
-      minimumDamage: 21
-      maximumDamage: 25
-      health: 95
-      mana: 0
-      spellPower: 0
-    - name: 4465617468486572616c64
-      attack: 26
-      defense: 24
-      minimumDamage: 25
-      maximumDamage: 30
-      health: 100
-      mana: 0
-      spellPower: 0
-    - name: 446561746850726f636c61696d6572
-      attack: 23
-      defense: 23
-      minimumDamage: 22
-      maximumDamage: 27
-      health: 110
-      mana: 0
-      spellPower: 0
-    - name: 536b656c6574616c447261676f6e
-      attack: 27
-      defense: 28
-      minimumDamage: 15
-      maximumDamage: 30
-      health: 150
-      mana: 0
-      spellPower: 0
-    - name: 536861646f77447261676f6e
-      attack: 30
-      defense: 28
-      minimumDamage: 25
-      maximumDamage: 35
-      health: 160
-      mana: 0
-      spellPower: 0
-    - name: 4d6972616765447261676f6e
-      attack: 31
-      defense: 27
-      minimumDamage: 27
-      maximumDamage: 36
-      health: 150
-      mana: 0
-      spellPower: 0
+  ballJSONConfig: {fileID: 4900000, guid: 58383b1b103eb3d418f8e45ff6bdd506, type: 3}
 --- !u!1 &310406819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,6 +2404,7 @@ GameObject:
   - 222: {fileID: 355511659}
   - 114: {fileID: 355511658}
   - 114: {fileID: 355511657}
+  - 114: {fileID: 355511660}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -2642,6 +2486,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355511655}
+--- !u!114 &355511660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 355511655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: defense
 --- !u!1001 &360338971
 Prefab:
   m_ObjectHideFlags: 0
@@ -3163,6 +3019,7 @@ GameObject:
   - 222: {fileID: 493215719}
   - 114: {fileID: 493215718}
   - 114: {fileID: 493215717}
+  - 114: {fileID: 493215720}
   m_Layer: 5
   m_Name: BonusMinValue
   m_TagString: Untagged
@@ -3199,7 +3056,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 0.5, y: 0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &493215718
@@ -3245,6 +3102,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 493215715}
+--- !u!114 &493215720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493215715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8075b22896705b847b5c663ffe8dc22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: maximumDamage
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!4 &515133178 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -3514,6 +3385,7 @@ GameObject:
   - 222: {fileID: 609072157}
   - 114: {fileID: 609072156}
   - 114: {fileID: 609072155}
+  - 114: {fileID: 609072158}
   m_Layer: 5
   m_Name: CurrentValue
   m_TagString: Untagged
@@ -3594,6 +3466,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 609072153}
+--- !u!114 &609072158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 609072153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: health
 --- !u!1001 &635111824
 Prefab:
   m_ObjectHideFlags: 0
@@ -3918,6 +3802,7 @@ GameObject:
   - 222: {fileID: 726602967}
   - 114: {fileID: 726602966}
   - 114: {fileID: 726602965}
+  - 114: {fileID: 726602968}
   m_Layer: 5
   m_Name: MinValue
   m_TagString: Untagged
@@ -3999,6 +3884,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 726602963}
+--- !u!114 &726602968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 726602963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: maximumDamage
 --- !u!4 &729747564 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -4380,6 +4277,7 @@ GameObject:
   - 222: {fileID: 826110892}
   - 114: {fileID: 826110891}
   - 114: {fileID: 826110890}
+  - 114: {fileID: 826110893}
   m_Layer: 5
   m_Name: MaxValue
   m_TagString: Untagged
@@ -4460,6 +4358,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 826110888}
+--- !u!114 &826110893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826110888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: initialHealth
 --- !u!1 &831647282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4770,6 +4680,7 @@ GameObject:
   - 222: {fileID: 899108529}
   - 114: {fileID: 899108528}
   - 114: {fileID: 899108527}
+  - 114: {fileID: 899108530}
   m_Layer: 5
   m_Name: BonusValue
   m_TagString: Untagged
@@ -4806,7 +4717,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 0.5, y: 0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &899108528
@@ -4852,6 +4763,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 899108525}
+--- !u!114 &899108530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 899108525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8075b22896705b847b5c663ffe8dc22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: defense
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!1 &936293092
 GameObject:
   m_ObjectHideFlags: 0
@@ -5814,6 +5739,7 @@ GameObject:
   - 222: {fileID: 1230278059}
   - 114: {fileID: 1230278058}
   - 114: {fileID: 1230278057}
+  - 114: {fileID: 1230278060}
   m_Layer: 5
   m_Name: BonusValue
   m_TagString: Untagged
@@ -5850,7 +5776,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 0.5, y: 0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &1230278058
@@ -5896,6 +5822,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1230278055}
+--- !u!114 &1230278060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230278055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8075b22896705b847b5c663ffe8dc22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: spellPower
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!1 &1234768284
 GameObject:
   m_ObjectHideFlags: 0
@@ -5907,6 +5847,7 @@ GameObject:
   - 222: {fileID: 1234768288}
   - 114: {fileID: 1234768287}
   - 114: {fileID: 1234768286}
+  - 114: {fileID: 1234768289}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -5987,6 +5928,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1234768284}
+--- !u!114 &1234768289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1234768284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: spellPower
 --- !u!1001 &1238438920
 Prefab:
   m_ObjectHideFlags: 0
@@ -6490,6 +6443,7 @@ GameObject:
   - 222: {fileID: 1344675735}
   - 114: {fileID: 1344675734}
   - 114: {fileID: 1344675733}
+  - 114: {fileID: 1344675736}
   m_Layer: 5
   m_Name: BonusValue
   m_TagString: Untagged
@@ -6526,7 +6480,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 0.5, y: 0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &1344675734
@@ -6571,6 +6525,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1344675731}
+--- !u!114 &1344675736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344675731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8075b22896705b847b5c663ffe8dc22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: speed
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!4 &1349347644 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -7760,6 +7728,7 @@ GameObject:
   - 222: {fileID: 1622922126}
   - 114: {fileID: 1622922125}
   - 114: {fileID: 1622922124}
+  - 114: {fileID: 1622922127}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -7840,6 +7809,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1622922122}
+--- !u!114 &1622922127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622922122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: mana
 --- !u!1001 &1646049904
 Prefab:
   m_ObjectHideFlags: 0
@@ -7959,6 +7940,7 @@ GameObject:
   - 222: {fileID: 1680694326}
   - 114: {fileID: 1680694325}
   - 114: {fileID: 1680694324}
+  - 114: {fileID: 1680694327}
   m_Layer: 5
   m_Name: BonusMaxValue
   m_TagString: Untagged
@@ -7995,7 +7977,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 0.5, y: 0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &1680694325
@@ -8041,6 +8023,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1680694322}
+--- !u!114 &1680694327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1680694322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8075b22896705b847b5c663ffe8dc22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: minimumDamage
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!4 &1689517835 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -8507,8 +8503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2405f512b7bae4c489e8cb7ee6bb187a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isReflexive: 0
-  boxCollider: {fileID: 0}
 --- !u!1 &1800012307
 GameObject:
   m_ObjectHideFlags: 0
@@ -8520,6 +8514,7 @@ GameObject:
   - 222: {fileID: 1800012311}
   - 114: {fileID: 1800012310}
   - 114: {fileID: 1800012309}
+  - 114: {fileID: 1800012312}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -8600,6 +8595,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1800012307}
+--- !u!114 &1800012312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1800012307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: rage
 --- !u!4 &1808003102 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -9283,6 +9290,7 @@ GameObject:
   - 222: {fileID: 1992828436}
   - 114: {fileID: 1992828435}
   - 114: {fileID: 1992828434}
+  - 114: {fileID: 1992828437}
   m_Layer: 5
   m_Name: MaxValue
   m_TagString: Untagged
@@ -9364,6 +9372,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1992828432}
+--- !u!114 &1992828437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1992828432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: minimumDamage
 --- !u!4 &2002539581 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -9657,6 +9677,7 @@ GameObject:
   - 222: {fileID: 2047058354}
   - 114: {fileID: 2047058353}
   - 114: {fileID: 2047058352}
+  - 114: {fileID: 2047058355}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -9737,6 +9758,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2047058350}
+--- !u!114 &2047058355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2047058350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: luck
 --- !u!4 &2056577548 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -9756,6 +9789,7 @@ GameObject:
   - 222: {fileID: 2120966414}
   - 114: {fileID: 2120966413}
   - 114: {fileID: 2120966412}
+  - 114: {fileID: 2120966415}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -9838,6 +9872,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2120966410}
+--- !u!114 &2120966415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2120966410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31e915bd09bb3b42a1ef87cd725b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: attack
 --- !u!1 &2122580303
 GameObject:
   m_ObjectHideFlags: 0

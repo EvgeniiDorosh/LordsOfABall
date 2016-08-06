@@ -1,15 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-[System.Serializable]
-public class EnemyParameteresConfig {
+[Serializable]
+public class EnemyParameteresConfig : CreatureParametersConfig {
 
 	public string name;
-	public float attack;
-	public float defense;
-	public float minimumDamage;
-	public float maximumDamage;
-	public float health;
-	public float mana;
-	public float spellPower;
 }

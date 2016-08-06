@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
+[Serializable]
 public class BallParameters : BaseCreatureParameters {
 
 	/**
 	 * Speed
 	 */
-
+	[SerializeField]
+	[Range(0, 500)]
 	private float speed;
 
 	public float Speed {
@@ -22,7 +24,8 @@ public class BallParameters : BaseCreatureParameters {
 	/**
 	 * Luck
 	 */ 
-
+	[SerializeField]
+	[Range(0, 500)]
 	private float luck;
 
 	public float Luck {
@@ -33,5 +36,12 @@ public class BallParameters : BaseCreatureParameters {
 		set { 
 			luck = value;		
 		}
+	}
+
+	public override BallParameters Clone<BallParameters>() {
+		BallParameters result = base.Clone<BallParameters> ();
+
+
+		return result;
 	}
 }

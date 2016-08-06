@@ -9,6 +9,9 @@ public class ConfigsParser : MonoBehaviour {
 	public TextAsset enemiesJSONConfig;
 	public EnemiesConfig enemiesConfig;
 
+	public TextAsset ballJSONConfig;
+	public BallConfig ballConfig;
+
 	void Awake () {
 		if (instance == null)
 			instance = this;
@@ -16,5 +19,6 @@ public class ConfigsParser : MonoBehaviour {
 			Destroy (gameObject);
 		
 		enemiesConfig = JsonUtility.FromJson<EnemiesConfig>(enemiesJSONConfig.text);
+		ballConfig = JsonUtility.FromJson<BallConfig>(ballJSONConfig.text);
 	}
 }
