@@ -8,7 +8,10 @@ public class CreatureParametersConfig {
 	public float defense;
 	public float minimumDamage;
 	public float maximumDamage;
+	public float initiative;
 	public float health;
 	public float mana;
 	public float spellPower;
+	public float luck;
+	public float morale;
 }

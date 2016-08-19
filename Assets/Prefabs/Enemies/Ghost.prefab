@@ -25,7 +25,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 436992}
   - 212: {fileID: 21212546}
-  - 50: {fileID: 5031012}
   - 61: {fileID: 6144428}
   - 82: {fileID: 8286464}
   - 114: {fileID: 11464218}
@@ -66,23 +65,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436992}
   m_RootOrder: 0
---- !u!50 &5031012
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 150534}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &6144428
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -179,11 +161,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 150534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf0d5fe1de18234b8e0a22abb363d17, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d3f1da7ea850e5429fbb2294a3933b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 21290288}
-  health: 3
   hitSound: {fileID: 8300000, guid: 907051cbb907dc848b9d8b041882f3ee, type: 3}
 --- !u!114 &11413086
 MonoBehaviour:
@@ -222,15 +203,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7c4e4cf195eaa47a3822a51b81c9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureName: Ghost
+  initialParameters:
+    health: 0
+    attack: 0
+    defense: 0
+    minimumDamage: 0
+    maximumDamage: 0
+    initiative: 0
+    mana: 0
+    spellPower: 0
+    luck: 0
+    morale: 0
   currentParameters:
     health: 0
     attack: 0
     defense: 0
     minimumDamage: 0
     maximumDamage: 0
+    initiative: 0
     mana: 0
     spellPower: 0
+    luck: 0
+    morale: 0
+  creatureName: Ghost
 --- !u!212 &21212546
 SpriteRenderer:
   m_ObjectHideFlags: 1

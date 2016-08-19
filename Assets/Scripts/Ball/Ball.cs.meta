@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 8750a7f1e399f804fa0b1c0b2b045d0e
-timeCreated: 1466936739
+timeCreated: 1470594473
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - knockSound: {fileID: 8300000, guid: e1ba75d574bbdee44a8ea91391c0799e, type: 3}
+  - knockLight: {fileID: 199536, guid: 09bd9bb1fe0f7ef4fa8c4dc9587b4d08, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

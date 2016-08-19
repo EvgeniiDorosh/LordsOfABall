@@ -2,14 +2,14 @@
 using System;
 using System.Collections;
 
-public class EnemiesConfig : CreaturesConfig<EnemyParameteresConfig, BaseCreatureParameters> {
+public class EnemiesConfig : CreaturesConfig<EnemyParameteresConfig> {
 	
-	public BaseCreatureParameters GetParametersByName(string name) {
+	public CreatureParameters GetParametersByName(string name) {
 		foreach (EnemyParameteresConfig config in parameters) {
 			if (config.name == name) {
 				return ConvertConfigToParameters(config);
 			}
 		}
-		return new BaseCreatureParameters ();
+		return new CreatureParameters ();
 	}
 }

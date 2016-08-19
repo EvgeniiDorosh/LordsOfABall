@@ -1,0 +1,19 @@
+{
+	"parameters" : [
+		{
+			"health" : 10,
+			"attack" : 0,
+			"defense" : 0,
+			"minimumDamage" : 1,
+			"maximumDamage" : 1,
+			"initiative" : 10,
+			"mana" : 0,
+			"spellPower" : 0,
+			"luck" : 1,
+			"morale" : 0
+		}
+	],
+
+	"width" : 1,
+	"defaultBallSpeed" : 10
+}

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Reflection;
 
 public class LevelManager : MonoBehaviour {
 
 	public GameObject paddle;
-	public GameObject clonePaddle;
+	private GameObject clonePaddle;
 
 	void Awake () {
 		clonePaddle = Instantiate (paddle, Vector2.zero, Quaternion.identity) as GameObject;
@@ -32,7 +34,9 @@ public class LevelManager : MonoBehaviour {
 
 	void CheckAllBallAreDestroyed() {
 		if (Ball.balls.Count == 0) {
-			clonePaddle.GetComponent<Paddle> ().launcher.Invoke("SetupBall", 0.5f);		
+			Paddle paddle = clonePaddle.GetComponent<Paddle> ();
+			//paddle.paramsController.ChangeHealth (-1f);// TODO Uncomment
+			paddle.Launcher.Invoke("SetupBall", 0.5f);		
 		}
 	}
 }

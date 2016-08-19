@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5097938, y: -3.5484326, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -103,9 +103,9 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: 0c2f8151b05adf44b989519df76137ad, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.3}
+  m_Offset: {x: 0, y: 0.36}
   serializedVersion: 2
-  m_Size: {x: 3, y: 0.126}
+  m_Size: {x: 3, y: 0.02}
 --- !u!114 &11412474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +117,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdf0831d219eb64c93b6de9c9a43348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialParameters:
+    health: 0
+    attack: 0
+    defense: 0
+    minimumDamage: 0
+    maximumDamage: 0
+    initiative: 0
+    mana: 0
+    spellPower: 0
+    luck: 0
+    morale: 0
+  currentParameters:
+    health: 0
+    attack: 0
+    defense: 0
+    minimumDamage: 0
+    maximumDamage: 0
+    initiative: 0
+    mana: 0
+    spellPower: 0
+    luck: 0
+    morale: 0
+  platform: {fileID: 174468}
 --- !u!114 &11445382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468b3559c7e83454da960c470795ca9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformCollider: {fileID: 6122380}
 --- !u!114 &11476726
 MonoBehaviour:
   m_ObjectHideFlags: 1

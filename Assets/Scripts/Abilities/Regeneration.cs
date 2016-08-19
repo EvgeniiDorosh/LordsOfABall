@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Regeneration : MonoBehaviour {
 
-	private EnemyHealth enemyHealth;
+	private HealthController healthController;
 
 	public bool isRegenerating { get; set;}
 	public ParticleSystem regenerationParticles;
@@ -11,23 +11,23 @@ public class Regeneration : MonoBehaviour {
 	private float messageRate = 10.0f;
 
 	void Start() {
-		enemyHealth = GetComponent<EnemyHealth> ();
-		if (enemyHealth == null) {
+		healthController = GetComponent<HealthController> ();
+		if (healthController == null) {
 			this.enabled = false;		
 		}
 	}
 
 	void Update() {
-		if (enemyHealth.hasWounds && !isRegenerating) {
+		if (healthController.HasWounds && !isRegenerating) {
 			isRegenerating = true;
 			StartCoroutine (Regenerate ());
 		}
 	}
 
 	IEnumerator Regenerate() {
-		while (enemyHealth.hasWounds) {
+		while (healthController.HasWounds) {
 			yield return new WaitForSeconds (messageRate);
-			enemyHealth.changeCurrentHealth(ratePerSecond * messageRate);
+			healthController.ChangeCurrentHealth(ratePerSecond * messageRate);
 			regenerationParticles.Play ();
 		}
 		StopCoroutine (Regenerate ());

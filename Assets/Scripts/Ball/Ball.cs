@@ -7,52 +7,72 @@ public class Ball : Attacker {
 	
 	public static readonly List<GameObject> balls = new List<GameObject>();
 
-	[SerializeField]
-	private BallParameters initialParameters;
-	override protected BaseCreatureParameters InitialParameters {
-		get {
-			return initialParameters;
-		}
-		set {
-			initialParameters = value as BallParameters;
-			base.InitialParameters = value;
+	private Paddle paddle;
+
+	private BallMotionController motionController;
+	public BallMotionController MotionController {
+		get { 
+			return motionController;
 		}
 	}
-
-	[SerializeField]
-	private BallParameters currentParameters;
-	override protected BaseCreatureParameters CurrentParameters {
-		get {
-			return currentParameters;
-		}
-		set {
-			currentParameters = value as BallParameters;
-			base.CurrentParameters = value;
-		}
-	}
-
-	private const float TORQUE = 20.0f;
-
-	public float initialVelocity = 10.0f;
-	public float velocity;
-
-	private Rigidbody2D rigitbody;
 
 	private AudioSource audioSource;
 	public AudioClip knockSound;
 
 	public GameObject knockLight;
 
-	void Awake () {
+	new void Awake () {
 		balls.Add (this.gameObject);
-		rigitbody = GetComponent<Rigidbody2D> ();
+		paddle = GameObject.FindGameObjectWithTag ("Player").GetComponent<Paddle> ();
+		InitialParameters = paddle.InitialParameters.Clone();
+		CurrentParameters = paddle.CurrentParameters.Clone ();
 		audioSource = GetComponent<AudioSource> ();
-		velocity = velocity > 0 ? velocity : initialVelocity;
+		base.Awake ();
 	}
-	
-	void Start () {
-		initialParameters = ConfigsParser.instance.ballConfig.GetInitialParameters();
-		currentParameters = initialParameters.Clone<BallParameters> ();
+
+	new protected void InitControllers() {
+		base.InitControllers ();
+		ParamsController.destinationEvent = BallEvent.parameterWasUpdated;
+		motionController = GetComponent<BallMotionController> ();
+	}
+
+	void OnEnable() {
+		Messenger<StatChange>.AddListener (PaddleEvent.parameterWasUpdated, OnPaddleParameterUpdate);
+	}
+
+	void OnDisable(){
+		Messenger<StatChange>.RemoveListener (PaddleEvent.parameterWasUpdated, OnPaddleParameterUpdate);
+	}
+
+	void OnPaddleParameterUpdate(StatChange statChange) {
+		switch (statChange.name) {
+		case "Attack":
+			ParamsController.ChangeAttack (statChange.diff);
+			break;
+		case "InitialAttack":
+			ParamsController.ChangeInitialAttack (statChange.diff);
+			break;
+		case "MinimumDamage":
+			ParamsController.ChangeMinimumDamage (statChange.diff);
+			break;
+		case "InitialMinimumDamage":
+			ParamsController.ChangeInitialMinimumDamage (statChange.diff);
+			break;
+		case "MaximumDamage":
+			ParamsController.ChangeMaximumDamage (statChange.diff);
+			break;
+		case "InitialMaximumDamage":
+			ParamsController.ChangeInitialMaximumDamage (statChange.diff);
+			break;
+		case "Luck":
+			ParamsController.ChangeLuck (statChange.diff);
+			break;
+		case "InitialLuck":
+			ParamsController.ChangeInitialLuck (statChange.diff);
+			break;
+		default:
+			break;
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
@@ -70,27 +90,4 @@ public class Ball : Attacker {
 		Messenger.Invoke(BallEvent.ballWasDestroyed);
 		Destroy (gameObject);
 	}
-
-	public void Launch(Vector2 direction) {
-		transform.parent = null;
-		rigitbody.isKinematic = false;
-		rigitbody.velocity = direction * velocity;
-	}
-
-	public void Stop() {
-		rigitbody.isKinematic = true;
-		rigitbody.velocity = Vector2.zero;
-	}
-
-	public void ChangeVelocity(float diff) {
-		velocity = velocity + diff;
-		rigitbody.velocity += rigitbody.velocity.normalized * diff;
-	}
-
-	IEnumerator SpeedIncreasing() {
-		for (;;) {
-			ChangeVelocity (0.1f);
-			yield return new WaitForSeconds (0.5f);
-		}
-	}	
 }

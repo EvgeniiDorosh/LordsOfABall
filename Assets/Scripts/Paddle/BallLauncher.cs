@@ -12,14 +12,14 @@ public class BallLauncher : MonoBehaviour {
 	private bool catchingIsActive = false;
 	public bool CatchingIsActive { get; set; }
 
-	private float paddleWidth;
+	private Collider2D platform;
 
 	void Awake() {
 		SetupBall ();
 	}
 
 	void Start () {
-		paddleWidth = GetComponent<Collider2D> ().bounds.size.x;
+		platform = GetComponent<Collider2D> ();
 	}
 	
 	void Update () {
@@ -49,16 +49,16 @@ public class BallLauncher : MonoBehaviour {
 	void LaunchBall(GameObject ball) {
 		float xPos = HitFactor(ball.transform.position);
 		Vector2 direction = new Vector2(xPos, 0.7f).normalized;
-		ball.GetComponent<Ball> ().Launch (direction);
+		ball.GetComponent<BallMotionController> ().Launch (direction);
 	}
 
 	void CatchBall(GameObject ball) {
 		caughtBall = ball;
-		caughtBall.GetComponent<Ball> ().Stop ();
+		caughtBall.GetComponent<BallMotionController> ().Stop ();
 		caughtBall.GetComponent<Transform> ().SetParent (this.transform);
 	}
 
 	float HitFactor(Vector2 hitPosition) {
-		return (hitPosition.x - transform.position.x) / paddleWidth;
+		return (hitPosition.x - transform.position.x) / platform.bounds.size.x;
 	}
 }

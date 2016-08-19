@@ -4,6 +4,8 @@ using System;
 
 public class PaddleMotionController : MonoBehaviour {
 
+	public BoxCollider2D platformCollider;
+
 	private Edges allowedEdges;
 
 	[Serializable]
@@ -22,6 +24,14 @@ public class PaddleMotionController : MonoBehaviour {
 		allowedEdges = GetPaddleAllowedEdges ();
 		transform.position = GetInitialPlayerPosition();
 	}
+
+	void OnEnable() {
+		Messenger.AddListener (PaddleEvent.widthWasUpdated, OnWidthChanged);
+	}
+
+	void OnDisable() {
+		Messenger.RemoveListener (PaddleEvent.widthWasUpdated, OnWidthChanged);
+	}
 	
 	void Update () {
 		float mouseX = Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, 
@@ -38,7 +48,9 @@ public class PaddleMotionController : MonoBehaviour {
 			xValues [index] = borderGameObjects[index].transform.position.x;
 		}
 
-		Edges edges = new Edges (Mathf.Min (xValues), Mathf.Max (xValues));
+		float paddleOffset = platformCollider.bounds.size.x / 2;
+
+		Edges edges = new Edges (Mathf.Min (xValues) + paddleOffset, Mathf.Max (xValues) - paddleOffset);
 
 		return edges;
 	}
@@ -49,5 +61,9 @@ public class PaddleMotionController : MonoBehaviour {
 		Vector2 playerPosition = new Vector2 (xPosition, yPosition);
 
 		return playerPosition;
+	}
+
+	void OnWidthChanged() {
+		allowedEdges = GetPaddleAllowedEdges ();
 	}
 }

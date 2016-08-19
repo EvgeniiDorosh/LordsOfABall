@@ -16,5 +16,5 @@ public static class Settings {
 		set {fxLevel = value; }
 	}
 
-	public static int levelSceneOffset = 0;
+	public static int levelSceneOffset = 1;
 }

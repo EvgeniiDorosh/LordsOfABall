@@ -3,5 +3,5 @@ using System.Collections;
 
 public interface IAttacker {
 
-	float GetDamage (BaseCreatureParameters targetParameters);
+	float GetDamage (CreatureParameters targetParameters);
 }
