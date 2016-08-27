@@ -36,7 +36,7 @@ public class Creature : MonoBehaviour {
 		InitControllers ();
 	}
 
-	protected void InitControllers() {
+	protected virtual void InitControllers() {
 		paramsController = new ParametersController (this);
 	}
 }

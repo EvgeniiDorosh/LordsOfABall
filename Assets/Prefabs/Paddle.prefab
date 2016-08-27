@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21224146}
   - 114: {fileID: 11412474}
   - 114: {fileID: 11445382}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Paddle
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -27,9 +27,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 461932}
   - 212: {fileID: 21216026}
+  - 50: {fileID: 5072308}
   - 61: {fileID: 6122380}
   - 114: {fileID: 11476726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -44,7 +45,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 410584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BallInitialSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5097938, y: -3.5484326, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -92,6 +93,23 @@ Transform:
   - {fileID: 410584}
   m_Father: {fileID: 422630}
   m_RootOrder: 0
+--- !u!50 &5072308
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174468}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6122380
 BoxCollider2D:
   m_ObjectHideFlags: 1

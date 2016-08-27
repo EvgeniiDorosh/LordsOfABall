@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using System;
+using System.Reflection;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ParametersController {
 
 	private Creature target;
+
+	private static readonly Dictionary<string, Action<float>> changeMethods = new Dictionary<string, Action<float>>();
 
 	private CreatureParameters InitialParameters {
 		get { 
@@ -23,111 +28,131 @@ public class ParametersController {
 		target = creature;
 	}
 
-	public void ChangeHealth(float diff) {
+	public void ChangeParameter(string paramName, float diffValue) {
+
+		string methodName = "Change" + paramName;
+		if(changeMethods.ContainsKey(methodName)) {
+			changeMethods[methodName].Invoke(diffValue);
+		} else {
+			MethodInfo method = GetType ().GetMethod (methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+			if (method != null) {
+				Action<float> action = (Action<float>)Delegate.CreateDelegate(typeof(Action<float>), this, method);
+				changeMethods.Add (methodName, action);
+				action.Invoke (diffValue);
+			}
+		}
+	}
+
+	/**
+	 * Change methods
+	 */
+
+	protected void ChangeHealth(float diff) {
 		CurrentParameters.Health += diff;
 		if (CurrentParameters.Health > InitialParameters.Health)
 			CurrentParameters.Health = InitialParameters.Health;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Health", CurrentParameters.Health, diff));
 	}
 
-	public void ChangeInitialHealth(float diff) {
+	protected void ChangeInitialHealth(float diff) {
 		InitialParameters.Health += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialHealth", InitialParameters.Health, diff));
 	}
 
-	public void ChangeAttack(float diff) {
+	protected void ChangeAttack(float diff) {
 		CurrentParameters.Attack += diff;
+		Debug.Log("destinationEvent = " +  destinationEvent + "; Attack = " + CurrentParameters.Attack + "; diff = " + diff);
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Attack", CurrentParameters.Attack, diff));
 	}
 
-	public void ChangeInitialAttack(float diff) {
+	protected void ChangeInitialAttack(float diff) {
 		InitialParameters.Attack += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialAttack", InitialParameters.Attack, diff));
 		ChangeAttack (diff);
 	}
 
-	public void ChangeDefense(float diff) {
+	protected void ChangeDefense(float diff) {
 		CurrentParameters.Defense += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Defense", CurrentParameters.Defense, diff));
 	}
 
-	public void ChangeInitialDefense(float diff) {
+	protected void ChangeInitialDefense(float diff) {
 		InitialParameters.Defense += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialDefense", InitialParameters.Defense, diff));
 		ChangeDefense (diff);
 	}
 
-	public void ChangeMinimumDamage(float diff) {
+	protected void ChangeMinimumDamage(float diff) {
 		CurrentParameters.MinimumDamage += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("MinimumDamage", CurrentParameters.MinimumDamage, diff));
 	}
 
-	public void ChangeInitialMinimumDamage(float diff) {
+	protected void ChangeInitialMinimumDamage(float diff) {
 		InitialParameters.MinimumDamage += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialMinimumDamage", InitialParameters.MinimumDamage, diff));
 		ChangeMinimumDamage (diff);
 	}
 
-	public void ChangeMaximumDamage(float diff) {
+	protected void ChangeMaximumDamage(float diff) {
 		CurrentParameters.MaximumDamage += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("MaximumDamage", CurrentParameters.MaximumDamage, diff));
 	}
 
-	public void ChangeInitialMaximumDamage(float diff) {
+	protected void ChangeInitialMaximumDamage(float diff) {
 		InitialParameters.MaximumDamage += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialMaximumDamage", InitialParameters.MaximumDamage, diff));
 		ChangeMaximumDamage (diff);
 	}
 
-	public void ChangeInitiative(float diff) {
+	protected void ChangeInitiative(float diff) {
 		CurrentParameters.Initiative += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Initiative", CurrentParameters.Initiative, diff));
 	}
 
-	public void ChangeInitialInitiative(float diff) {
+	protected void ChangeInitialInitiative(float diff) {
 		InitialParameters.MaximumDamage += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialInitiative", InitialParameters.Initiative, diff));
 		ChangeInitiative (diff);
 	}
 
-	public void ChangeMana(float diff) {
+	protected void ChangeMana(float diff) {
 		CurrentParameters.Mana += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Mana", CurrentParameters.Mana, diff));
 	}
 
-	public void ChangeInitialMana(float diff) {
+	protected void ChangeInitialMana(float diff) {
 		InitialParameters.Mana += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialMana", InitialParameters.Mana, diff));
 	}
 
-	public void ChangeSpellPower(float diff) {
+	protected void ChangeSpellPower(float diff) {
 		CurrentParameters.SpellPower += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("SpellPower", CurrentParameters.SpellPower, diff));
 	}
 
-	public void ChangeInitialSpellPower(float diff) {
+	protected void ChangeInitialSpellPower(float diff) {
 		InitialParameters.SpellPower += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialSpellPower", InitialParameters.SpellPower, diff));
 		ChangeSpellPower (diff);
 	}
 
-	public void ChangeLuck(float diff) {
+	protected void ChangeLuck(float diff) {
 		CurrentParameters.Luck += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Luck", CurrentParameters.Luck, diff));
 	}
 
-	public void ChangeInitialLuck(float diff) {
+	protected void ChangeInitialLuck(float diff) {
 		InitialParameters.Luck += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialLuck", InitialParameters.Luck, diff));
 		ChangeLuck (diff);
 	}
 
-	public void ChangeMorale(float diff) {
+	protected void ChangeMorale(float diff) {
 		CurrentParameters.Morale += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Morale", CurrentParameters.Morale, diff));
 	}
 
-	public void ChangeInitialMorale(float diff) {
+	protected void ChangeInitialMorale(float diff) {
 		InitialParameters.Morale += diff;
 		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialMorale", InitialParameters.Morale, diff));
 		ChangeMorale (diff);

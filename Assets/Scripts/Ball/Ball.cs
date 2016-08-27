@@ -30,7 +30,7 @@ public class Ball : Attacker {
 		base.Awake ();
 	}
 
-	new protected void InitControllers() {
+	override protected void InitControllers() {
 		base.InitControllers ();
 		ParamsController.destinationEvent = BallEvent.parameterWasUpdated;
 		motionController = GetComponent<BallMotionController> ();
@@ -45,34 +45,7 @@ public class Ball : Attacker {
 	}
 
 	void OnPaddleParameterUpdate(StatChange statChange) {
-		switch (statChange.name) {
-		case "Attack":
-			ParamsController.ChangeAttack (statChange.diff);
-			break;
-		case "InitialAttack":
-			ParamsController.ChangeInitialAttack (statChange.diff);
-			break;
-		case "MinimumDamage":
-			ParamsController.ChangeMinimumDamage (statChange.diff);
-			break;
-		case "InitialMinimumDamage":
-			ParamsController.ChangeInitialMinimumDamage (statChange.diff);
-			break;
-		case "MaximumDamage":
-			ParamsController.ChangeMaximumDamage (statChange.diff);
-			break;
-		case "InitialMaximumDamage":
-			ParamsController.ChangeInitialMaximumDamage (statChange.diff);
-			break;
-		case "Luck":
-			ParamsController.ChangeLuck (statChange.diff);
-			break;
-		case "InitialLuck":
-			ParamsController.ChangeInitialLuck (statChange.diff);
-			break;
-		default:
-			break;
-		}
+		ParamsController.ChangeParameter (statChange.name, statChange.diff);
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
@@ -83,6 +56,9 @@ public class Ball : Attacker {
 			Vector2 hitPoint = contactPoint.point;
 			Instantiate(knockLight, new Vector2(hitPoint.x, hitPoint.y), Quaternion.identity);
 		}
+
+		ParamsController.ChangeParameter ("Attack", 1.0f);
+		Debug.Log("Ball " + GetInstanceID() + " Attack = " + CurrentParameters.Attack);
 	}
 
 	public void Demolish()  {

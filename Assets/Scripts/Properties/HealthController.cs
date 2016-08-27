@@ -40,7 +40,7 @@ public class HealthController : MonoBehaviour {
 	}
 
 	public void ChangeCurrentHealth(float diff) {
-		creature.ParamsController.ChangeHealth(diff);
+		creature.ParamsController.ChangeParameter("Health", diff);
 		UpdateHealthBar ();
 	}
 

@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cadfc2cde04204886755bee71cc916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Attack
+  label: 41747461636b
   positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
   negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!4 &118082506 stripped
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Speed
+  label: 5370656564
 --- !u!4 &146500116 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -2255,7 +2255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddle: {fileID: 104346, guid: b610852d9b03bff4a95b6ab6049b6164, type: 2}
-  clonePaddle: {fileID: 0}
 --- !u!1001 &313305019
 Prefab:
   m_ObjectHideFlags: 0
@@ -2626,7 +2625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Defense
+  label: 446566656e7365
 --- !u!1001 &360338971
 Prefab:
   m_ObjectHideFlags: 0
@@ -3242,7 +3241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cadfc2cde04204886755bee71cc916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: MinimumDamage
+  label: 4d696e696d756d44616d616765
   positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
   negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!1 &493790329
@@ -3293,7 +3292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Morale
+  label: 4d6f72616c65
 --- !u!114 &493790332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3710,7 +3709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Health
+  label: 4865616c7468
 --- !u!1001 &635111824
 Prefab:
   m_ObjectHideFlags: 0
@@ -4128,7 +4127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: MinimumDamage
+  label: 4d696e696d756d44616d616765
 --- !u!4 &729747564 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -4602,7 +4601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: InitialHealth
+  label: 496e697469616c4865616c7468
 --- !u!1 &831647282
 GameObject:
   m_ObjectHideFlags: 0
@@ -5007,7 +5006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cadfc2cde04204886755bee71cc916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Defense
+  label: 446566656e7365
   positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
   negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!1 &936293092
@@ -6067,7 +6066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cadfc2cde04204886755bee71cc916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: SpellPower
+  label: 5370656c6c506f776572
   positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
   negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!1 &1234768284
@@ -6173,7 +6172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: SpellPower
+  label: 5370656c6c506f776572
 --- !u!1001 &1238438920
 Prefab:
   m_ObjectHideFlags: 0
@@ -6799,7 +6798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cadfc2cde04204886755bee71cc916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Speed
+  label: 5370656564
   positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
   negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!1 &1344729894
@@ -6850,7 +6849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: InitialMana
+  label: 496e697469616c4d616e61
 --- !u!114 &1344729897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7501,7 +7500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Mana
+  label: 4d616e61
 --- !u!114 &1427387920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8666,7 +8665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cadfc2cde04204886755bee71cc916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: MaximumDamage
+  label: 4d6178696d756d44616d616765
   positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
   negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
 --- !u!4 &1689517835 stripped
@@ -9276,7 +9275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Rage
+  label: 52616765
 --- !u!4 &1808003102 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -10053,7 +10052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: MaximumDamage
+  label: 4d6178696d756d44616d616765
 --- !u!4 &2002539581 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -10439,7 +10438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Luck
+  label: 4c75636b
 --- !u!4 &2056577548 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -10553,7 +10552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec196393392a6c64997fab320eea0c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Attack
+  label: 41747461636b
 --- !u!1 &2122580303
 GameObject:
   m_ObjectHideFlags: 0

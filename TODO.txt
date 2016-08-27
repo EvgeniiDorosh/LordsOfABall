@@ -1,2 +1,4 @@
 Paddle:
 - Create area effectors (left and right) with very small magnitude to avoid ball stucking between floor and roof (when x position doesn't change);
+- Try to avoid all "base.Awake" etc.;
+- SummonPhantom - copiyng params & abilities from target ball;

@@ -22,7 +22,7 @@ public class MainPreloader : MonoBehaviour {
 	}
 
 	IEnumerator Delay() {
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (1f);
 		LoadGame ();
 	}
 

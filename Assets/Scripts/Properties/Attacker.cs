@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using Random = UnityEngine.Random;
 
-public class Attacker : Creature, IAttacker {
+public class Attacker : Creature {
 	
 	public float GetDamage (CreatureParameters targetParameters) {
 		float resultDamage;
