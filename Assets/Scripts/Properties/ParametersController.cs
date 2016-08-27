@@ -8,7 +8,7 @@ public class ParametersController {
 
 	private Creature target;
 
-	private static readonly Dictionary<string, Action<float>> changeMethods = new Dictionary<string, Action<float>>();
+	private readonly Dictionary<string, Action<float>> changeMethods = new Dictionary<string, Action<float>>();
 
 	private CreatureParameters InitialParameters {
 		get { 
