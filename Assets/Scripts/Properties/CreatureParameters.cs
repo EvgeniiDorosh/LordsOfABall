@@ -1,9 +1,22 @@
 ﻿using UnityEngine;
 using System;
+using System.Reflection;
 
 [Serializable]
 public class CreatureParameters {
-	
+
+	public float GetValue(string paramName) {
+		float result = 0f;
+		PropertyInfo property = GetType ().GetProperty (paramName);
+		try {
+			result = (float) property.GetValue (this, null);
+		} catch(NullReferenceException) {
+			Debug.LogError ("Property " + paramName + " doesnt exist!");	
+		}
+
+		return result;
+	}
+
 	/**
 	 * Health
 	 */
@@ -176,16 +189,11 @@ public class CreatureParameters {
 
 	public CreatureParameters Clone() {
 		CreatureParameters result = new CreatureParameters ();
-		result.health = this.health;
-		result.attack = this.attack;
-		result.defense = this.defense;
-		result.minimumDamage = this.minimumDamage;
-		result.maximumDamage = this.maximumDamage;
-		result.initiative = this.initiative;
-		result.mana = this.mana;
-		result.spellPower = this.spellPower;
-		result.luck = this.luck;
-		result.morale = this.morale;
+
+		PropertyInfo[] properties = GetType ().GetProperties ();
+		foreach(PropertyInfo property in properties) {
+			property.SetValue(result, property.GetValue(this, null), null);
+		}
 
 		return result;
 	}

@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-
-public static class BallEvent {
+﻿public static class BallEvent {
 
 	public static string name = "BallEvent";
 

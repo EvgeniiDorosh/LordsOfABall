@@ -546,7 +546,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 874605304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 373, y: 111.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -733,7 +733,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1363227412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -373, y: -111.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -750,8 +750,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b15c8aa742af5842908c3ed64825ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesJSONConfig: {fileID: 4900000, guid: 407d6d1c4aeacb84e89d27ab0635d55d, type: 3}
-  paddleJSONConfig: {fileID: 4900000, guid: c57c6d0e498adab428a257369f70d7b4, type: 3}
+  enemiesJSON: {fileID: 4900000, guid: 407d6d1c4aeacb84e89d27ab0635d55d, type: 3}
+  paddleJSON: {fileID: 4900000, guid: c57c6d0e498adab428a257369f70d7b4, type: 3}
+  destructiblesJSON: {fileID: 4900000, guid: 851ac3f06f98dd44ba67e2208c469f70, type: 3}
 --- !u!1 &1861364546
 GameObject:
   m_ObjectHideFlags: 0

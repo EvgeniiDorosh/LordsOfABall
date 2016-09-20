@@ -3,40 +3,26 @@ using System.Collections;
 
 public class Creature : MonoBehaviour {
 
-	[SerializeField]
-	private CreatureParameters initialParameters;
 	public CreatureParameters InitialParameters {
-		get {
-			return initialParameters;
-		}
-		set {
-			initialParameters = value;
-		}
+		get { return paramsController.InitialParameters;}
+		set { paramsController.InitialParameters = value;}
 	}
 
-	[SerializeField]
-	private CreatureParameters currentParameters;
 	public CreatureParameters CurrentParameters {
-		get {
-			return currentParameters;
-		}
-		set {
-			currentParameters = value;
-		}
+		get { return paramsController.CurrentParameters;}
+		set { paramsController.CurrentParameters = value;}
 	}
 
 	private ParametersController paramsController;
 	public ParametersController ParamsController {
-		get { 
-			return paramsController;
-		}	
+		get { return paramsController;}	
+	}
+
+	public void ChangeParameter(string paramName, float diffValue) {
+		paramsController.ChangeParameter (paramName, diffValue);
 	}
 
 	protected void Awake() {
-		InitControllers ();
-	}
-
-	protected virtual void InitControllers() {
-		paramsController = new ParametersController (this);
+		paramsController = new ParametersController ();
 	}
 }

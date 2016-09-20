@@ -10,16 +10,14 @@ public class SimpleEnemy : Damageable {
 
 	new void Awake() {
 		base.Awake ();
-		enemies.Add (this.gameObject);
-		InitialParameters = ConfigsParser.instance.enemiesConfig.GetParametersByName (creatureName);
-		CurrentParameters = InitialParameters.Clone();
-	}
+		ParamsController.InitialParameters = ConfigsParser.instance.enemiesConfig.GetParametersByName (creatureName);
+		ParamsController.CurrentParameters = InitialParameters.Clone();
 
-	void OnCollisionEnter2D(Collision2D other) {
-		
+		enemies.Add (this.gameObject);
 	}
 
 	void OnDestroy() {
 		enemies.Remove (this.gameObject);
+		Messenger<GameObject>.Invoke(EnemyEvent.enemyWasDestroyed, this.gameObject);
 	}
 }

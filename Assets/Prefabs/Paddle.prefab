@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21224146}
   - 114: {fileID: 11412474}
   - 114: {fileID: 11445382}
+  - 114: {fileID: 11493186}
   m_Layer: 8
   m_Name: Paddle
   m_TagString: Player
@@ -135,29 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdf0831d219eb64c93b6de9c9a43348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialParameters:
-    health: 0
-    attack: 0
-    defense: 0
-    minimumDamage: 0
-    maximumDamage: 0
-    initiative: 0
-    mana: 0
-    spellPower: 0
-    luck: 0
-    morale: 0
-  currentParameters:
-    health: 0
-    attack: 0
-    defense: 0
-    minimumDamage: 0
-    maximumDamage: 0
-    initiative: 0
-    mana: 0
-    spellPower: 0
-    luck: 0
-    morale: 0
-  platform: {fileID: 174468}
 --- !u!114 &11445382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,6 +161,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballInitialSpot: {fileID: 410584}
   ball: {fileID: 123254, guid: f5a19098ae456cd48a97b858afe0fd11, type: 2}
+--- !u!114 &11493186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8f9a1359bba244e96a970e7aa23258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21216026
 SpriteRenderer:
   m_ObjectHideFlags: 1

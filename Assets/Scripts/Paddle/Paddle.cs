@@ -12,33 +12,31 @@ public class Paddle : Attacker {
 		}
 	}
 
-	public GameObject platform;
-
 	new void Awake () {
-		launcher = GetComponentInChildren<BallLauncher> ();
+		base.Awake ();
 		config = ConfigsParser.instance.paddleConfig;
 		width = config.width;
 		defaultBallSpeed = config.defaultBallSpeed;
-		InitialParameters = config.GetInitialParameters();
-		CurrentParameters = InitialParameters.Clone ();
-		base.Awake ();
-	}
-
-	new protected void InitControllers() {
-		base.InitControllers ();
+		ParamsController.InitialParameters = config.GetInitialParameters();
+		ParamsController.CurrentParameters = InitialParameters.Clone ();
 		ParamsController.destinationEvent = PaddleEvent.parameterWasUpdated;
+
+		launcher = GetComponentInChildren<BallLauncher> ();
 	}
 
-	private const float maxWidth = 2f;
-	private const float minWidth = 0.5f;
+	void Start() {
+		PaddleUIInitializator uiInitializator = GetComponent<PaddleUIInitializator> ();
+		uiInitializator.InitUIPanel ();
+	}
+
 	private float width;
 	public float Width {
 		get {
 			return width; 
 		}
 		set { 
-			width = Mathf.Clamp(value, minWidth, maxWidth);
-			platform.transform.localScale = new Vector3(width, 1f, 1f);
+			width = Mathf.Clamp(value, 0.5f, 2.0f);
+			launcher.SetWidth(width);
 			Messenger.Invoke (PaddleEvent.widthWasUpdated);
 		}
 	}

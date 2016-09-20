@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class CollectableItem : MonoBehaviour {
+[Serializable]
+public class CollectableItem : MonoBehaviour {
 
 	public string itemName;
-	public bool isOneTimeUse;
-	public Vector2 speed;
+	public bool isOneTimeUse = true;
+	public Vector2 speed = Vector2.down;
 	public List<string> targetTags;
 
-	public abstract void Trigger (GameObject targetObject);
+	public GameObject spell;
 
 	void Update() {
 		transform.Translate (speed * Time.deltaTime);
@@ -18,11 +20,18 @@ public abstract class CollectableItem : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		string otherTag = other.gameObject.tag;
 		if (targetTags.Contains (otherTag)) {
-			Trigger (other.gameObject);
+			AddSpell (other.gameObject);
 			if (isOneTimeUse) {
 				GetComponent<DamageableDeath> ().ShowDeath ();
 				Destroy(gameObject);
 			}
 		}
+	}
+
+	void AddSpell(GameObject targetObject) {
+		GameObject cloneSpell = Instantiate (spell) as GameObject;
+		cloneSpell.transform.parent = targetObject.transform;
+		Spell spellEffect = cloneSpell.GetComponent<Spell> ();
+		spellEffect.Trigger(targetObject);
 	}
 }

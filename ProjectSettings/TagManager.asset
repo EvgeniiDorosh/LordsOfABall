@@ -8,6 +8,8 @@ TagManager:
   - Ball
   - Enemy
   - PaddleEdge
+  - PickUp
+  - Destructible
   layers:
   - Default
   - TransparentFX

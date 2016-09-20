@@ -9,12 +9,24 @@ public class BallLauncher : MonoBehaviour {
 
 	private bool hasBall = true;
 
-	private bool catchingIsActive = false;
 	public bool CatchingIsActive { get; set; }
+
+	private float reflectionFactor;
+	public float ReflectionFactor { 
+		get { return reflectionFactor;}
+		set {
+			reflectionFactor = Mathf.Clamp(value, 0.1f, 0.9f);
+		}
+	}
 
 	private Collider2D platform;
 
+	public void SetWidth(float value) {
+		transform.localScale = new Vector3(value, 1f, 1f);
+	}
+
 	void Awake() {
+		ReflectionFactor = 0.5f;
 		SetupBall ();
 	}
 
@@ -31,7 +43,7 @@ public class BallLauncher : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag ("Ball")) {
-			if (catchingIsActive && !hasBall) {
+			if (CatchingIsActive && !hasBall) {
 				hasBall = true;
 				CatchBall (collision.gameObject);
 			} else {
@@ -48,7 +60,7 @@ public class BallLauncher : MonoBehaviour {
 
 	void LaunchBall(GameObject ball) {
 		float xPos = HitFactor(ball.transform.position);
-		Vector2 direction = new Vector2(xPos, 0.7f).normalized;
+		Vector2 direction = new Vector2(xPos, reflectionFactor).normalized;
 		ball.GetComponent<BallMotionController> ().Launch (direction);
 	}
 

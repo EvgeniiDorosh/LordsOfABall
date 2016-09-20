@@ -4,7 +4,7 @@
 			"name" : "Skeleton",
 			"attack" : 1,
 			"defense" : 2,
-			"mnimumDamage" : 1,
+			"minimumDamage" : 1,
 			"maximumDamage" : 1,
 			"health" : 4
 		},
@@ -12,7 +12,7 @@
 			"name" : "SkeletalLegionary",
 			"attack" : 2,
 			"defense" : 6,
-			"mnimumDamage" : 1,
+			"minimumDamage" : 1,
 			"maximumDamage" : 3,
 			"health" : 5
 		},
@@ -20,7 +20,7 @@
 			"name" : "SkeletalBowman",
 			"attack" : 1,
 			"defense" : 2,
-			"mnimumDamage" : 1,
+			"minimumDamage" : 1,
 			"maximumDamage" : 2,
 			"health" : 4
 		},
@@ -28,7 +28,7 @@
 			"name" : "SkeletalCrossbowman",
 			"attack" : 2,
 			"defense" : 3,
-			"mnimumDamage" : 1,
+			"minimumDamage" : 1,
 			"maximumDamage" : 3,
 			"health" : 6
 		},

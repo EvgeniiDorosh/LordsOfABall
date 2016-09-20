@@ -22,18 +22,15 @@ public class Ball : Attacker {
 	public GameObject knockLight;
 
 	new void Awake () {
-		balls.Add (this.gameObject);
-		paddle = GameObject.FindGameObjectWithTag ("Player").GetComponent<Paddle> ();
-		InitialParameters = paddle.InitialParameters.Clone();
-		CurrentParameters = paddle.CurrentParameters.Clone ();
-		audioSource = GetComponent<AudioSource> ();
 		base.Awake ();
-	}
-
-	override protected void InitControllers() {
-		base.InitControllers ();
+		paddle = GameObject.FindGameObjectWithTag ("Player").GetComponent<Paddle> ();
+		ParamsController.InitialParameters = paddle.InitialParameters.Clone();
+		ParamsController.CurrentParameters = paddle.CurrentParameters.Clone ();
 		ParamsController.destinationEvent = BallEvent.parameterWasUpdated;
 		motionController = GetComponent<BallMotionController> ();
+		audioSource = GetComponent<AudioSource> ();
+
+		balls.Add (this.gameObject);
 	}
 
 	void OnEnable() {
@@ -56,9 +53,6 @@ public class Ball : Attacker {
 			Vector2 hitPoint = contactPoint.point;
 			Instantiate(knockLight, new Vector2(hitPoint.x, hitPoint.y), Quaternion.identity);
 		}
-
-		ParamsController.ChangeParameter ("Attack", 1.0f);
-		Debug.Log("Ball " + GetInstanceID() + " Attack = " + CurrentParameters.Attack);
 	}
 
 	public void Demolish()  {
