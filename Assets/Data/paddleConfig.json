@@ -15,5 +15,5 @@
 	],
 
 	"width" : 1,
-	"defaultBallSpeed" : 12
+	"speed" : 10
 }

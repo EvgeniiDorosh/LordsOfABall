@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public static class PaddleEvent {
+﻿public static class PaddleEvent {
 
 	public static string name = "PaddleEvent";
 

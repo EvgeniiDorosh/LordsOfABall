@@ -2,22 +2,16 @@
 using System;
 
 [Serializable]
-public class PaddleParameters : CreatureParameters {
+public class PaddleParameters : Parameters {
 
 	/**
 	 * Width
 	 */ 
 
 	private float width;
-
 	public float Width {
-
-		get {
-			return width;
-		}
-		set { 
-			width = value < 0 ? 0 : value;
-		}
+		get { return width; }
+		set { width = value < 0 ? 0 : value; }
 	}
 
 	/**
@@ -25,14 +19,16 @@ public class PaddleParameters : CreatureParameters {
 	 */ 
 
 	private float speed;
-
 	public float Speed {
+		get { return speed;	}
+		set { speed = value < 0 ? 0 : value; }
+	}
 
-		get {
-			return speed;
-		}
-		set { 
-			speed = value < 0 ? 0 : value;
-		}
+	public PaddleParameters Clone() {
+		PaddleParameters result = new PaddleParameters ();
+		result.Width = width;
+		result.Speed = speed;
+
+		return result;
 	}
 }

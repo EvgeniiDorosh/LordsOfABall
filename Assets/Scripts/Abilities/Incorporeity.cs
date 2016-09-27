@@ -5,18 +5,34 @@ using Random = UnityEngine.Random;
 public class Incorporeity : MonoBehaviour {
 
 	public string targetTag;
+
 	public GameObject missMessage;
+	private SpriteRenderer missSprite;
 
 	private Collider2D unitCollider;
 	private bool lastTouchWasMiss;
 
 	void Awake () {
 		unitCollider = GetComponent<Collider2D> ();
+		InitMessage ();
+	}
+
+	void InitMessage() {
+		missSprite = missMessage.GetComponent<SpriteRenderer> ();
+		HideMessage ();
+	}
+
+	void HideMessage() {
+		missSprite.enabled = false;
 	}
 
 	void Start() {
 		unitCollider.isTrigger = Random.value > 0.5f;
 		lastTouchWasMiss = !unitCollider.isTrigger;
+	}
+
+	void OnCollisionEnter2D(Collision2D other) {
+		HideMessage ();
 	}
 
 	void OnCollisionExit2D(Collision2D other) {
@@ -32,8 +48,8 @@ public class Incorporeity : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == targetTag) {
-			GameObject message = Instantiate(missMessage, transform.position, Quaternion.identity) as GameObject;
-			Destroy (message, 1.5f);
+			missSprite.enabled = true;
+			Invoke("HideMessage", 1.5f);
 		}
 	}
 

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
@@ -13,8 +12,8 @@ public class UILevelButton : MonoBehaviour {
 		levelText.text = levelIndex.ToString();
 	}
 
-	public void LoadScene () {
+	public void OnLevelChoose () {
 		int validIndex = levelIndex + Settings.levelSceneOffset;
-		SceneManager.LoadScene (validIndex);	
+		Messenger<int>.Invoke (LevelEvent.loadLevel, validIndex);
 	}
 }

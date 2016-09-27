@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
 public class MainPreloader : MonoBehaviour {
 
@@ -11,7 +10,7 @@ public class MainPreloader : MonoBehaviour {
 
 	void Start () {
 		ballRigidBody = GameObject.FindGameObjectWithTag ("Ball").GetComponent<Rigidbody2D>();
-		StartCoroutine (Delay());
+		Invoke ("LoadGame", 2f);
 	}
 	
 	void Update () {
@@ -19,11 +18,6 @@ public class MainPreloader : MonoBehaviour {
 		if (loadOperation != null) {
 			slider.value = loadOperation.progress;
 		}
-	}
-
-	IEnumerator Delay() {
-		yield return new WaitForSeconds (1f);
-		LoadGame ();
 	}
 
 	void LoadGame () {

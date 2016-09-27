@@ -21,13 +21,23 @@ public class BallLauncher : MonoBehaviour {
 
 	private Collider2D platform;
 
-	public void SetWidth(float value) {
-		transform.localScale = new Vector3(value, 1f, 1f);
+	private void SetWidth(StatChange change) {
+		transform.localScale = new Vector3(change.value, 1f, 1f);
 	}
 
 	void Awake() {
 		ReflectionFactor = 0.5f;
 		SetupBall ();
+	}
+
+	void OnEnable() {
+		Messenger<StatChange>.AddListener (PaddleEvent.widthWasUpdated, SetWidth);
+		Messenger.AddListener(BallEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
+	}
+
+	void OnDisable() {
+		Messenger<StatChange>.RemoveListener (PaddleEvent.widthWasUpdated, SetWidth);
+		Messenger.RemoveListener(BallEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
 	}
 
 	void Start () {
@@ -52,7 +62,13 @@ public class BallLauncher : MonoBehaviour {
 		}
 	}
 
-	public void SetupBall() {
+	void CheckAllBallAreDestroyed() {
+		if (Ball.balls.Count == 0) {
+			Invoke("SetupBall", 0.5f);		
+		}
+	}
+
+	void SetupBall() {
 		caughtBall = Instantiate (ball, ballInitialSpot.position, Quaternion.identity) as GameObject;
 		caughtBall.GetComponent<Transform> ().SetParent (this.transform);
 		hasBall = true;

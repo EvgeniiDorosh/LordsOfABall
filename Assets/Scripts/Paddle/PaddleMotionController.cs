@@ -4,8 +4,10 @@ using System;
 
 public class PaddleMotionController : MonoBehaviour {
 
-	public Collider2D platformCollider;
+	public GameObject paddle;
 
+	private Transform paddleTransform;
+	private Collider2D platformCollider;
 	private Edges allowedEdges;
 
 	private class Edges {
@@ -25,9 +27,11 @@ public class PaddleMotionController : MonoBehaviour {
 		set { isInverseMotion = value;}
 	}
 
-	void Start () {
+	void Awake() {
+		platformCollider = GetComponent<BoxCollider2D> ();
 		allowedEdges = GetPaddleAllowedEdges ();
-		transform.position = GetInitialPlayerPosition();
+		paddleTransform = paddle.transform;
+		paddleTransform.position = GetInitialPlayerPosition();
 	}
 
 	void OnEnable() {
@@ -42,8 +46,8 @@ public class PaddleMotionController : MonoBehaviour {
 		float mouseX = Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, 
 																	Input.mousePosition.y)).x;
 		float playerX = (isInverseMotion ? -1 : 1) * mouseX;
-		Vector2 playerPosition = new Vector2 (Mathf.Clamp (playerX, allowedEdges.xMin, allowedEdges.xMax), transform.position.y);
-		transform.position = playerPosition;
+		Vector2 playerPosition = new Vector2 (Mathf.Clamp (playerX, allowedEdges.xMin, allowedEdges.xMax), paddleTransform.position.y);
+		paddleTransform.position = playerPosition;
 	}
 
 	Edges GetPaddleAllowedEdges() {

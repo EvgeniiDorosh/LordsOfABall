@@ -19,19 +19,19 @@ public class ParametersSpell : Spell {
 	public ValueType valueType;
 	public enum ValueType { Constant, Random }
 
-	private Creature targetCreature;
+	private ICreature targetCreature;
 
 	override public void Cast () {
-		targetCreature = GetCreature(targetObject);
+		targetCreature = targetObject.GetCreature();
 		if (targetCreature != null) {
 			diffValue = GetDiffValue ();
-			targetCreature.ParamsController.ChangeParameter(parameterName.ToString(), diffValue);
+			targetCreature.ChangeParameter(parameterName.ToString(), diffValue);
 		}
 	}
 
 	override public void Finish() {
 		if (targetCreature != null) {
-			targetCreature.ParamsController.ChangeParameter(parameterName.ToString(), -diffValue);
+			targetCreature.ChangeParameter(parameterName.ToString(), -diffValue);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class ParametersSpell : Spell {
 
 			switch (changeValueType) {
 			case ChangeValueType.Relative:
-				float currentParameterValue = targetCreature.CurrentParameters.GetValue (parameterName.ToString());
+				float currentParameterValue = targetCreature.GetCurrentValue (parameterName.ToString());
 				result = currentParameterValue + Mathf.Sign(result) * currentParameterValue * (result / 100);
 				break;
 			}
@@ -59,18 +59,6 @@ public class ParametersSpell : Spell {
 
 		if (result <= Mathf.Epsilon && result >= -Mathf.Epsilon) {
 			result = 1.0f;
-		}
-
-		return result;
-	}
-
-	Creature GetCreature(GameObject targetObject) {
-		Creature result = targetObject.GetComponent<Creature> ();
-		if (result == null) {
-			result = targetObject.GetComponentInParent<Creature> ();
-		}
-		if (result == null) {
-			result = targetObject.GetComponentInChildren<Creature> ();
 		}
 
 		return result;

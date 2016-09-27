@@ -28,12 +28,31 @@ GameObject:
   - 61: {fileID: 6144428}
   - 82: {fileID: 8286464}
   - 114: {fileID: 11464218}
-  - 114: {fileID: 11406074}
+  - 114: {fileID: 11416312}
+  - 114: {fileID: 11453326}
+  - 114: {fileID: 11460398}
   - 114: {fileID: 11413086}
   - 114: {fileID: 11419212}
+  - 114: {fileID: 11406810}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &184952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 453056}
+  - 212: {fileID: 21267776}
+  m_Layer: 0
+  m_Name: MissMessage
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,13 +64,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.55, y: -1.57, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 481626}
+  - {fileID: 453056}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &453056
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 436992}
+  m_RootOrder: 1
 --- !u!4 &481626
 Transform:
   m_ObjectHideFlags: 1
@@ -153,7 +186,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &11406074
+--- !u!114 &11406810
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -161,11 +194,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 150534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d3f1da7ea850e5429fbb2294a3933b2, type: 3}
+  m_Script: {fileID: 11500000, guid: f803f0b001bc1174688dfe0a61ae3fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 21290288}
-  hitSound: {fileID: 8300000, guid: 907051cbb907dc848b9d8b041882f3ee, type: 3}
 --- !u!114 &11413086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,7 +210,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Ball
-  missMessage: {fileID: 174556, guid: 24b0d66aca6a81d4e8908427127de363, type: 2}
+  missMessage: {fileID: 184952}
+--- !u!114 &11416312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3990a3a91fa7dcc41ac4866b5a598c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureName: Ghost
 --- !u!114 &11419212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,6 +236,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 114118, guid: 6c5c48759e07534498ac611c0dcc73ec, type: 2}
   deathSound: {fileID: 8300000, guid: 33e0e6ed2ff2e6945ae5968f0cc51a16, type: 3}
+--- !u!114 &11453326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885072d9387003c4e9c5bc281b85fddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11460398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e346dece40b21ab4bae24bb2a8fc8746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 907051cbb907dc848b9d8b041882f3ee, type: 3}
 --- !u!114 &11464218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,29 +270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7c4e4cf195eaa47a3822a51b81c9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialParameters:
-    health: 0
-    attack: 0
-    defense: 0
-    minimumDamage: 0
-    maximumDamage: 0
-    initiative: 0
-    mana: 0
-    spellPower: 0
-    luck: 0
-    morale: 0
-  currentParameters:
-    health: 0
-    attack: 0
-    defense: 0
-    minimumDamage: 0
-    maximumDamage: 0
-    initiative: 0
-    mana: 0
-    spellPower: 0
-    luck: 0
-    morale: 0
-  creatureName: Ghost
 --- !u!212 &21212546
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -253,6 +297,36 @@ SpriteRenderer:
   m_SortingLayerID: 2106531697
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: afe3c90c5968f224faf4a836b351c29f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!212 &21267776
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184952}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 2106531697
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 70c717390ec55d048b1e5f1f8426e38d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

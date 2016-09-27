@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 114118, guid: bb1e7ef4cb0a31240a07555a6f8117e8, type: 2}
-  deathSound: {fileID: 8300000, guid: 739bbf6580863f24cbbab00f89943025, type: 3}
+  deathSound: {fileID: 8300000, guid: 4b7d6cd0e1f9aa34686d819507850f70, type: 3}
 --- !u!212 &21276138
 SpriteRenderer:
   m_ObjectHideFlags: 1

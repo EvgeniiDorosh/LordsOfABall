@@ -11,8 +11,9 @@ GameObject:
   - 212: {fileID: 21260982}
   - 61: {fileID: 6197840}
   - 82: {fileID: 8279196}
-  - 114: {fileID: 11418808}
   - 114: {fileID: 11441392}
+  - 114: {fileID: 11451058}
+  - 114: {fileID: 11412502}
   m_Layer: 0
   m_Name: Brick001
   m_TagString: Destructible
@@ -98,7 +99,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -120,8 +121,8 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &11418808
+    m_RotationOrder: 0
+--- !u!114 &11412502
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -129,10 +130,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 187116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006f03acece126d4593bf5a437e0ca12, type: 3}
+  m_Script: {fileID: 11500000, guid: d12998bc2cad9f6469b3be166302ae1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  deathParticles: {fileID: 114118, guid: d903e4ed38bcf5d498ee60ca104a2d82, type: 2}
+  deathSound: {fileID: 8300000, guid: dde1768c5ba969246b5ee1db2b2df8e5, type: 3}
 --- !u!114 &11441392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,11 +143,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 187116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d3f1da7ea850e5429fbb2294a3933b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 679f640652e3ac943a35c1e28bc06941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: 67597a897a332b647bbd79047abd3506, type: 3}
+  level: 2
+  hitSound: {fileID: 8300000, guid: dde1768c5ba969246b5ee1db2b2df8e5, type: 3}
+--- !u!114 &11451058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2277654a7d536c9448a917d9db2aacaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21260982
 SpriteRenderer:
   m_ObjectHideFlags: 1

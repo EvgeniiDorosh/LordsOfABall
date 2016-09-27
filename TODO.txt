@@ -1,7 +1,32 @@
 Paddle:
-- Create area effectors (left and right) with very small magnitude to avoid ball stucking between floor and roof (when x position doesn't change);
+- Create area effectors (left and down) with very small magnitude to avoid ball stucking between floor and roof (when x position doesn't change);
 - Try to avoid all "base.Awake" etc.;
 - SummonPhantom - copiyng params & abilities from target ball;
 - Bless/Curse - sound to prefab;
 - Use PaddleParameters instead of CreatureParameters;
 - Bricks - sounds to prefabs;
+- Is it good to send gameObject reference with event data? Ask at unity forum;
+- Global obgect to save/load to file Paddle parameters;
+- Add sound "Ball to Paddle";
+
+- Create Bonus Manager
+* VO
+	- List<GameObject>;
+	- List<CollectibleItem>;
+	- float probability;
+	- bool useDynamicBalance;
+	- bool customDynamicBalance;
+		- float minProbability;
+		- float maxProbability;
+		- float perUnit;
+//
+The main idea is to tie Collectable items to group (or one) of GameObjects. When GO is destroyed BM launch item at its position. 
+About probability:
+- it can be constant;
+- it can be dynamic balance: %P increases when effect isn't taken;
+- it can be dynamic balance: %P increases when effect isn't taken and decreases if effect is taken;
+
+///
+
+- Lightning;
+- Laser;

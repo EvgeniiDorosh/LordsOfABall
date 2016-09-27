@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Damageable))]
 public class Regeneration : MonoBehaviour {
 
-	private HealthController healthController;
+	private Damageable target; 
 
 	public bool isRegenerating { get; set;}
 	public ParticleSystem regenerationParticles;
@@ -11,23 +12,20 @@ public class Regeneration : MonoBehaviour {
 	private float messageRate = 10.0f;
 
 	void Start() {
-		healthController = GetComponent<HealthController> ();
-		if (healthController == null) {
-			this.enabled = false;		
-		}
+		target = GetComponent<Damageable> ();
 	}
 
 	void Update() {
-		if (healthController.HasWounds && !isRegenerating) {
+		if (target.HasWounds && !isRegenerating) {
 			isRegenerating = true;
 			StartCoroutine (Regenerate ());
 		}
 	}
 
 	IEnumerator Regenerate() {
-		while (healthController.HasWounds) {
+		while (target.HasWounds) {
 			yield return new WaitForSeconds (messageRate);
-			healthController.ChangeCurrentHealth(ratePerSecond * messageRate);
+			target.ChangeParameter("Health", ratePerSecond * messageRate);
 			regenerationParticles.Play ();
 		}
 		StopCoroutine (Regenerate ());

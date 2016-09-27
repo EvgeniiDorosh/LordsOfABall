@@ -11,9 +11,13 @@ GameObject:
   - 212: {fileID: 21203478}
   - 50: {fileID: 5010640}
   - 58: {fileID: 5866718}
-  - 114: {fileID: 11437370}
   - 82: {fileID: 8275940}
+  - 114: {fileID: 11437370}
+  - 114: {fileID: 11483288}
+  - 114: {fileID: 11430664}
   - 114: {fileID: 11449560}
+  - 114: {fileID: 11459444}
+  - 114: {fileID: 11406932}
   m_Layer: 9
   m_Name: Ball
   m_TagString: Ball
@@ -76,7 +80,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -139,6 +143,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11406932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12998bc2cad9f6469b3be166302ae1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticles: {fileID: 114118, guid: d903e4ed38bcf5d498ee60ca104a2d82, type: 2}
+  deathSound: {fileID: 8300000, guid: 3a88ae48890e4cb4bb17518778c13809, type: 3}
+--- !u!114 &11430664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7e606dd4fceb42ab0c8c529c84a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11437370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,28 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8750a7f1e399f804fa0b1c0b2b045d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialParameters:
-    health: 0
-    attack: 0
-    defense: 0
-    minimumDamage: 0
-    maximumDamage: 0
-    initiative: 0
-    mana: 0
-    spellPower: 0
-    luck: 0
-    morale: 0
-  currentParameters:
-    health: 0
-    attack: 0
-    defense: 0
-    minimumDamage: 0
-    maximumDamage: 0
-    initiative: 0
-    mana: 0
-    spellPower: 0
-    luck: 0
-    morale: 0
   knockSound: {fileID: 8300000, guid: e1ba75d574bbdee44a8ea91391c0799e, type: 3}
   knockLight: {fileID: 199536, guid: 09bd9bb1fe0f7ef4fa8c4dc9587b4d08, type: 2}
 --- !u!114 &11449560
@@ -183,6 +189,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80f8a9500aff62543ad181729c776c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11459444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed359c290663f74b9019ea32462cc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11483288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885072d9387003c4e9c5bc281b85fddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &21203478
