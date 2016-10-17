@@ -12,6 +12,5 @@ public class SimpleEnemy : MonoBehaviour {
 
 	void OnDestroy() {
 		enemies.Remove (this.gameObject);
-		Messenger<GameObject>.Invoke(EnemyEvent.enemyWasDestroyed, this.gameObject);
 	}
 }

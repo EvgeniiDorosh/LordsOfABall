@@ -12,7 +12,7 @@ public class ChangeDamageSpell : Spell {
 	private ICreature targetCreature;
 
 	override public void Cast() {
-		targetCreature = targetObject.GetCreature();
+		targetCreature = targetObject.GetComponent<ICreature>();
 		if (targetCreature != null) {
 			float damageGap = (targetCreature.GetInitialValue("MaximumDamage") - targetCreature.GetInitialValue("MinimumDamage"));
 			diffValue = ((float)percentage / 100f) * damageGap;

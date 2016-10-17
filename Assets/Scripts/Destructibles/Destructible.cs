@@ -12,6 +12,5 @@ public class Destructible : MonoBehaviour {
 
 	void OnDestroy() {
 		destructibles.Remove (this.gameObject);
-		Messenger<GameObject>.Invoke (EnemyEvent.destructibleWasDestroyed, this.gameObject);
 	}
 }

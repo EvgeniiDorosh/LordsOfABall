@@ -22,7 +22,7 @@ public class ParametersSpell : Spell {
 	private ICreature targetCreature;
 
 	override public void Cast () {
-		targetCreature = targetObject.GetCreature();
+		targetCreature = targetObject.GetComponent<ICreature>();
 		if (targetCreature != null) {
 			diffValue = GetDiffValue ();
 			targetCreature.ChangeParameter(parameterName.ToString(), diffValue);

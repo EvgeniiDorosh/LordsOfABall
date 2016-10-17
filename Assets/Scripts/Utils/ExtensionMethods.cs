@@ -3,14 +3,12 @@ using System.Collections;
 
 public static class ExtensionMethods {
 
-	public static ICreature GetCreature(this GameObject targetObject) {
-		ICreature result = targetObject.GetComponent<ICreature> ();
-		if (result == null) {
-			result = targetObject.GetComponentInParent<ICreature> ();
-		}
-		if (result == null) {
-			result = targetObject.GetComponentInChildren<ICreature> ();
-		}
+	public static CreatureVO GetCreatureVO(this GameObject target) {
+		CreatureVO result = new CreatureVO ();
+		result.name = target.name;
+		result.tag = target.tag;
+		result.instanceID = target.GetInstanceID();
+		result.position = target.transform.position;
 
 		return result;
 	}

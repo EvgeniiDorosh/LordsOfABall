@@ -890,7 +890,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495918, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8464fd274a3e3545a9df0e09a1cab3c, type: 2}
@@ -1136,7 +1136,7 @@ Transform:
   m_Children:
   - {fileID: 1313581682}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!1 &1707526219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,7 +1238,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
+      propertyPath: listOfInstanceIDs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
       propertyPath: listThatMustBeDestroyed.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
+      propertyPath: objectsThatMustBeDestroyed.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 499020, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
@@ -1271,7 +1279,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499020, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
       propertyPath: listThatMustBeDestroyed.Array.data[0]
@@ -1279,6 +1287,14 @@ Prefab:
       objectReference: {fileID: 140025197}
     - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
       propertyPath: listThatMustBeDestroyed.Array.data[1]
+      value: 
+      objectReference: {fileID: 916697128}
+    - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
+      propertyPath: objectsThatMustBeDestroyed.Array.data[0]
+      value: 
+      objectReference: {fileID: 140025197}
+    - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
+      propertyPath: objectsThatMustBeDestroyed.Array.data[1]
       value: 
       objectReference: {fileID: 916697128}
     m_RemovedComponents: []

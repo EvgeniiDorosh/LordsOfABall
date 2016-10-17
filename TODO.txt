@@ -1,15 +1,10 @@
-Paddle:
-- Create area effectors (left and down) with very small magnitude to avoid ball stucking between floor and roof (when x position doesn't change);
-- Try to avoid all "base.Awake" etc.;
-- SummonPhantom - copiyng params & abilities from target ball;
-- Bless/Curse - sound to prefab;
-- Use PaddleParameters instead of CreatureParameters;
-- Bricks - sounds to prefabs;
-- Is it good to send gameObject reference with event data? Ask at unity forum;
-- Global obgect to save/load to file Paddle parameters;
-- Add sound "Ball to Paddle";
+*** Main Task ***
 
-- Create Bonus Manager
+1. [INCOMPLETE] Create one event CreatureEvent.creatureWasDestroyed. Create VO for saving data into this event. It should include tag, transform, instanceID, name;
+
+2. [INCOMPLETE] Save initial parameters of Paddle at the end of each level into PlayerPrefs through the PrefsManager;
+
+3. [INCOMPLETE] Create Bonus Manager
 * VO
 	- List<GameObject>;
 	- List<CollectibleItem>;
@@ -26,7 +21,22 @@ About probability:
 - it can be dynamic balance: %P increases when effect isn't taken;
 - it can be dynamic balance: %P increases when effect isn't taken and decreases if effect is taken;
 
-///
+4. [INCOMPLETE] Add Paddle weapon basic implementation;
 
-- Lightning;
-- Laser;
+5. [INCOMPLETE] Create Enemy shoot manager;
+
+6. [INCOMPLETE] Try to use method Vector2.Reflect to move ball. Add check for 90 degrees;
+
+*** Small Fix ***
+
+1. [INCOMPLETE] Create area effectors (left and down) with very small magnitude to avoid ball stucking between two indestructible objects (when X or Y position doesn't change). Change Ball prefab gravity scale to zero;
+
+2. [INCOMPLETE] SummonPhantom effect - copy parameters from target ball;
+
+3. [DONE] Use PaddleParameters with CreatureParameters;
+
+4. [INCOMPLETE] Add sounds to brick prefabs;
+
+5. [INCOMPLETE] Add Lightning effects;
+
+6. [INCOMPLETE] Add Laser weapon;

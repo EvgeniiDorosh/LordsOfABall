@@ -72,6 +72,10 @@ public class StableDamageable : MonoBehaviour, IDamageable {
 		}
 	}
 
+	void OnDestroy() {
+		Messenger<CreatureVO>.Invoke (CreatureEvent.creatureWasDestroyed, gameObject.GetCreatureVO());
+	}
+
 	void PlaySingle(AudioClip clip) {
 		audioSource.clip = clip;
 		audioSource.Play ();

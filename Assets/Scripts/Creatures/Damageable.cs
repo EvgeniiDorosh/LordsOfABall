@@ -58,6 +58,10 @@ public class Damageable : MonoBehaviour, IDamageable {
 		}
 	}
 
+	void OnDestroy() {
+		Messenger<CreatureVO>.Invoke (CreatureEvent.creatureWasDestroyed, gameObject.GetCreatureVO());
+	}
+
 	public bool HasWounds {
 		get { return CurrentHealth < InitialHealth; }
 	}
