@@ -22,10 +22,7 @@ public class SummonPhantomSpell : Spell {
 				phantomBall.GetComponent<BallMotionController> ().Launch (Random.insideUnitCircle.normalized);
 			}
 		}
-		Finish ();
 	}
 
-	override public void Finish() {
-		Destroy (gameObject);
-	}
+	override public void Finish() {	}
 }

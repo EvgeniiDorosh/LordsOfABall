@@ -22,25 +22,20 @@ public class WinCondition : MonoBehaviour {
 
 	void AddListeners() {
 		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasCreated, ObjectWasCreated);
-		Messenger<CreatureVO>.AddListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
+		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
 	}
 
 	void RemoveListeners() {
 		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasCreated, ObjectWasCreated);
-		Messenger<CreatureVO>.AddListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
+		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
 	}
 
 	void ObjectWasCreated(GameObject createdObject) {
 		objectsThatMustBeDestroyed.Add (createdObject);
 	}
 
-	void ObjectWasDestroyed(CreatureVO destroyedObject) {
-		foreach(GameObject target in objectsThatMustBeDestroyed) {
-			if (target.GetInstanceID () == destroyedObject.instanceID) {
-				objectsThatMustBeDestroyed.Remove (target);
-			}
-		}
-
+	void ObjectWasDestroyed(GameObject destroyedObject) {
+		objectsThatMustBeDestroyed.Remove (destroyedObject);
 		if (objectsThatMustBeDestroyed.Count == 0) {
 			Messenger.Invoke (LevelEvent.allEnemiesAreDestroyed);
 		}

@@ -65,15 +65,16 @@ public class StableDamageable : MonoBehaviour, IDamageable {
 
 	void CheckDeath() {
 		if (currentHealth <= 0) {
-			if (death) {
-				death.ShowDeath ();
-			}
-			Destroy (gameObject);
+			Demolish ();
 		}
 	}
 
-	void OnDestroy() {
-		Messenger<CreatureVO>.Invoke (CreatureEvent.creatureWasDestroyed, gameObject.GetCreatureVO());
+	public void Demolish () {
+		if (death) {
+			death.ShowDeath ();
+		}
+		Messenger<GameObject>.Invoke (CreatureEvent.creatureWasDestroyed, this.gameObject);
+		Destroy (gameObject);
 	}
 
 	void PlaySingle(AudioClip clip) {

@@ -53,9 +53,12 @@ public class LevelManager : MonoBehaviour {
 
 	IEnumerator DestroyBalls() {
 		while (Ball.balls.Count != 0) {
-			yield return new WaitForSeconds (0.5f);
 			Ball ball = Ball.balls [0].GetComponent<Ball> ();
 			ball.Demolish ();
+			yield return new WaitForSeconds (0.5f);
 		}
+		StopCoroutine ("DestroyBalls");
+		yield return new WaitForSeconds (2f);
+		Messenger.Invoke (LevelEvent.levelIsComplete);
 	}
 }

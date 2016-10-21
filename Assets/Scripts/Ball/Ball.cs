@@ -14,17 +14,15 @@ public class Ball : MonoBehaviour {
 
 	void Awake () {		
 		audioSource = GetComponent<AudioSource> ();
+		audioSource.clip = knockSound;
 		balls.Add (this.gameObject);
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
-		audioSource.clip = knockSound;
 		audioSource.Play ();
 
-		foreach(ContactPoint2D contactPoint in other.contacts) {
-			Vector2 hitPoint = contactPoint.point;
-			Instantiate(knockLight, new Vector2(hitPoint.x, hitPoint.y), Quaternion.identity);
-		}
+		Vector2 hitPoint = other.contacts[0].point;
+		Instantiate(knockLight, new Vector2(hitPoint.x, hitPoint.y), Quaternion.identity);
 	}
 
 	public void Demolish()  {

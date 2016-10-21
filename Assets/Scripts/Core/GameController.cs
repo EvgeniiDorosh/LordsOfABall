@@ -9,7 +9,21 @@ public class GameController : MonoBehaviour {
 		get { return instance;}
 	}
 
-	public int CurrentLevel { get; set;}
+	private int currentLevel = 0;
+	public int CurrentLevel { 
+		get { return currentLevel;}
+	}
+
+	private int maxLevel = 0;
+	public int MaxLevel {
+		get { return maxLevel;}
+	}
+
+	private GameMode currentGameMode = GameMode.Menu;
+	public GameMode CurrentGameMode {
+		get { return currentGameMode;}
+		set { currentGameMode = value;}
+	}
 
 	void Awake() {
 		if (instance != null) {
@@ -18,6 +32,7 @@ public class GameController : MonoBehaviour {
 		}
 			
 		instance = this;
+		maxLevel = SceneManager.sceneCount - Settings.levelSceneOffset;
 		DontDestroyOnLoad (gameObject);
 	}
 
@@ -27,15 +42,16 @@ public class GameController : MonoBehaviour {
 
 	void AddListeners () {
 		Messenger<int>.AddListener (LevelEvent.loadLevel, LoadLevel);
-		Messenger.AddListener (LevelEvent.levelIsComplete, LoadNextLevel);
+		Messenger.AddListener (LevelEvent.levelIsComplete, OnLevelComplete);
 	}
 
 	void LoadLevel(int levelIndex) {
-		CurrentLevel = levelIndex;
-		SceneManager.LoadScene (levelIndex);
+		currentLevel = levelIndex;
+		SceneManager.LoadScene (levelIndex + Settings.levelSceneOffset);
 	}
 
-	void LoadNextLevel() {
-		LoadLevel (CurrentLevel + 1);
+	void OnLevelComplete() {
+		PrefsManager.Instance.SaveCurrentProgress ();
+		LoadLevel (currentLevel + 1);
 	}
 }

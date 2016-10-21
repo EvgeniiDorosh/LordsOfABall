@@ -7,7 +7,7 @@ public class PaddleMotionController : MonoBehaviour {
 	public GameObject paddle;
 
 	private Transform paddleTransform;
-	private EdgeCollider2D platformCollider;
+	private Collider2D platformCollider;
 	private Edges allowedEdges;
 
 	private class Edges {
@@ -28,7 +28,7 @@ public class PaddleMotionController : MonoBehaviour {
 	}
 
 	void Awake() {
-		platformCollider = GetComponent<EdgeCollider2D> ();
+		platformCollider = GetComponent<Collider2D> ();
 		allowedEdges = GetPaddleAllowedEdges ();
 		paddleTransform = paddle.transform;
 		paddleTransform.position = GetInitialPlayerPosition();

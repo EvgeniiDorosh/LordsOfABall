@@ -14,9 +14,7 @@ public class BallLauncher : MonoBehaviour {
 	private float reflectionFactor;
 	public float ReflectionFactor { 
 		get { return reflectionFactor;}
-		set {
-			reflectionFactor = Mathf.Clamp(value, 0.1f, 0.9f);
-		}
+		set { reflectionFactor = Mathf.Clamp(value, 0.1f, 0.9f); }
 	}
 
 	private Collider2D platform;
@@ -83,7 +81,7 @@ public class BallLauncher : MonoBehaviour {
 	void CatchBall(GameObject ball) {
 		caughtBall = ball;
 		caughtBall.GetComponent<BallMotionController> ().Stop ();
-		caughtBall.GetComponent<Transform> ().SetParent (this.transform);
+		caughtBall.transform.SetParent (this.transform);
 	}
 
 	float HitFactor(Vector2 hitPosition) {

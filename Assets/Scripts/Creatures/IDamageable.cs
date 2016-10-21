@@ -2,4 +2,6 @@
 
 	void ApplyDamage (IAttacker attacker);
 	void ApplyDamage (float damage);
+
+	void Demolish();
 }

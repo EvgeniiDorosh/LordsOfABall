@@ -1,8 +1,8 @@
 *** Main Task ***
 
-1. [INCOMPLETE] Create one event CreatureEvent.creatureWasDestroyed. Create VO for saving data into this event. It should include tag, transform, instanceID, name;
+1. [DONE] Save initial parameters of Paddle at the end of each level into PlayerPrefs through the PrefsManager;
 
-2. [INCOMPLETE] Save initial parameters of Paddle at the end of each level into PlayerPrefs through the PrefsManager;
+2. [INCOMPLETE] Add "Continue" button into Menu. On "Continue" button click load level and initial parameters of Paddle from PlayerPrefs through the PrefsManager; On "Start" button click load the first level and initial parameters of Paddle from Config;
 
 3. [INCOMPLETE] Create Bonus Manager
 * VO
@@ -25,7 +25,11 @@ About probability:
 
 5. [INCOMPLETE] Create Enemy shoot manager;
 
-6. [INCOMPLETE] Try to use method Vector2.Reflect to move ball. Add check for 90 degrees;
+6. [DISCARD] Try to use method Vector2.Reflect to move ball. Add check for 90 degrees;
+
+7. [INCOMPLETE] Implement Right Mouse Button holding to change direction of balls;
+
+8. [INCOMPLETE] Add GameMode.Single to play each level separately. Add paddle params config for each level;
 
 *** Small Fix ***
 
@@ -40,3 +44,5 @@ About probability:
 5. [INCOMPLETE] Add Lightning effects;
 
 6. [INCOMPLETE] Add Laser weapon;
+
+7. [INCOMPLETE] Using cyclop eye instead of a usual ball;

@@ -9,9 +9,7 @@ public abstract class Spell : MonoBehaviour {
 
 	private float startTime;
 	public float CurrentDuration {
-		get { 
-			return Time.time - startTime;
-		}
+		get { return Time.time - startTime; }
 	}
 
 	public TemporalType temporalType;
@@ -25,9 +23,7 @@ public abstract class Spell : MonoBehaviour {
 		public int seconds;
 
 		public int InSeconds {
-			get { 
-				return minutes * 60 + seconds;
-			}
+			get { return minutes * 60 + seconds; }
 		}
 	}
 
@@ -40,6 +36,10 @@ public abstract class Spell : MonoBehaviour {
 		switch (temporalType) {
 		case TemporalType.Temporary:
 			StartCoroutine (InAction ());
+			break;
+		case TemporalType.Single:
+			Finish ();
+			Destroy (gameObject);
 			break;
 		}
 	}
