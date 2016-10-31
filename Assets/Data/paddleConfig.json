@@ -5,7 +5,7 @@
 			"attack" : 0,
 			"defense" : 0,
 			"minimumDamage" : 1,
-			"maximumDamage" : 1,
+			"maximumDamage" : 5,
 			"initiative" : 10,
 			"mana" : 0,
 			"spellPower" : 0,

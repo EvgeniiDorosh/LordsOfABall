@@ -10,7 +10,9 @@ public class Ball : MonoBehaviour {
 	private AudioSource audioSource;
 	public AudioClip knockSound;
 
-	public GameObject knockLight;
+	public Death death;
+
+	private ObjectPooler objectPooler;
 
 	void Awake () {		
 		audioSource = GetComponent<AudioSource> ();
@@ -18,17 +20,22 @@ public class Ball : MonoBehaviour {
 		balls.Add (this.gameObject);
 	}
 
+	void Start() {
+		objectPooler = ObjectPooler.GetPool (PooledType.BallKnockLight);
+	}
+
 	void OnCollisionEnter2D(Collision2D other) {
 		audioSource.Play ();
-
 		Vector2 hitPoint = other.contacts[0].point;
-		Instantiate(knockLight, new Vector2(hitPoint.x, hitPoint.y), Quaternion.identity);
+		objectPooler.SpawnObject (hitPoint);
 	}
 
 	public void Demolish()  {
 		balls.Remove (this.gameObject);
 		Messenger.Invoke(BallEvent.ballWasDestroyed);
-		GetComponent<DamageableDeath>().ShowDeath ();
+		if (death != null) {
+			death.ShowDeath ();
+		}
 		Destroy (gameObject);
 	}
 }

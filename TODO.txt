@@ -2,18 +2,15 @@
 
 1. [DONE] Save initial parameters of Paddle at the end of each level into PlayerPrefs through the PrefsManager;
 
-2. [INCOMPLETE] Add "Continue" button into Menu. On "Continue" button click load level and initial parameters of Paddle from PlayerPrefs through the PrefsManager; On "Start" button click load the first level and initial parameters of Paddle from Config;
+2. [DONE] Add "Continue" button into Menu. On "Continue" button click load level and initial parameters of Paddle from PlayerPrefs through the PrefsManager; On "Start" button click load the first level and initial parameters of Paddle from Config;
 
-3. [INCOMPLETE] Create Bonus Manager
+3. [DONE] Create Bonus Manager
 * VO
 	- List<GameObject>;
 	- List<CollectibleItem>;
 	- float probability;
 	- bool useDynamicBalance;
-	- bool customDynamicBalance;
-		- float minProbability;
-		- float maxProbability;
-		- float perUnit;
+	- float perUnit;
 //
 The main idea is to tie Collectable items to group (or one) of GameObjects. When GO is destroyed BM launch item at its position. 
 About probability:
@@ -29,7 +26,7 @@ About probability:
 
 7. [INCOMPLETE] Implement Right Mouse Button holding to change direction of balls;
 
-8. [INCOMPLETE] Add GameMode.Single to play each level separately. Add paddle params config for each level;
+8. [INCOMPLETE] Add GameMode.Single to play each level separately. Add prefered paddle params config for each level;
 
 *** Small Fix ***
 
@@ -46,3 +43,7 @@ About probability:
 6. [INCOMPLETE] Add Laser weapon;
 
 7. [INCOMPLETE] Using cyclop eye instead of a usual ball;
+
+8. [INCOMPLETE] Refactor LevelManager;
+
+9. [INCOMPLETE] Sound for initial bonus;

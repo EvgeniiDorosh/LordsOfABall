@@ -8,7 +8,6 @@ public class UIContinueButton : MonoBehaviour {
 
 	void Awake () {
 		continueButton = GetComponent<Button> ();
-		Debug.Log (PrefsManager.Instance.GetInt("Level"));
 		continueButton.interactable = PrefsManager.Instance.GetInt("Level") > 1;
 	}
 

@@ -13,7 +13,6 @@ GameObject:
   - 82: {fileID: 8279196}
   - 114: {fileID: 11441392}
   - 114: {fileID: 11451058}
-  - 114: {fileID: 11412502}
   m_Layer: 0
   m_Name: Brick001
   m_TagString: Destructible
@@ -122,19 +121,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &11412502
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 187116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d12998bc2cad9f6469b3be166302ae1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathParticles: {fileID: 114118, guid: d903e4ed38bcf5d498ee60ca104a2d82, type: 2}
-  deathSound: {fileID: 8300000, guid: dde1768c5ba969246b5ee1db2b2df8e5, type: 3}
 --- !u!114 &11441392
 MonoBehaviour:
   m_ObjectHideFlags: 1

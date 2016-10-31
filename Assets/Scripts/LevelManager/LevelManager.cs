@@ -5,16 +5,20 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
-	public static LevelManager instance = null;
+	private static LevelManager instance = null;
+	public static LevelManager Instance {
+		get { return instance;}
+	}
 
 	public GameObject paddle;
 	private GameObject clonePaddle;
 
 	void Awake () {
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
-			Destroy (gameObject);
+		if (instance != null) {
+			DestroyImmediate (gameObject);
+			return;
+		}
+		instance = this;
 		clonePaddle = Instantiate (paddle, Vector2.zero, Quaternion.identity) as GameObject;
 	}
 
@@ -35,13 +39,10 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void OnLevelComplete() {
-		StopPaddle ();
-		StopBalls ();
-		StartCoroutine (DestroyBalls ());
+		StartCoroutine (CompletingLevel ());
 	}
 
 	void StopPaddle() {
-		clonePaddle.GetComponentInChildren<PaddleMotionController> ().enabled = false;
 		clonePaddle.GetComponentInChildren<BallLauncher> ().enabled = false;
 	}
 
@@ -51,14 +52,19 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	IEnumerator DestroyBalls() {
+	IEnumerator CompletingLevel() {
+		StopPaddle ();
+		StopBalls ();
 		while (Ball.balls.Count != 0) {
 			Ball ball = Ball.balls [0].GetComponent<Ball> ();
 			ball.Demolish ();
 			yield return new WaitForSeconds (0.5f);
 		}
-		StopCoroutine ("DestroyBalls");
-		yield return new WaitForSeconds (2f);
+		while (InitialParameterSpell.createdInitialSpells.Count != 0) {
+			yield return new WaitForSeconds (2f);		
+		}
+		yield return new WaitForSeconds (1f);
+		StopAllCoroutines ();
 		Messenger.Invoke (LevelEvent.levelIsComplete);
 	}
 }

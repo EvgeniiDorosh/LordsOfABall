@@ -10,6 +10,10 @@ public class HealthBar : MonoBehaviour {
 		healthBarScale = healthBar.transform.localScale;
 		healthBar.color = Color.green;
 	}
+
+	void OnEnable() {
+		UpdateHealthBar (1f);
+	}
 	
 	public void UpdateHealthBar(float correlation) {
 		healthBar.color = Color.Lerp (Color.green, Color.red, (1 - correlation));

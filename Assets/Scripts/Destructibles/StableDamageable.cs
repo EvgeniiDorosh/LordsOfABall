@@ -9,9 +9,10 @@ public class StableDamageable : MonoBehaviour, IDamageable {
 	private float initialHealth;
 	private float currentHealth;
 
-	private DamageableDeath death;
 	private AudioSource audioSource;
 	public AudioClip hitSound;
+
+	public Death death;
 
 	private float damagePerHit = 1f;
 
@@ -55,7 +56,7 @@ public class StableDamageable : MonoBehaviour, IDamageable {
 		currentHealth = initialHealth;
 
 		audioSource = GetComponent<AudioSource> ();
-		death = GetComponent<DamageableDeath> ();
+		death = GetComponent<ParticlesDeath> ();
 	}
 
 	private void OnGetDamage() {

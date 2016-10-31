@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 410096}
   - 198: {fileID: 19890042}
   - 199: {fileID: 19983998}
-  - 114: {fileID: 11459118}
+  - 114: {fileID: 11438230}
   m_Layer: 0
   m_Name: BallKnockParticles
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11459118
+--- !u!114 &11438230
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -39,10 +39,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 199536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc8ac31d5c4f7d4bba4fa47e248b58f, type: 3}
+  m_Script: {fileID: 11500000, guid: afcf45386442f124e9be6ffb636e912f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 2
+  lifeTime: 0.5
 --- !u!198 &19890042
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -90,7 +90,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   scalingMode: 1
   InitialModule:
@@ -132,7 +132,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startSpeed:
-      scalar: 5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -249,9 +249,9 @@ ParticleSystem:
       maxColor:
         serializedVersion: 2
         rgba: 4286628095
-      minMaxState: 2
+      minMaxState: 0
     startSize:
-      scalar: 0.2
+      scalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -274,7 +274,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startRotationX:
       scalar: 0
       maxCurve:
@@ -382,7 +382,7 @@ ParticleSystem:
       minMaxState: 0
     randomizeRotationDirection: 0
     gravityModifier: 0
-    maxNumParticles: 500
+    maxNumParticles: 100
     rotation3D: 0
   ShapeModule:
     serializedVersion: 2
@@ -447,7 +447,7 @@ ParticleSystem:
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    cntmax0: 100
+    cntmax0: 60
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30
@@ -602,7 +602,7 @@ ParticleSystem:
       minMaxState: 0
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       maxGradient:
         key0:
@@ -1546,7 +1546,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2106531697
+  m_SortingLayerID: -1617574061
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

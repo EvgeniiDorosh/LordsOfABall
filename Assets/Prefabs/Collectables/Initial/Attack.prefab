@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 441272}
   - 212: {fileID: 21276138}
   - 58: {fileID: 5828636}
-  - 114: {fileID: 11451258}
   - 114: {fileID: 11449264}
   - 95: {fileID: 9562370}
   m_Layer: 11
@@ -124,24 +123,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Attack
-  isOneTimeUse: 1
   speed: {x: 0, y: -1}
   targetTags:
   - Player
   spell: {fileID: 198440}
---- !u!114 &11451258
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 140932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d12998bc2cad9f6469b3be166302ae1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathParticles: {fileID: 114118, guid: bb1e7ef4cb0a31240a07555a6f8117e8, type: 2}
-  deathSound: {fileID: 8300000, guid: 739bbf6580863f24cbbab00f89943025, type: 3}
+  collectedEffect: {fileID: 0}
 --- !u!212 &21276138
 SpriteRenderer:
   m_ObjectHideFlags: 1

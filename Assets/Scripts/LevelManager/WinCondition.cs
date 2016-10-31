@@ -26,8 +26,8 @@ public class WinCondition : MonoBehaviour {
 	}
 
 	void RemoveListeners() {
-		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasCreated, ObjectWasCreated);
-		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
+		Messenger<GameObject>.RemoveListener (CreatureEvent.creatureWasCreated, ObjectWasCreated);
+		Messenger<GameObject>.RemoveListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
 	}
 
 	void ObjectWasCreated(GameObject createdObject) {

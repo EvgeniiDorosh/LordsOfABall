@@ -7,16 +7,15 @@ public class Damageable : MonoBehaviour, IDamageable {
 	private CreatureParametersController paramsController;
 
 	private HealthBar healthBar;
-	private DamageableDeath death;
 	private AudioSource audioSource;
 	public AudioClip hitSound;
+	public Death death;
 
 	void Awake() {
 		paramsController = GetComponent<CreatureParametersController> ();
 
 		healthBar = GetComponent<HealthBar> ();
 		audioSource = GetComponent<AudioSource> ();
-		death = GetComponent<DamageableDeath> ();
 	}
 
 	public float GetCurrentValue (string paramName) {
@@ -56,11 +55,11 @@ public class Damageable : MonoBehaviour, IDamageable {
 	}
 
 	public void Demolish () {
-		if (death) {
+		if (death != null) {
 			death.ShowDeath ();
 		}
+		gameObject.SetActive(false);
 		Messenger<GameObject>.Invoke (CreatureEvent.creatureWasDestroyed, this.gameObject);
-		Destroy (gameObject);
 	}
 
 	public bool HasWounds {
