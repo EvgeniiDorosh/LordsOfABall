@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 481626}
   - 212: {fileID: 21290288}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ GameObject:
   - 114: {fileID: 11460398}
   - 114: {fileID: 11413086}
   - 114: {fileID: 11406810}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   - 199: {fileID: 19920556}
   - 82: {fileID: 8285850}
   - 114: {fileID: 11455720}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GhostDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 453056}
   - 212: {fileID: 21267776}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MissMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

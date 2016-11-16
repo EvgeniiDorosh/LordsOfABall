@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Reflection;
 
+[RequireComponent(typeof(Paddle))]
+[RequireComponent(typeof(PaddleMotionController))]
+[RequireComponent(typeof(PaddleParametersController))]
+[RequireComponent(typeof(CreatureParametersController))]
 public class PaddleInitializer : MonoBehaviour {
 	
 	private CreatureParametersController creatureParamsController;

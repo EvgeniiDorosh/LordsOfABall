@@ -21,10 +21,7 @@ public class ObjectPoolerEditor : Editor {
 		if (script.targetObject == null) {			
 			EditorGUILayout.PropertyField (predefinedObjects, true);
 			serializedObject.ApplyModifiedProperties ();
-
-			if (predefinedObjects.arraySize > 0) {
-				script.size = predefinedObjects.arraySize;
-			}
+			script.size = predefinedObjects.arraySize;
 		} else {
 			predefinedObjects.ClearArray ();
 		}

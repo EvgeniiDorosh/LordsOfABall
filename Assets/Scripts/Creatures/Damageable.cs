@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(CreatureParametersController))]
 public class Damageable : MonoBehaviour, IDamageable {
 
 	private CreatureParametersController paramsController;
@@ -75,6 +74,9 @@ public class Damageable : MonoBehaviour, IDamageable {
 	}
 
 	void PlaySingle(AudioClip clip) {
+		if (audioSource.isPlaying) {
+			return;
+		}
 		audioSource.clip = clip;
 		audioSource.Play ();
 	}

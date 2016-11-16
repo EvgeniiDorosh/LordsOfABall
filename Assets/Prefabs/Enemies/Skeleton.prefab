@@ -12,7 +12,7 @@ GameObject:
   - 199: {fileID: 19903648}
   - 82: {fileID: 8220968}
   - 114: {fileID: 11426042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkeletonDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - 114: {fileID: 11495064}
   - 114: {fileID: 11413200}
   - 114: {fileID: 11459450}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 457362}
   - 82: {fileID: 8209602}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: KnockBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 444692}
   - 212: {fileID: 21259118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

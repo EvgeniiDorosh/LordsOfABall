@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		instance = this;
 		clonePaddle = Instantiate (paddle, Vector2.zero, Quaternion.identity) as GameObject;
+		Time.timeScale = 0.05f;
 	}
 
 	void OnEnable() {

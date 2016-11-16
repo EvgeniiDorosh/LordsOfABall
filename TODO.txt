@@ -18,7 +18,7 @@ About probability:
 - it can be dynamic balance: %P increases when effect isn't taken;
 - it can be dynamic balance: %P increases when effect isn't taken and decreases if effect is taken;
 
-4. [INCOMPLETE] Add Paddle weapon basic implementation;
+4. [DONE] Add Paddle weapon basic implementation;
 
 5. [INCOMPLETE] Create Enemy shoot manager;
 
@@ -27,6 +27,8 @@ About probability:
 7. [INCOMPLETE] Implement Right Mouse Button holding to change direction of balls;
 
 8. [INCOMPLETE] Add GameMode.Single to play each level separately. Add prefered paddle params config for each level;
+
+9. [INCOMPLETE] Add Paddle weapons switching;
 
 *** Small Fix ***
 
@@ -38,7 +40,7 @@ About probability:
 
 4. [INCOMPLETE] Add sounds to brick prefabs;
 
-5. [INCOMPLETE] Add Lightning effects;
+5. [DONE] Add Lightning effects;
 
 6. [INCOMPLETE] Add Laser weapon;
 
@@ -47,3 +49,5 @@ About probability:
 8. [INCOMPLETE] Refactor LevelManager;
 
 9. [INCOMPLETE] Sound for initial bonus;
+
+10. [INCOMPLETE] Lightning - delete End and Start Part sprites, make Center Part to have circle edge;

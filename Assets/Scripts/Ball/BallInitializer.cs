@@ -3,6 +3,8 @@ using System.Collections;
 
 [RequireComponent(typeof(CreatureParametersController))]
 [RequireComponent(typeof(BallMotionController))]
+[RequireComponent(typeof(Ball))]
+[RequireComponent(typeof(BallAttacker))]
 public class BallInitializer : MonoBehaviour {
 	
 	private CreatureParametersController paramsController;

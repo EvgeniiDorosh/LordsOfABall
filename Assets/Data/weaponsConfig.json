@@ -1,0 +1,20 @@
+{
+	"parameters" : [
+		{
+			"name" : "LightningBeam",
+			"attack" : 0,
+			"damage" : 2,
+			"firerate" : 120, 
+			"speed" : 0,
+			"defenseIgnoring" : 0
+		},
+		{
+			"name" : "LaserBeam",
+			"attack" : 0,
+			"damage" : 1,
+			"firerate" : 40, 
+			"speed" : 0,
+			"defenseIgnoring" : 20
+		}
+	]
+}

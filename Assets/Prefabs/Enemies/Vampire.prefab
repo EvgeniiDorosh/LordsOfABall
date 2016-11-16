@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 467334}
   - 198: {fileID: 19879530}
   - 199: {fileID: 19955776}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RegenerationParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 199: {fileID: 19917766}
   - 82: {fileID: 8210192}
   - 114: {fileID: 11403258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: VampireDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - 114: {fileID: 11405056}
   - 114: {fileID: 11429884}
   - 114: {fileID: 11495862}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Vampire
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 444692}
   - 212: {fileID: 21259118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

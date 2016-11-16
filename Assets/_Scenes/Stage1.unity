@@ -13241,7 +13241,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499020, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
       propertyPath: objectsThatMustBeDestroyed.Array.data[0]
@@ -13259,10 +13259,6 @@ Prefab:
       propertyPath: objectsThatMustBeDestroyed.Array.data[3]
       value: 
       objectReference: {fileID: 142766811}
-    - target: {fileID: 11420024, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
-      propertyPath: targetObject
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 11421762, guid: 278b8034d6ff1bd4192d7f99cef9f914, type: 2}
       propertyPath: objectsThatMustBeDestroyed.Array.data[4]
       value: 
@@ -14247,7 +14243,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 190600, guid: b6989a8ca2fe0094593adc03524bea0e, type: 2}
       propertyPath: m_Name
-      value: EntBonusSpawner (1)
+      value: TreefolkBonusSpawner (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6989a8ca2fe0094593adc03524bea0e, type: 2}
@@ -14956,7 +14952,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424234, guid: d61c98d86cf942b4084d05b25b689e5a, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11482854, guid: d61c98d86cf942b4084d05b25b689e5a, type: 2}
       propertyPath: taskList.Array.data[0].targetObjects.Array.data[0]

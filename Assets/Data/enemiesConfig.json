@@ -189,7 +189,7 @@
 			"health" : 150
 		},
 		{
-			"name" : "Ent",
+			"name" : "Treefolk",
 			"attack" : 19,
 			"defense" : 27,
 			"minimumDamage" : 7,

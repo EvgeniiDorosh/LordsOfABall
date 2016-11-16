@@ -38,7 +38,6 @@ public class SinglePickUpsHolder : MonoBehaviour, IPickUpsHolder {
 		foreach (SinglePickUpTask task in taskList) {
 			float probability = task.initialProbability;
 			foreach(GameObject targetObject in task.targetObjects) {
-				Debug.Log ("Probability = " + probability);
 				if (pickUps.ContainsKey (targetObject)) {
 					continue;
 				}

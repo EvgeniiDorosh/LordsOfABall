@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 481626}
   - 212: {fileID: 21290288}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 199: {fileID: 19964818}
   - 82: {fileID: 8219528}
   - 114: {fileID: 11451514}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GhostDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 403886}
   - 212: {fileID: 21292648}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MissMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - 114: {fileID: 11413086}
   - 114: {fileID: 11406810}
   - 114: {fileID: 11413246}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Poltergeist
   m_TagString: Enemy
   m_Icon: {fileID: 0}

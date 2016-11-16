@@ -17,7 +17,7 @@ GameObject:
   - 114: {fileID: 11495064}
   - 114: {fileID: 11417840}
   - 114: {fileID: 11413200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 444692}
   - 212: {fileID: 21259118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitSound: {fileID: 8300000, guid: 67597a897a332b647bbd79047abd3506, type: 3}
+  death: {fileID: 0}
 --- !u!114 &11498470
 MonoBehaviour:
   m_ObjectHideFlags: 1
