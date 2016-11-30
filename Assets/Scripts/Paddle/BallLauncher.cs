@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BallLauncher : MonoBehaviour {
 
+	public Transform platform;
 	public Transform ballInitialSpot;
 	public GameObject ball;
 	private GameObject caughtBall;
@@ -17,10 +18,11 @@ public class BallLauncher : MonoBehaviour {
 		set { reflectionFactor = Mathf.Clamp(value, 0.1f, 0.9f); }
 	}
 
-	private Collider2D platform;
+	private BoxCollider2D platformCollider;
 
 	private void SetWidth(StatChange change) {
-		transform.localScale = new Vector3(change.value, 1f, 1f);
+		platform.transform.localScale = new Vector3 (change.current, 1f, 1f);
+		platformCollider.size = new Vector2(platformCollider.size.x * change.RelativeDiff, platformCollider.size.y);
 	}
 
 	void Awake() {
@@ -39,11 +41,11 @@ public class BallLauncher : MonoBehaviour {
 	}
 
 	void Start () {
-		platform = GetComponent<Collider2D> ();
+		platformCollider = GetComponent<BoxCollider2D> ();
 	}
 	
 	void Update () {
-		if (Input.GetButtonDown ("Fire1") && hasBall) {
+		if (Input.GetButton ("Fire1") && hasBall) {
 			LaunchBall (caughtBall);
 			hasBall = false;
 		}
@@ -61,7 +63,7 @@ public class BallLauncher : MonoBehaviour {
 	}
 
 	void CheckAllBallAreDestroyed() {
-		if (Ball.balls.Count == 0) {
+		if (MembersAccount.Count(Member.Ball) == 0) {
 			Invoke("SetupBall", 0.5f);		
 		}
 	}
@@ -85,6 +87,6 @@ public class BallLauncher : MonoBehaviour {
 	}
 
 	float HitFactor(Vector2 hitPosition) {
-		return (hitPosition.x - transform.position.x) / platform.bounds.size.x;
+		return (hitPosition.x - transform.position.x) / platformCollider.bounds.size.x;
 	}
 }

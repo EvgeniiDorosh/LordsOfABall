@@ -73,4 +73,15 @@ public class ObjectPooler : MonoBehaviour {
 		Debug.LogError (type.ToString () + " pool is absent");
 		return null;
 	}
+	
+	void OnDestroy() {
+		PooledType[] keys = new PooledType[objectPoolers.Keys.Count];
+		PooledType key;
+		objectPoolers.Keys.CopyTo (keys, 0);
+		for (int i = 0; i < keys.Length; i++) {
+			key = keys [i];
+			objectPoolers [key].predefinedObjects.Clear();
+			objectPoolers.Remove (key);
+		}
+	}
 }

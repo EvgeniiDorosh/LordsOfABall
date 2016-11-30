@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class Ball : MonoBehaviour {
 	
-	public static readonly List<GameObject> balls = new List<GameObject>();
-
 	private AudioSource audioSource;
 	public AudioClip knockSound;
 
@@ -17,11 +15,14 @@ public class Ball : MonoBehaviour {
 	void Awake () {		
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.clip = knockSound;
-		balls.Add (this.gameObject);
 	}
 
 	void Start() {
 		objectPooler = ObjectPooler.GetPool (PooledType.BallKnockLight);
+	}
+
+	void OnEnable() {
+		MembersAccount.Add (Member.Ball, gameObject);
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
@@ -31,11 +32,14 @@ public class Ball : MonoBehaviour {
 	}
 
 	public void Demolish()  {
-		balls.Remove (this.gameObject);
-		Messenger.Invoke(BallEvent.ballWasDestroyed);
 		if (death != null) {
 			death.ShowDeath ();
 		}
 		Destroy (gameObject);
+	}
+
+	void OnDisable() {
+		MembersAccount.Remove (Member.Ball,gameObject);
+		Messenger.Invoke(BallEvent.ballWasDestroyed);
 	}
 }

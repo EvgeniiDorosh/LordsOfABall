@@ -9,10 +9,10 @@ public class AmmunitionTheft : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Ball") {
-			int ballsCount = Ball.balls.Count;
+			int ballsCount = MembersAccount.Count(Member.Ball);
 			if (ballsCount > 1) {
 				if (Random.value < probability) {
-					GameObject stolenBall = Ball.balls [Random.Range (0, ballsCount)];
+					GameObject stolenBall = MembersAccount.Get (Member.Ball) [Random.Range (0, ballsCount)];
 					stolenBall.GetComponent<Ball>().Demolish();
 				}
 			}

@@ -6,6 +6,7 @@ public class LightningBeam : MonoBehaviour {
 
 	private float shootCooldown;
 	private int layerMask;
+	private float distance = 20f;
 
 	private Weapon weapon;
 
@@ -24,8 +25,7 @@ public class LightningBeam : MonoBehaviour {
 		audioSource.clip = shotSound;
 		Initialize ();
 		activeMuzzle = 0;
-		layerMask = 1 << 8 << 9 << 11;
-		layerMask = ~layerMask;
+		layerMask = LayerMask.GetMask("Enemy", "Border");
 	}
 
 	void Initialize() {
@@ -35,10 +35,7 @@ public class LightningBeam : MonoBehaviour {
 	}
 	
 	void Update () {		
-		bool shoot = Input.GetButton("Fire1");
-		shoot |= Input.GetMouseButton(0);
-
-		if (shoot) {
+		if (Input.GetButton("Fire1")) {
 			if (CanAttack) {
 				Shoot ();
 			}
@@ -51,15 +48,21 @@ public class LightningBeam : MonoBehaviour {
 
 	void Shoot() {
 		Transform muzzle = muzzles [activeMuzzle];
-		RaycastHit2D hit = Physics2D.Raycast (muzzle.position, Vector2.up, 20f, layerMask);
+		RaycastHit2D hit = Physics2D.Raycast (muzzle.position, Vector2.up, distance, layerMask);
+		if (hit.collider != null) {
+			lightning.Create (transform.InverseTransformPoint(muzzle.position), transform.InverseTransformPoint(hit.point));
+			audioSource.Play ();
+			OnHit (hit);
+			SwitchMuzzle ();
+			shootCooldown = weapon.GetCurrentValue("Firerate");
+		}
+	}
+
+	void OnHit(RaycastHit2D hit) {
 		IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable> ();
 		if (damageable != null) {
 			damageable.ApplyDamage (weapon);
 		}
-		lightning.Create (muzzle.position, hit.point);
-		audioSource.Play ();
-		SwitchMuzzle ();
-		shootCooldown = weapon.GetCurrentValue("Firerate");
 	}
 
 	void SwitchMuzzle() {

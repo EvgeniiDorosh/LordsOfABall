@@ -12,10 +12,10 @@ public class SummonPhantomSpell : Spell {
 	}
 
 	override public void Cast() {
-		int existedBallsCount = Ball.balls.Count;
+		int existedBallsCount = MembersAccount.Count(Member.Ball);
 		if (existedBallsCount > 0) {
 			int index = Random.Range (0, existedBallsCount);
-			GameObject ball = Ball.balls [index];
+			GameObject ball = MembersAccount.Get(Member.Ball) [index];
 			Vector2 position = ball.transform.position;
 			for (int i = 0; i < ballsAmount; i++) {				
 				GameObject phantomBall = Instantiate(ball, position, Quaternion.identity) as GameObject;

@@ -19,25 +19,25 @@ public class PaddleParametersController : ParametersController {
 		float oldValue = currentParameters.Width;
 		currentParameters.Width = Mathf.Clamp(oldValue + diff, 0.5f, 2.0f);
 		float trueDiff = currentParameters.Width - oldValue;
-		Messenger<StatChange>.Invoke (PaddleEvent.widthWasUpdated, new StatChange("Width", currentParameters.Width, trueDiff));
+		Messenger<StatChange>.Invoke (PaddleEvent.widthWasUpdated, new StatChange("Width", initialParameters.Width, currentParameters.Width, trueDiff));
 	}
 
 	private void ChangeInitialWidth(float diff) {
 		float oldValue = initialParameters.Width;
 		initialParameters.Width = Mathf.Clamp(oldValue + diff, 0.5f, 2.0f);
 		float trueDiff = initialParameters.Width - oldValue;
-		Messenger<StatChange>.Invoke (PaddleEvent.widthWasUpdated, new StatChange("InitialWidth", initialParameters.Width, trueDiff));
+		Messenger<StatChange>.Invoke (PaddleEvent.widthWasUpdated, new StatChange("InitialWidth", initialParameters.Width, initialParameters.Width, trueDiff));
 		ChangeWidth (diff);
 	}
 
 	private void ChangeSpeed(float diff) {
 		currentParameters.Speed += diff;
-		Messenger<StatChange>.Invoke (PaddleEvent.speedWasUpdated, new StatChange("Speed", currentParameters.Speed, diff));
+		Messenger<StatChange>.Invoke (PaddleEvent.speedWasUpdated, new StatChange("Speed", initialParameters.Speed, currentParameters.Speed, diff));
 	}
 
 	private void ChangeInitialSpeed(float diff) {
 		initialParameters.Speed += diff;
-		Messenger<StatChange>.Invoke (PaddleEvent.speedWasUpdated, new StatChange("InitialSpeed", initialParameters.Speed, diff));
+		Messenger<StatChange>.Invoke (PaddleEvent.speedWasUpdated, new StatChange("InitialSpeed", initialParameters.Speed, initialParameters.Speed, diff));
 		ChangeSpeed (diff);
 	}
 }

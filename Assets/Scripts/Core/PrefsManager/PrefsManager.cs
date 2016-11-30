@@ -90,6 +90,10 @@ public class PrefsManager : MonoBehaviour {
 		}
 	}
 
+	public void ClearProgress() {
+		PlayerPrefs.DeleteAll ();
+	}
+
 	bool CheatingTakesPlace() {
 		return false;
 	}

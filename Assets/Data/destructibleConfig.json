@@ -1,9 +1,29 @@
 {
 	"parameters" : [
 		{
-			"name" : "1",
-			"health" : 1,
+			"name" : "004",
+			"health" : 50,
 			"defense" : 0
+		},
+		{
+			"name" : "005",
+			"health" : 20,
+			"defense" : 10
+		},
+		{
+			"name" : "006",
+			"health" : 30,
+			"defense" : 5
+		},
+		{
+			"name" : "008",
+			"health" : 100,
+			"defense" : 50
+		},
+		{
+			"name" : "009",
+			"health" : 100,
+			"defense" : 100
 		}
 	]
 }

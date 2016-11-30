@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ParticlesDeath : Death {
 
+	public float duration = 2f;
+
 	private ParticleSystem deathTrail;
 	private AudioSource audioSource;
 	private Transform initialParent;
@@ -17,7 +19,7 @@ public class ParticlesDeath : Death {
 		transform.parent = null;
 		deathTrail.Play ();
 		audioSource.Play ();
-		Invoke ("Hide", 2f);
+		Invoke ("Hide", duration);
 	}
 
 	private void Hide() {

@@ -13,7 +13,7 @@ public class UILevelButton : MonoBehaviour {
 	}
 
 	public void OnLevelChoose () {
-		int validIndex = levelIndex + Settings.levelSceneOffset;
+		int validIndex = levelIndex;
 		Messenger<int>.Invoke (LevelEvent.loadLevel, validIndex);
 	}
 }

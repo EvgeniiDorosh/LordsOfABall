@@ -6,15 +6,21 @@ public class Damageable : MonoBehaviour, IDamageable {
 	private CreatureParametersController paramsController;
 
 	private HealthBar healthBar;
+
 	private AudioSource audioSource;
 	public AudioClip hitSound;
+
 	public Death death;
+
+	private string onGetDamageEvent;
 
 	void Awake() {
 		paramsController = GetComponent<CreatureParametersController> ();
 
 		healthBar = GetComponent<HealthBar> ();
 		audioSource = GetComponent<AudioSource> ();
+
+		onGetDamageEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
 	}
 
 	public float GetCurrentValue (string paramName) {
@@ -29,7 +35,7 @@ public class Damageable : MonoBehaviour, IDamageable {
 		paramsController.ChangeParameter (paramName, diffValue);
 		switch (paramName) {
 		case "Health":
-			OnHealthChanged ();
+			OnHealthChanged (diffValue);
 			break;
 		}
 	}
@@ -44,12 +50,15 @@ public class Damageable : MonoBehaviour, IDamageable {
 		ChangeParameter("Health", -damage);
 	}
 
-	private void OnHealthChanged() {
-		if (healthBar) {
-			healthBar.UpdateHealthBar (CurrentHealth / InitialHealth);
-		}
+	private void OnHealthChanged(float diffValue) {
 		if (CurrentHealth <= 0) {
 			Demolish ();
+		} else if (diffValue < 0) {
+			Messenger<float>.Invoke (onGetDamageEvent, diffValue);
+		}
+
+		if (healthBar) {
+			healthBar.UpdateHealthBar (CurrentHealth / InitialHealth);
 		}
 	}
 

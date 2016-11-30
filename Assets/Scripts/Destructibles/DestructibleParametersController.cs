@@ -27,22 +27,22 @@ public class DestructibleParametersController : ParametersController {
 
 	private void ChangeHealth(float diff) {
 		currentParameters.Health += diff;
-		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Health", currentParameters.Health, diff));
+		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Health", initialParameters.Health, currentParameters.Health, diff));
 	}
 
 	private void ChangeInitialHealth(float diff) {
 		initialParameters.Health += diff;
-		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialHealth", initialParameters.Health, diff));
+		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialHealth", initialParameters.Health, initialParameters.Health, diff));
 	}
 
 	private void ChangeDefense(float diff) {
 		currentParameters.Defense += diff;
-		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Defense", currentParameters.Defense, diff));
+		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("Defense", initialParameters.Defense, currentParameters.Defense, diff));
 	}
 
 	private void ChangeInitialDefense(float diff) {
 		initialParameters.Defense += diff;
-		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialDefense", initialParameters.Defense, diff));
+		Messenger<StatChange>.Invoke (destinationEvent, new StatChange("InitialDefense", initialParameters.Defense, initialParameters.Defense, diff));
 		ChangeDefense (diff);
 	}
 }

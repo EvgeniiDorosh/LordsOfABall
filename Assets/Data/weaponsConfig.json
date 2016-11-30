@@ -3,18 +3,18 @@
 		{
 			"name" : "LightningBeam",
 			"attack" : 0,
-			"damage" : 2,
-			"firerate" : 120, 
+			"damage" : 1,
+			"firerate" : 60, 
 			"speed" : 0,
 			"defenseIgnoring" : 0
 		},
 		{
-			"name" : "LaserBeam",
+			"name" : "LaserImpulse",
 			"attack" : 0,
-			"damage" : 1,
-			"firerate" : 40, 
-			"speed" : 0,
-			"defenseIgnoring" : 20
+			"damage" : 50,
+			"firerate" : 12, 
+			"speed" : 5,
+			"defenseIgnoring" : 0
 		}
 	]
 }

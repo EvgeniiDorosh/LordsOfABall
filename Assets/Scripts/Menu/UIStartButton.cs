@@ -6,6 +6,6 @@ public class UIStartButton : MonoBehaviour {
 
 	public void StartGame () {
 		GameController.Instance.CurrentGameMode = GameMode.Campaign;
-		Messenger<int>.Invoke (LevelEvent.loadLevel, 1);
+		Messenger<int>.Invoke (LevelEvent.loadLevel, 0);
 	}
 }

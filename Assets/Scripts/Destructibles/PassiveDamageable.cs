@@ -14,11 +14,15 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 
 	public Death death;
 
+	private string onGetDamageEvent;
+
 	private float damagePerHit = 1f;
 
 	void Awake() {
 		paramsController = GetComponent<DestructibleParametersController> ();
 		audioSource = GetComponent<AudioSource> ();
+
+		onGetDamageEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
 	}
 
 	public void ApplyDamage (IAttacker attacker) {
@@ -27,8 +31,8 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 	}
 
 	public void ApplyDamage (float damage) {
+		PlaySingle (hitSound);
 		ChangeParameter ("Health", -damage);
-		OnGetDamage ();
 	}
 
 	public float GetCurrentValue (string paramName) {
@@ -43,19 +47,16 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 		paramsController.ChangeParameter (paramName, diffValue);
 		switch (paramName) {
 		case "Health":
-			CheckDeath ();
+			OnHealthChanged (diffValue);
 			break;
 		}
 	}
 
-	private void OnGetDamage() {
-		PlaySingle (hitSound);
-		CheckDeath ();
-	}
-
-	void CheckDeath() {
+	private void OnHealthChanged(float diffValue) {
 		if (GetCurrentValue("Health") <= 0) {
 			Demolish ();
+		} else if (diffValue < 0) {
+			Messenger<float>.Invoke (onGetDamageEvent, diffValue);
 		}
 	}
 
@@ -68,6 +69,9 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 	}
 
 	void PlaySingle(AudioClip clip) {
+		if (audioSource.isPlaying) {
+			return;
+		}
 		audioSource.clip = clip;
 		audioSource.Play ();
 	}

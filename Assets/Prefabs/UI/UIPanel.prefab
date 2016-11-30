@@ -1014,8 +1014,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: MinimumDamage
-  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
-  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 1}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 1}
 --- !u!114 &11406614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1851,8 +1851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: SpellPower
-  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
-  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 1}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 1}
 --- !u!114 &11450018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1951,8 +1951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: Defense
-  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
-  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 1}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 1}
 --- !u!114 &11454404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2415,8 +2415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: Attack
-  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
-  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 1}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 1}
 --- !u!114 &11474888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2783,8 +2783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: MaximumDamage
-  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
-  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 1}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 1}
 --- !u!114 &11487182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2835,8 +2835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: Speed
-  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 0}
-  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 0}
+  positiveValueColor: {r: 0.8235295, g: 0.15686275, b: 0.15686275, a: 1}
+  negativeValueColor: {r: 0.15686275, g: 0.15686275, b: 0.8235294, a: 1}
 --- !u!114 &11488330
 MonoBehaviour:
   m_ObjectHideFlags: 1

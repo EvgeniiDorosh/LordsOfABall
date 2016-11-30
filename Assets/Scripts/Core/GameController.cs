@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
 
 public class GameController : MonoBehaviour {
@@ -32,7 +33,7 @@ public class GameController : MonoBehaviour {
 		}
 			
 		instance = this;
-		maxLevel = SceneManager.sceneCount - Settings.levelSceneOffset;
+		maxLevel = SceneManager.sceneCountInBuildSettings - Settings.levelSceneOffset;
 		DontDestroyOnLoad (gameObject);
 	}
 
@@ -43,15 +44,32 @@ public class GameController : MonoBehaviour {
 	void AddListeners () {
 		Messenger<int>.AddListener (LevelEvent.loadLevel, LoadLevel);
 		Messenger.AddListener (LevelEvent.levelIsComplete, OnLevelComplete);
+		Messenger.AddListener (LevelEvent.levelIsFailed, OnLevelFailed);
 	}
 
 	void LoadLevel(int levelIndex) {
 		currentLevel = levelIndex;
-		SceneManager.LoadScene (levelIndex + Settings.levelSceneOffset);
+		SceneManager.LoadScene (levelIndex + Settings.levelSceneOffset, LoadSceneMode.Single);
 	}
 
 	void OnLevelComplete() {
 		PrefsManager.Instance.SaveCurrentProgress ();
-		LoadLevel (currentLevel + 1);
+		MembersAccount.Clear ();
+		int nextLevel = currentLevel + 1;
+		if (nextLevel < maxLevel) {
+			LoadLevel (nextLevel);
+		} else {
+			LoadMenu ();
+		}
+	}
+
+	void OnLevelFailed() {
+		PrefsManager.Instance.ClearProgress ();
+		LoadMenu ();
+	}
+
+	void LoadMenu() {
+		CurrentGameMode = GameMode.Menu;
+		SceneManager.LoadScene (1, LoadSceneMode.Single);
 	}
 }

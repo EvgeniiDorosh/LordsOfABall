@@ -30,6 +30,8 @@ About probability:
 
 9. [INCOMPLETE] Add Paddle weapons switching;
 
+10. [INCOMPLETE] Add Event into Damageable that it got damage or was destroyed (one of them but not both); 
+
 *** Small Fix ***
 
 1. [INCOMPLETE] Create area effectors (left and down) with very small magnitude to avoid ball stucking between two indestructible objects (when X or Y position doesn't change). Change Ball prefab gravity scale to zero;
@@ -43,6 +45,7 @@ About probability:
 5. [DONE] Add Lightning effects;
 
 6. [INCOMPLETE] Add Laser weapon;
+	- [DONE] Laser Impulse;
 
 7. [INCOMPLETE] Using cyclop eye instead of a usual ball;
 
@@ -50,4 +53,6 @@ About probability:
 
 9. [INCOMPLETE] Sound for initial bonus;
 
-10. [INCOMPLETE] Lightning - delete End and Start Part sprites, make Center Part to have circle edge;
+10. [INCOMPLETE] Laser Impulse: Divide time for charching and time for shooting;
+
+11. [INCOMPLETE] Use properties inside class instead of fields;

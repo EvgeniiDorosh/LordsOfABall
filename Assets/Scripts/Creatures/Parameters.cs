@@ -24,4 +24,9 @@ public abstract class Parameters {
 			Debug.LogError ("SetValue: Property " + paramName + " doesnt exist!");	
 		}
 	}
+
+	public bool HasValue(string paramName) {
+		PropertyInfo property = GetType ().GetProperty (paramName);
+		return property != null;
+	}
 }

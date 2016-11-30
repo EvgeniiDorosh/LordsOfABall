@@ -11,6 +11,7 @@ GameObject:
   - 198: {fileID: 19858248}
   - 199: {fileID: 19960338}
   - 82: {fileID: 8270234}
+  - 114: {fileID: 11487394}
   m_Layer: 0
   m_Name: SkeletonDeath
   m_TagString: Untagged
@@ -105,6 +106,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11487394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b4f5cfdb74ae74ab38c3b7e4c95964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19858248
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -13,5 +13,6 @@ public class EnemyInitilizer : MonoBehaviour {
 		paramsController = GetComponent<CreatureParametersController> ();
 		paramsController.InitialParameters = ConfigsParser.instance.enemiesConfig.GetParametersByName (creatureName);
 		paramsController.CurrentParameters = paramsController.InitialParameters.Clone();
+		paramsController.DestinationEvent = CreatureEvent.creatureParameterWasUpdated + gameObject.GetInstanceID();
 	}
 }

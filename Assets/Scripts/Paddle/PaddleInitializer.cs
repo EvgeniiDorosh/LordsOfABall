@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Reflection;
 
@@ -22,7 +23,7 @@ public class PaddleInitializer : MonoBehaviour {
 		int currentLevel = GameController.Instance.CurrentLevel;
 		switch (GameController.Instance.CurrentGameMode) {
 		case GameMode.Campaign:
-			if (currentLevel == 1) {
+			if (currentLevel == 0) {
 				InitFromConfig (currentLevel);
 			} else {
 				InitFromSaveData ();
@@ -70,12 +71,14 @@ public class PaddleInitializer : MonoBehaviour {
 		PropertyInfo[] properties = creatureParamsController.CurrentParameters.GetType ().GetProperties ();
 		foreach (PropertyInfo property in properties) {
 			creatureParamsController.ChangeParameter(property.Name, 0.0f);
+			//Console.WriteLine ("Property {0} is equal to {1}", property.Name, creatureParamsController.CurrentParameters.GetValue (property.Name));
 			creatureParamsController.ChangeParameter("Initial" + property.Name, 0.0f);
 		}
 
 		properties = paddleParamsController.CurrentParameters.GetType ().GetProperties ();
 		foreach (PropertyInfo property in properties) {
 			paddleParamsController.ChangeParameter(property.Name, 0.0f);
+			//Console.WriteLine ("Property {0} is equal to {1}", property.Name, paddleParamsController.CurrentParameters.GetValue (property.Name));
 			paddleParamsController.ChangeParameter("Initial" + property.Name, 0.0f);
 		}
 	}

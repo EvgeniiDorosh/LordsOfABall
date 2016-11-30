@@ -3,10 +3,8 @@ using System.Collections;
 using System;
 
 public class PaddleMotionController : MonoBehaviour {
-
-	public GameObject paddle;
-
-	private Transform paddleTransform;
+	
+	private float moveSpeed = 0.8f;
 	private Collider2D platformCollider;
 	private Edges allowedEdges;
 
@@ -30,8 +28,7 @@ public class PaddleMotionController : MonoBehaviour {
 	void Awake() {
 		platformCollider = GetComponent<Collider2D> ();
 		allowedEdges = GetPaddleAllowedEdges ();
-		paddleTransform = paddle.transform;
-		paddleTransform.position = GetInitialPlayerPosition();
+		transform.position = GetInitialPlayerPosition();
 	}
 
 	void OnEnable() {
@@ -43,11 +40,10 @@ public class PaddleMotionController : MonoBehaviour {
 	}
 	
 	void Update () {
-		float mouseX = Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, 
-																	Input.mousePosition.y)).x;
-		float playerX = (isInverseMotion ? -1 : 1) * mouseX;
-		Vector2 playerPosition = new Vector2 (Mathf.Clamp (playerX, allowedEdges.xMin, allowedEdges.xMax), paddleTransform.position.y);
-		paddleTransform.position = playerPosition;
+		float mouseMoveX = moveSpeed * Input.GetAxis ("Mouse X");
+		float playerX = transform.position.x + (isInverseMotion ? -1 : 1) * mouseMoveX;
+		Vector2 playerPosition = new Vector2 (Mathf.Clamp (playerX, allowedEdges.xMin, allowedEdges.xMax), transform.position.y);
+		transform.position = playerPosition;
 	}
 
 	Edges GetPaddleAllowedEdges() {

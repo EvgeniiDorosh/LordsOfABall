@@ -9,7 +9,7 @@ public class DestructibleInitializer : MonoBehaviour {
 
 	public string indexName = "empty";
 
-	void Awake () {
+	void OnEnable () {
 		DestructibleParametersController paramsController = GetComponent<DestructibleParametersController> ();
 		PassiveDamageable passiveDamageable = GetComponent<PassiveDamageable> ();
 		paramsController.InitialParameters = ConfigsParser.instance.destructiblesConfig.GetParametersByName (indexName);
@@ -17,6 +17,6 @@ public class DestructibleInitializer : MonoBehaviour {
 			paramsController.InitialParameters.SetValue ("Health", passiveDamageable.level);
 		}
 		paramsController.CurrentParameters = paramsController.InitialParameters.Clone();
-		paramsController.DestinationEvent = gameObject.GetInstanceID ().ToString ();
+		paramsController.DestinationEvent = CreatureEvent.creatureParameterWasUpdated + gameObject.GetInstanceID();
 	}
 }

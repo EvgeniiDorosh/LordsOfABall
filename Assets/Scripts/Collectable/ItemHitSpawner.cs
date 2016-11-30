@@ -10,17 +10,25 @@ public class ItemHitSpawner : MonoBehaviour {
 
 	private bool readyToSpawn = true;
 
-	void OnCollisionEnter2D(Collision2D other) {
+	void OnEnable() {
+		string destinationEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
+		Messenger<float>.AddListener (destinationEvent, OnGetDamage);
+	}
+
+	void OnDisable() {
+		string destinationEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
+		Messenger<float>.RemoveListener (destinationEvent, OnGetDamage);
+		StopAllCoroutines ();
+	}
+
+	void OnGetDamage(float damage) {
 		if (!readyToSpawn) {
 			return;
 		}
 
-		IAttacker attacker = other.gameObject.GetComponent<IAttacker> ();
-		if (attacker != null) {
-			readyToSpawn = false;
-			Spawn();
-			StartCoroutine (Reload ());
-		}
+		readyToSpawn = false;
+		Spawn();
+		StartCoroutine (Reload ());
 	}
 
 	void Spawn() {
@@ -32,9 +40,5 @@ public class ItemHitSpawner : MonoBehaviour {
 		yield return new WaitForSeconds (reloadingTime);
 		readyToSpawn = true;
 		StopCoroutine (Reload ());
-	}
-
-	void OnDestroy() {
-		StopAllCoroutines ();
 	}
 }

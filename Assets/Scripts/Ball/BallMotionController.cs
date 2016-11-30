@@ -37,7 +37,7 @@ public class BallMotionController : MonoBehaviour {
 			ChangeSpeed (speedChange.diff, 4);
 			break;
 		case "InitialSpeed":
-			initialSpeed = speedChange.value;
+			initialSpeed = speedChange.current;
 			break;
 		}
 	}

@@ -32,7 +32,7 @@ public class Lightning : MonoBehaviour {
 		float a = 1.0f;
 		float _OffsetLine = OffsetLine * (Vector3.Distance(startPosition, endPosition) / 2 + OffsetPlusDistanseLine);
 		float widthLightning = WidthLightning;
-		float widthLightning_glow = WidthLightningGlow;
+		float widthLightningGlow = WidthLightningGlow;
 
 		List<List<LightningBranchPiece>> wholeLightning = new List<List<LightningBranchPiece>>();
 
@@ -42,7 +42,7 @@ public class Lightning : MonoBehaviour {
 			endPosition = endPosition,
 			a = a,
 			width = widthLightning,
-			widthGlow = widthLightning_glow
+			widthGlow = widthLightningGlow
 		});
 		wholeLightning.Add(molniya0);
 
@@ -55,7 +55,7 @@ public class Lightning : MonoBehaviour {
 					Vector3 ep = wholeLightning[p][j].endPosition;
 					a = wholeLightning[p][j].a;
 					widthLightning = wholeLightning[p][j].width;
-					widthLightning_glow = wholeLightning[p][j].widthGlow;
+					widthLightningGlow = wholeLightning[p][j].widthGlow;
 
 					Vector3 midP = sp + (ep - sp)/2;
 					Vector3 norm = (ep - sp).normalized;
@@ -63,7 +63,7 @@ public class Lightning : MonoBehaviour {
 					midP += new Vector3(norm.y, -norm.x, 0) * Random.Range(-_OffsetLine, _OffsetLine);
 					
 					wholeLightning[p][j].endPosition = midP;
-					wholeLightning[p].Insert(j+1, new LightningBranchPiece() { startPosition = midP, endPosition = ep, a = a, width = widthLightning, widthGlow = widthLightning_glow });
+					wholeLightning[p].Insert(j+1, new LightningBranchPiece() { startPosition = midP, endPosition = ep, a = a, width = widthLightning, widthGlow = widthLightningGlow });
 					j++;
 					k++;
 
@@ -73,7 +73,7 @@ public class Lightning : MonoBehaviour {
 						direction = Quaternion.Euler(0, 0, randomAngleLine) * direction;						
 						Vector3 splitEnd = direction*LengthScaleAdditionalLightning + midP; 
 						molniya0 = new List<LightningBranchPiece>();
-						molniya0.Add(new LightningBranchPiece() { startPosition = midP, endPosition = splitEnd, a = a/1.5f, width = widthLightning/2.5f, widthGlow = widthLightning_glow/1.5f });
+						molniya0.Add(new LightningBranchPiece() { startPosition = midP, endPosition = splitEnd, a = a, width = widthLightning/2.5f, widthGlow = widthLightningGlow/1.5f });
 						wholeLightning.Add(molniya0);
 					}
 				}

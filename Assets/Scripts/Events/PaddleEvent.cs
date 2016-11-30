@@ -5,5 +5,4 @@
 	public static string speedWasUpdated = name + "_speedWasUpdated";
 	public static string widthWasUpdated = name + "_widthWasUpdated";
 	public static string parameterWasUpdated = name + "_parameterWasUpdated";
-	public static string bonusParameterWasUpdated = name + "_bonusParameterWasUpdated";
 }

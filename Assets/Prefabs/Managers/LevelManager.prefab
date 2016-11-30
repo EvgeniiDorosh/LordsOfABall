@@ -1785,6 +1785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 50
+  isGrowing: 1
   pooledType: 0
   targetObject: {fileID: 0}
   predefinedObjects:

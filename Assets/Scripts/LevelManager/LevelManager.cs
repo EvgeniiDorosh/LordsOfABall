@@ -15,12 +15,12 @@ public class LevelManager : MonoBehaviour {
 
 	void Awake () {
 		if (instance != null) {
-			DestroyImmediate (gameObject);
+			Destroy (gameObject);
 			return;
 		}
 		instance = this;
 		clonePaddle = Instantiate (paddle, Vector2.zero, Quaternion.identity) as GameObject;
-		Time.timeScale = 0.05f;
+		//Time.timeScale = 0.5f;
 	}
 
 	void OnEnable() {
@@ -48,16 +48,20 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void StopBalls() {
-		foreach (GameObject ball in Ball.balls) {
-			ball.GetComponent<BallMotionController> ().Stop ();
+		int ballsCount = MembersAccount.Count (Member.Ball);
+		if (ballsCount > 0) {
+			List<GameObject> balls = MembersAccount.Get (Member.Ball);
+			for (int index = 0; index < ballsCount; index++) {
+				balls[index].GetComponent<BallMotionController> ().Stop ();
+			}
 		}
 	}
 
 	IEnumerator CompletingLevel() {
 		StopPaddle ();
 		StopBalls ();
-		while (Ball.balls.Count != 0) {
-			Ball ball = Ball.balls [0].GetComponent<Ball> ();
+		while (MembersAccount.Count (Member.Ball) != 0) {
+			Ball ball = MembersAccount.Get (Member.Ball) [0].GetComponent<Ball> ();
 			ball.Demolish ();
 			yield return new WaitForSeconds (0.5f);
 		}
