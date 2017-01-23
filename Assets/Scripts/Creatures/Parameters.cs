@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using System;
 using System.Reflection;
+using System.Collections.Generic;
 
 public abstract class Parameters {
 
+	private Dictionary<string, PropertyInfo> properties = new Dictionary<string, PropertyInfo> ();
+
 	public float GetValue(string paramName) {
 		float result = 0f;
+
 		PropertyInfo property = GetType ().GetProperty (paramName);
+
+		//if(properties.TryGetValue)
+
 		try {
 			result = (float) property.GetValue (this, null);
 		} catch(NullReferenceException) {

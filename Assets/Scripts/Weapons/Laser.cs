@@ -17,12 +17,12 @@ public class Laser : MonoBehaviour {
 
 	void Awake() {
 		lineRenderer = mainPart.GetComponent<LineRenderer>();
-		lineRenderer.SetVertexCount (2);
+		lineRenderer.numPositions = 2;
 		lineRenderer.sortingLayerName = sortingLayer;
 		lineRenderer.sortingOrder = orderLayer;
 
 		lineRendererGlow = glowPart.GetComponent<LineRenderer>();
-		lineRendererGlow.SetVertexCount (2);
+		lineRendererGlow.numPositions = 2;
 		lineRendererGlow.sortingLayerName = sortingLayer;
 		lineRendererGlow.sortingOrder = orderLayer - 1;
 
@@ -30,8 +30,8 @@ public class Laser : MonoBehaviour {
 	}
 
 	public void Create (Vector3 startPosition, Vector3 endPosition, float width, float widthGlow) {	
-		lineRenderer.SetWidth(width, width);
-		lineRendererGlow.SetWidth(widthGlow, widthGlow);
+		lineRenderer.startWidth = width;
+		lineRendererGlow.startWidth = widthGlow;
 
 		lineRenderer.SetPosition(0, startPosition);
 		lineRenderer.SetPosition(1, endPosition);

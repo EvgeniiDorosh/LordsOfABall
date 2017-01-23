@@ -40,9 +40,9 @@ public class LightningBranch : MonoBehaviour {
 
 		Vector3[] vertexes = positions.ToArray ();
 		int vertexCount = vertexes.Length;
-		centerRenderer.SetVertexCount(vertexCount);
+		centerRenderer.numPositions = vertexCount;
 		centerRenderer.SetPositions(vertexes);
-		centerRendererGlow.SetVertexCount(vertexCount);
+		centerRendererGlow.numPositions = vertexCount;
 		centerRendererGlow.SetPositions(vertexes);
 				
 		if(vertexCount >= 1){
@@ -84,12 +84,12 @@ public class LightningBranch : MonoBehaviour {
 		endRendererGlow.sortingLayerName = nameLayer;
 		endRendererGlow.sortingOrder = sortLayer - 1;
 		
-		startRenderer.SetWidth(width, width);
-		centerRenderer.SetWidth(width, width);
-		endRenderer.SetWidth(width, width);
-		startRendererGlow.SetWidth(widthGlow, widthGlow);
-		centerRendererGlow.SetWidth(widthGlow, widthGlow);
-		endRendererGlow.SetWidth(widthGlow, widthGlow);
+		startRenderer.startWidth = width;
+		centerRenderer.startWidth = width;
+		endRenderer.startWidth = width;
+		startRendererGlow.startWidth = widthGlow;
+		centerRendererGlow.startWidth = widthGlow;
+		endRendererGlow.startWidth = widthGlow;
 
 		isStart = true;
 		maxLifeTime = duration * alpha;
