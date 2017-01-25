@@ -7,8 +7,6 @@ public class PassiveDamageableEditor : Editor {
 
 	public override void OnInspectorGUI() {
 
-		PrefabUtility.DisconnectPrefabInstance (target);
-
 		var script = target as PassiveDamageable;
 
 		script.isStable = EditorGUILayout.Toggle ("isStable", script.isStable);
