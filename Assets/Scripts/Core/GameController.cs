@@ -54,7 +54,6 @@ public class GameController : MonoBehaviour {
 
 	void OnLevelComplete() {
 		PrefsManager.Instance.SaveCurrentProgress ();
-		MembersAccount.Clear ();
 		int nextLevel = currentLevel + 1;
 		if (nextLevel < maxLevel) {
 			LoadLevel (nextLevel);

@@ -12,7 +12,5 @@ public class SummonPhantomSpellEditor : Editor {
 		script.itemName = EditorGUILayout.TextField ("Spell Name", script.itemName);
 		script.temporalType = Spell.TemporalType.Single;
 		script.ballsAmount = (int)EditorGUILayout.Slider ("Balls Amount", script.ballsAmount, 1, 8);
-
-		PrefabUtility.DisconnectPrefabInstance (target);
 	}
 }

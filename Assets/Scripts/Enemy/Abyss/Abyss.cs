@@ -47,7 +47,6 @@ public class Abyss : MonoBehaviour, IAttacker {
 	void Awake() {
 		boxCollider = GetComponent<BoxCollider2D> ();
 		IsReflexive = false;
-
 		paddle = GameObject.FindGameObjectWithTag ("Player").GetComponent<IDamageable> ();
 	}
 

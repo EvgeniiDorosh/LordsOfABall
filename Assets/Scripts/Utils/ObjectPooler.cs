@@ -1,87 +1,53 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ObjectPooler : MonoBehaviour {
+public class ObjectPooler : MonoBehaviour 
+{
+	static ObjectPooler instance = null;
 
-	private static readonly Dictionary<PooledType, ObjectPooler> objectPoolers = new Dictionary<PooledType, ObjectPooler>();
+	private static readonly Dictionary<int, Pool> objectPoolers = new Dictionary<int, Pool>();
 
-	public int size = 0;
-	public bool isGrowing = true;
-	public PooledType pooledType;
-	public GameObject targetObject;
-
-	[Tooltip("If filled, target object will be ignored")]
-	public List<GameObject> predefinedObjects = new List<GameObject>();
-
-	void Awake () {
-		if (objectPoolers.ContainsKey(pooledType)) {
-			DestroyImmediate (gameObject);
+	void Awake () 
+	{
+		if (instance != null) 
+		{
+			Destroy (gameObject);
 			return;
 		}
-		if (predefinedObjects == null && targetObject == null) {
-			Debug.LogError ("There is nothing to pool in " + pooledType.ToString ());
-			DestroyImmediate (gameObject);
-			return;
-		}
-		objectPoolers.Add (pooledType, this);
-	}
-	
-	void Start () {
-		if (predefinedObjects.Count == 0) {
-			for (int i = 0; i < size; i++) {
-				GameObject cloneObject = Instantiate(targetObject, Vector2.zero, Quaternion.identity) as GameObject;
-				predefinedObjects.Add(cloneObject);
-			}
-		}
-
-		foreach (GameObject cloneObject in predefinedObjects) {
-			cloneObject.transform.parent = transform;
-			cloneObject.SetActive (false);
-		}
+		instance = this;
+		SceneManager.sceneUnloaded += OnSceneUnloaded;
 	}
 
-	public GameObject SpawnObject(Vector2 position) {
-		GameObject spawnedObject = GetPooledObject();
-		if (spawnedObject != null) {
-			spawnedObject.SetActive (true);
-			spawnedObject.transform.position = position;
+	void OnSceneUnloaded(Scene scene)
+	{
+		foreach (KeyValuePair<int, Pool> pool in objectPoolers) 
+		{
+			pool.Value.Clear ();
 		}
-
-		return spawnedObject;
+		objectPoolers.Clear ();
 	}
 
-	GameObject GetPooledObject() {
-		foreach (GameObject cloneObject in predefinedObjects) {
-			if (!cloneObject.activeInHierarchy) {
-				return cloneObject;
-			}
+	public static Pool CreatePool(PoolVO item)
+	{
+		int key = item.type;
+		if (objectPoolers.ContainsKey (key)) 
+		{
+			return objectPoolers [key];
 		}
+		GameObject parent = Instantiate (new GameObject (item.target.name), instance.transform) as GameObject;
+		Pool pool = new Pool (item, parent.transform);
+		objectPoolers.Add(key, pool);
+		return pool;
+	}
 
-		if (isGrowing) {
-			GameObject cloneObject = Instantiate(predefinedObjects[0], Vector2.zero, Quaternion.identity) as GameObject;
-			return cloneObject;
+	public static Pool GetPool(int key)
+	{
+		if (objectPoolers.ContainsKey (key)) 
+		{
+			return objectPoolers [key];
 		}
-
 		return null;
-	}
-
-	public static ObjectPooler GetPool(PooledType type) {
-		if (objectPoolers.ContainsKey (type)) {
-			return objectPoolers [type];
-		}
-		Debug.LogError (type.ToString () + " pool is absent");
-		return null;
-	}
-	
-	void OnDestroy() {
-		PooledType[] keys = new PooledType[objectPoolers.Keys.Count];
-		PooledType key;
-		objectPoolers.Keys.CopyTo (keys, 0);
-		for (int i = 0; i < keys.Length; i++) {
-			key = keys [i];
-			objectPoolers [key].predefinedObjects.Clear();
-			objectPoolers.Remove (key);
-		}
 	}
 }

@@ -37,7 +37,5 @@ public class ParameterSpellEditor : Editor {
 			script.duration.seconds = (int)EditorGUILayout.Slider ("Seconds", script.duration.seconds, 0, 59);
 			EditorGUI.indentLevel--;
 		}
-
-		PrefabUtility.DisconnectPrefabInstance (target);
 	}
 }

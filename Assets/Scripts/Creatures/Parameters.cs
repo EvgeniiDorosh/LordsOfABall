@@ -11,9 +11,6 @@ public abstract class Parameters {
 		float result = 0f;
 
 		PropertyInfo property = GetType ().GetProperty (paramName);
-
-		//if(properties.TryGetValue)
-
 		try {
 			result = (float) property.GetValue (this, null);
 		} catch(NullReferenceException) {

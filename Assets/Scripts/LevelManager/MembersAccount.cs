@@ -1,57 +1,80 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public static class MembersAccount {
+public class MembersAccount : MonoBehaviour
+{
+	MembersAccount instance = null;
+	static Dictionary<Member, List<GameObject>> members = new Dictionary<Member, List<GameObject>>();
 
-	private static Dictionary<Member, List<GameObject>> members = new Dictionary<Member, List<GameObject>>();
+	void Awake()
+	{
+		if (instance != null) 
+		{
+			Destroy (gameObject);
+			return;
+		}
+		instance = this;
+		Initialize ();
+		SceneManager.sceneUnloaded += OnSceneUnloaded;
+	}
 
-	public static void Add(Member key, GameObject target) {
-		if (!members.ContainsKey (key)) {
+	void Initialize()
+	{
+		var keys = Enum.GetValues (typeof(Member));
+		foreach (Member key in keys) 
+		{
+			members [key] = new List<GameObject> ();
+		}
+	}
+
+	void OnSceneUnloaded(Scene scene)
+	{
+		Clear ();
+	}
+
+	public static void Add(Member key, GameObject target) 
+	{
+		if (!members.ContainsKey (key)) 
+		{
 			members [key] = new List<GameObject> ();
 		}
 		members [key].Add (target);
 	}
 
-	public static void Remove(Member key, GameObject target) {
-		if (members.ContainsKey (key)) {
+	public static void Remove(Member key, GameObject target) 
+	{
+		if (members.ContainsKey (key)) 
+		{
 			members [key].Remove(target);
 		}
 	}
 
-	public static List<GameObject> Get(Member key) {
-		if (members.ContainsKey (key)) {
+	public static List<GameObject> Get(Member key) 
+	{
+		if (members.ContainsKey (key)) 
+		{
 			return members [key];
 		}
 		return null;
 	}
 
-	public static bool ContainsKey(Member key) {
-		return members.ContainsKey (key);
-	}
-
-	public static int Count(Member key) {
-		if (members.ContainsKey (key)) {
+	public static int Count(Member key)
+	{
+		if (members.ContainsKey (key)) 
+		{
 			return members [key].Count;
 		}
 		return 0;
 	}
 
-	public static void Clear(Member key) {
-		if (members.ContainsKey (key)) {
-			members [key].Clear();
-			members.Remove (key);
-		}
-	}
-
-	public static void Clear() {
-		Member[] keys = new Member[members.Keys.Count];
-		Member key;
-		members.Keys.CopyTo (keys, 0);
-		for (int i = 0; i < keys.Length; i++) {
-			key = keys [i];
-			members [key].Clear();
-			members.Remove (key);
+	void Clear() 
+	{
+		foreach (KeyValuePair<Member, List<GameObject>> member in members) 
+		{
+			member.Value.Clear ();	
 		}
 	}
 }

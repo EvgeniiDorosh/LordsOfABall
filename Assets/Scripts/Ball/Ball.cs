@@ -3,43 +3,47 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Ball : MonoBehaviour {
-	
-	private AudioSource audioSource;
-	public AudioClip knockSound;
+public class Ball : MonoBehaviour 
+{	
+	AudioSource audioSource;
+	[SerializeField]
+	GameObject knockLight;
+	[SerializeField]
+	AudioClip knockSound;
+	Pool knockLightPool;
 
 	public Death death;
 
-	private ObjectPooler objectPooler;
-
-	void Awake () {		
+	void Awake () 
+	{	
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.clip = knockSound;
 	}
 
-	void Start() {
-		objectPooler = ObjectPooler.GetPool (PooledType.BallKnockLight);
-	}
-
-	void OnEnable() {
+	void OnEnable() 
+	{
 		MembersAccount.Add (Member.Ball, gameObject);
+		knockLightPool = ObjectPooler.CreatePool (new PoolVO (knockLight, 10));
 	}
 
-	void OnCollisionEnter2D(Collision2D other) {
+	void OnCollisionEnter2D(Collision2D other) 
+	{
 		audioSource.Play ();
-		Vector2 hitPoint = other.contacts[0].point;
-		objectPooler.SpawnObject (hitPoint);
+		knockLightPool.SpawnObject (other.contacts[0].point);
 	}
 
-	public void Demolish()  {
-		if (death != null) {
+	public void Demolish()  
+	{
+		if (death != null) 
+		{
 			death.ShowDeath ();
 		}
 		Destroy (gameObject);
 	}
 
-	void OnDisable() {
-		MembersAccount.Remove (Member.Ball,gameObject);
+	void OnDisable() 
+	{
+		MembersAccount.Remove (Member.Ball, gameObject);
 		Messenger.Invoke(BallEvent.ballWasDestroyed);
 	}
 }

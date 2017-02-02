@@ -5,23 +5,31 @@ public delegate void Callback();
 public delegate void Callback<T>(T arg1);
 public delegate void Callback<T, U>(T arg1, U arg2);
 
-public static class Messenger {
+public static class Messenger 
+{
 	private static Dictionary<string, Delegate> eventTable = new Dictionary<string, Delegate>();
 
-	public static void AddListener(string eventType, Callback handler) {
-		lock (eventTable) {
-			if (!eventTable.ContainsKey(eventType)) {
+	public static void AddListener(string eventType, Callback handler) 
+	{
+		lock (eventTable) 
+		{
+			if (!eventTable.ContainsKey(eventType)) 
+			{
 				eventTable.Add(eventType, null);
 			}
 			eventTable[eventType] = (Callback)eventTable[eventType] + handler;
 		}
 	}
 
-	public static void RemoveListener(string eventType, Callback handler) {
-		lock (eventTable) {
-			if (eventTable.ContainsKey(eventType)) {
+	public static void RemoveListener(string eventType, Callback handler) 
+	{
+		lock (eventTable) 
+		{
+			if (eventTable.ContainsKey(eventType)) 
+			{
 				eventTable[eventType] = (Callback)eventTable[eventType] - handler;
-				if (eventTable[eventType] == null) {
+				if (eventTable[eventType] == null) 
+				{
 					eventTable.Remove(eventType);
 				}
 			}

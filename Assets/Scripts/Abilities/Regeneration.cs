@@ -2,33 +2,53 @@
 using System.Collections;
 
 [RequireComponent(typeof(Damageable))]
-public class Regeneration : MonoBehaviour {
-
-	private Damageable target; 
+public class Regeneration : MonoBehaviour 
+{
+	Damageable target; 
 
 	public bool isRegenerating { get; set;}
-	public ParticleSystem regenerationParticles;
-	public float ratePerSecond = 0.05f;
-	private float messageRate = 10.0f;
 
-	void Start() {
+	[SerializeField]
+	ParticleSystem regenerationParticles;
+	public float ratePerSecond = 0.05f;
+
+	float messageRate = 10.0f;
+	WaitForSeconds waiting = null;
+
+	void Start() 
+	{
 		target = GetComponent<Damageable> ();
+		waiting = new WaitForSeconds (messageRate);
 	}
 
-	void Update() {
-		if (target.HasWounds && !isRegenerating) {
+	void Update() 
+	{
+		if (!isRegenerating && target.HasWounds) 
+		{
 			isRegenerating = true;
 			StartCoroutine (Regenerate ());
 		}
 	}
 
-	IEnumerator Regenerate() {
-		while (target.HasWounds) {
-			yield return new WaitForSeconds (messageRate);
+	IEnumerator Regenerate() 
+	{
+		while (target.HasWounds) 
+		{
+			yield return waiting;
 			target.ChangeParameter("Health", ratePerSecond * messageRate);
 			regenerationParticles.Play ();
 		}
-		StopCoroutine (Regenerate ());
+		Stop ();
+	}
+
+	void Stop()
+	{
+		StopAllCoroutines ();
 		isRegenerating = false;
+	}
+
+	void OnDisable()
+	{
+		Stop ();
 	}
 }

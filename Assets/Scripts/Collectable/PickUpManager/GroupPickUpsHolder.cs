@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-public class GroupPickUpsHolder : MonoBehaviour, IPickUpsHolder {
-
+public class GroupPickUpsHolder : MonoBehaviour, IPickUpsHolder 
+{
 	[Serializable]
-	public class GroupPickUpTask {
+	public class GroupPickUpTask 
+	{
 		public List<GameObject> targetObjects;
 		public List<GameObject> pickUps;
 
@@ -16,11 +17,14 @@ public class GroupPickUpsHolder : MonoBehaviour, IPickUpsHolder {
 
 	public List<GroupPickUpTask> taskList = new List<GroupPickUpTask> (); 
 
-	public bool InstantiatePickUpFor (GameObject targetObject) {
-		foreach (GroupPickUpTask task in taskList) {
+	public bool InstantiatePickUpFor (GameObject targetObject) 
+	{
+		foreach (GroupPickUpTask task in taskList) 
+		{
 			List<GameObject> currentList = task.targetObjects;
 			currentList.Remove (targetObject);
-			if (currentList.Count == 0) {
+			if (currentList.Count == 0) 
+			{
 				GameObject pickUp = Instantiate(task.pickUps [Random.Range (0, task.pickUps.Count)]);
 				if (task.spawnPoint != null) {
 					pickUp.transform.position = task.spawnPoint.position;

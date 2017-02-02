@@ -15,7 +15,5 @@ public class InitialParameterSpellEditor : Editor {
 		script.itemName = EditorGUILayout.TextField ("Spell Name", script.itemName);
 		script.parameterName = (InitialParameterSpell.Parameter) EditorGUILayout.EnumPopup ("Parameter Name", script.parameterName);
 		script.value = (float)EditorGUILayout.Slider ("Value", script.value, minLimit, maxLimit);
-
-		PrefabUtility.DisconnectPrefabInstance (target);
 	}
 }

@@ -31,7 +31,9 @@ public class Laser : MonoBehaviour {
 
 	public void Create (Vector3 startPosition, Vector3 endPosition, float width, float widthGlow) {	
 		lineRenderer.startWidth = width;
+		lineRenderer.endWidth = width;
 		lineRendererGlow.startWidth = widthGlow;
+		lineRendererGlow.endWidth = widthGlow;
 
 		lineRenderer.SetPosition(0, startPosition);
 		lineRenderer.SetPosition(1, endPosition);
