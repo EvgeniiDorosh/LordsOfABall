@@ -6,17 +6,16 @@ using System.Collections;
 public class BaseStat 
 {
 	[SerializeField]
-	StatType type;
-	public StatType Type
-	{
-		get { return type;}
-	}
+	protected StatType type;
 	[SerializeField]
-	float value;
-	public float Value
+	protected float value;
+
+	#region Constructors
+
+	public BaseStat()
 	{
-		get { return value;}
-		set { this.value = value;}
+		this.type = StatType.None;
+		this.value = 0;
 	}
 
 	public BaseStat (StatType type, float value)
@@ -25,9 +24,45 @@ public class BaseStat
 		this.value = value;
 	}
 
+	#endregion
+
+	public event EventHandler ValueChanged;
+
+	public StatType Type
+	{
+		get { return type;}
+	}
+
+	public virtual float Value
+	{
+		get { return value;}
+		set 
+		{ 
+			if (this.value != value) 
+			{
+				this.value = value;
+				OnValueChanged ();
+			}
+		}
+	}
+
+	public float RawValue
+	{
+		get { return value;}
+	}
+
 	override public string ToString()
 	{
-		return string.Format ("Type = {0}, value = {1}", type, value);
+		return string.Format ("Type = {0}, value = {1}", Type, Value);
+	}
+
+	protected virtual void OnValueChanged()
+	{
+		EventHandler handler = ValueChanged;
+		if (handler != null) 
+		{
+			handler (this, null);
+		}
 	}
 }
 

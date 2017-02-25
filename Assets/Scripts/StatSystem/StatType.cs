@@ -1,18 +1,22 @@
-﻿using System;
-
-public enum StatType
+﻿public enum StatType
 {
 	None,
 	Health,
+	CurrentHealth,
 	Attack,
 	Defense,
 	MinimumDamage,
 	MaximumDamage,
+	Damage,
 	Initiative,
 	Mana,
+	CurrentMana,
 	SpellPower,
 	Luck,
 	Morale,
-	Speed
+	Speed,
+	Firerate,
+	DefenseIgnoring,
+	Width
 }
 

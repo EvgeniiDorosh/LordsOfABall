@@ -6,30 +6,52 @@ public class StatModifier
 {
 	[SerializeField]
 	StatModifierType effectType;
+	[SerializeField]
+	StatType targetType;
+	[SerializeField]
+	float value;
+	[SerializeField]
+	float duration;
+
+	public StatModifier (StatModifierType effectType, StatType targetType, float value, float duration = Mathf.Infinity)
+	{
+		this.effectType = effectType;
+		this.targetType = targetType;
+		this.value = value;
+		this.duration = duration;
+	}
+
 	public StatModifierType EffectType
 	{
 		get { return effectType;}
 	}
 
-	[SerializeField]
-	StatType targetType;
 	public StatType TargetType
 	{
 		get { return targetType;}
 	}
 
-	[SerializeField]
-	float value;
 	public float Value
 	{
 		get { return value;}	
 	}
 
-	public StatModifier (StatModifierType effectType, StatType targetType, float value)
+	public float Duration
 	{
-		this.effectType = effectType;
-		this.targetType = targetType;
-		this.value = value;
+		get { return duration;}
+	}
+
+	public float ChangeDuration(float diff)
+	{
+		duration += diff;
+		return duration;
+	}
+
+	public float ChangeDuration(float multiplier, float diff)
+	{
+		duration *= multiplier;
+		duration += diff;
+		return duration;
 	}
 }
 

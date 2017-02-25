@@ -1,12 +1,8 @@
-﻿using System;
-
-public enum StatModifierType
+﻿public enum StatModifierType
 {
 	None,
 	BaseValue,
-	BaseValuePercent,
-	TotalValue,
-	TotalValuePercent
+	BaseValuePercent
 }
 
 

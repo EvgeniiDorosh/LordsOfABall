@@ -1,27 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class StatsSet
-{
-	Dictionary<StatType, BaseStat> stats = new Dictionary<StatType, BaseStat>();
+public class StatsSet : BaseStatsSet {
 
-	public void Add(BaseStat stat)
-	{
-		stats.Add (stat.Type, stat);
-	}
+	public event EventHandler ModifierAdded;
 
-	public BaseStat Get(StatType type)
+	protected virtual void OnModifierAdded(StatModifier modifier)
 	{
-		if (Contains (type)) 
+		EventHandler handler = ModifierAdded;
+		if (handler != null) 
 		{
-			return stats[type];
+			handler (modifier, null);
 		}
-		return null;
-	}
-
-	public bool Contains(StatType type)
-	{
-		return stats.ContainsKey (type);
 	}
 }
 
