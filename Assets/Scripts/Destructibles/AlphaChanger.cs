@@ -9,7 +9,7 @@ public class AlphaChanger : MonoBehaviour {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 	}
 
-	void OnEnable() {
+	/*void OnEnable() {
 		Color color = spriteRenderer.color;
 		color.a = 1f;
 		spriteRenderer.color = color;
@@ -27,5 +27,5 @@ public class AlphaChanger : MonoBehaviour {
 			float alpha = Mathf.Clamp01 (statChange.current / statChange.initial);
 			spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
 		}
-	}
+	}*/
 }

@@ -54,7 +54,7 @@ public class LightningBeam : MonoBehaviour {
 			audioSource.Play ();
 			OnHit (hit);
 			SwitchMuzzle ();
-			shootCooldown = weapon.GetCurrentValue("Firerate");
+			shootCooldown = weapon.GetStatValue(StatType.Firerate) / 60f;
 		}
 	}
 

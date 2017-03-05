@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Paddle : MonoBehaviour {
-	
-	private BallLauncher launcher;
-	public BallLauncher Launcher {
+public class Paddle : MonoBehaviour 
+{	
+	BallLauncher launcher;
+	public BallLauncher Launcher 
+	{
 		get { return launcher; }
 	}
 
-	void Awake () {		
+	void Awake () 
+	{		
 		launcher = GetComponentInChildren<BallLauncher> ();
 	}
 }

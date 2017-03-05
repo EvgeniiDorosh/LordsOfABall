@@ -23,21 +23,21 @@ public class ParametersSpell : Spell {
 
 	override public void Cast () {
 		targetCreature = targetObject.GetComponent<ICreature>();
-		if (targetCreature != null) {
+		/*if (targetCreature != null) {
 			diffValue = GetDiffValue ();
 			targetCreature.ChangeParameter(parameterName.ToString(), diffValue);
-		}
+		}*/
 	}
 
 	override public void Finish() {
-		if (targetCreature != null) {
+		/*if (targetCreature != null) {
 			targetCreature.ChangeParameter(parameterName.ToString(), -diffValue);
-		}
+		}*/
 	}
 
 	float GetDiffValue() {
 		float result = 0f;
-		if (diffValue >= Mathf.Epsilon || diffValue <= -Mathf.Epsilon) {
+		/*if (diffValue >= Mathf.Epsilon || diffValue <= -Mathf.Epsilon) {
 			result = diffValue;
 		} else {
 			switch (valueType) {
@@ -59,7 +59,7 @@ public class ParametersSpell : Spell {
 
 		if (result <= Mathf.Epsilon && result >= -Mathf.Epsilon) {
 			result = 1.0f;
-		}
+		}*/
 
 		return result;
 	}

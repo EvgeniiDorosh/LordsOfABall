@@ -1,24 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BallImpulse : MonoBehaviour {
+public class BallImpulse : MonoBehaviour 
+{
+	StatsController statsController;
+	float duration = 1f;
 
-	private BallMotionController ballMotionController;
-	private float duration = 1f;
-	private float diff;
-
-	void Awake() {
-		ballMotionController = GetComponent<BallMotionController> ();
-		diff = ballMotionController.CurrentSpeed;
-	}
-
-	void Start () {		
-		ballMotionController.ChangeSpeed (diff);
-		Invoke ("Stop", duration);
-	}
-	
-	void Stop () {
-		ballMotionController.ChangeSpeed (-diff, 1);
+	void Awake() 
+	{
+		statsController = GetComponent<StatsController> ();
+		float diff = statsController.Get<Stat> (StatType.Speed).Value;
+		StatModifier modifier = new StatModifier (StatModifierType.BaseValue, StatType.Speed, diff, 1f);
 		Destroy (this, 2f);
 	}
 }

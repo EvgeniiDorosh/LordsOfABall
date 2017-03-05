@@ -1,18 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(SimpleEnemy))]
-[RequireComponent(typeof(Damageable))]
-[RequireComponent(typeof(CreatureParametersController))]
 public class EnemyInitilizer : MonoBehaviour {
 
-	private CreatureParametersController paramsController;
+	private BasicStatsController statsController;
 	public string creatureName;
 
-	void OnEnable () {
-		paramsController = GetComponent<CreatureParametersController> ();
-		paramsController.InitialParameters = ConfigsParser.instance.enemiesConfig.GetParametersByName (creatureName);
-		paramsController.CurrentParameters = paramsController.InitialParameters.Clone();
-		paramsController.DestinationEvent = CreatureEvent.creatureParameterWasUpdated + gameObject.GetInstanceID();
+	void Awake () 
+	{
+		statsController = GetComponent<BasicStatsController> ();
+
+		Stat stat = null;
+		List<StatBlank> blanks = ConfigsParser.EnemiesConfig.GetBlanks (creatureName);
+		foreach (var blank in blanks) 
+		{
+			stat = new Stat (blank.type, blank.value, null, 0);
+			statsController.Add(stat);
+		}
+
+		Stat health = statsController.Get<Stat> (StatType.Health);
+		Stat mana = statsController.Get<Stat> (StatType.Mana);
+
+		statsController.Add (new BaseClampedStat (StatType.CurrentHealth, health.Value, health));
+		statsController.Add (new BaseClampedStat (StatType.CurrentMana, mana.Value, null, 0));
+
+		Stat maxDamage = statsController.Get<Stat> (StatType.MaximumDamage);
+		Stat minDamage = statsController.Get<Stat> (StatType.MinimumDamage);
+		minDamage.SetMax (maxDamage);
 	}
 }

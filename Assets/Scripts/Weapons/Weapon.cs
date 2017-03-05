@@ -1,20 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapon : MonoBehaviour, IAttacker {
+public class Weapon : MonoBehaviour, IAttacker 
+{
+	private StatsController statsController;
 
-	private WeaponParametersController paramsController;
+	void Awake() 
+	{
+		statsController = GetComponent<StatsController> ();
+	}
 
-	void Awake() {
-		paramsController = GetComponent<WeaponParametersController> ();
+	public float GetStatValue(StatType type)
+	{
+		return statsController.Get<BaseStat> (type).Value;
+	}
+
+	public void ChangeStatValue (StatType type, float diffValue) 
+	{
+		statsController.ChangeValue<BaseStat>(type, diffValue);
 	}
 
 	public float GetDamage (ICreature creature) {
 		float resultDamage;
-		float pureDamage = GetCurrentValue("Damage");
-		float attack = GetCurrentValue("Attack");
-		float defense = creature.GetCurrentValue ("Defense");
-		defense -= defense * GetCurrentValue("DefenseIgnoring") / 100f;
+		float pureDamage = GetStatValue(StatType.Damage);
+		float attack = GetStatValue(StatType.Attack);
+		float defense = creature.GetStatValue (StatType.Defense);
+		defense -= defense * GetStatValue(StatType.DefenseIgnoring) / 100f;
 
 		if (attack > defense) {
 			resultDamage = pureDamage * (1 + 0.05f * (attack - defense));
@@ -23,17 +34,5 @@ public class Weapon : MonoBehaviour, IAttacker {
 		}
 
 		return resultDamage;
-	}
-
-	public float GetCurrentValue (string paramName) {
-		return paramsController.CurrentParameters.GetValue(paramName);
-	}
-
-	public float GetInitialValue (string paramName) {
-		return paramsController.InitialParameters.GetValue(paramName);
-	}
-
-	public void ChangeParameter (string paramName, float diffValue) {
-		paramsController.ChangeParameter (paramName, diffValue);
 	}
 }

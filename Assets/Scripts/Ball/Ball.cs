@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class Ball : MonoBehaviour 
 {	
+	public static StatType[] statTypes = { StatType.Attack, StatType.MinimumDamage, StatType.MaximumDamage, StatType.Speed};
+
 	AudioSource audioSource;
 	[SerializeField]
 	GameObject knockLight;
@@ -12,7 +14,18 @@ public class Ball : MonoBehaviour
 	AudioClip knockSound;
 	Pool knockLightPool;
 
-	public Death death;
+	// TODO: Remove this;
+	[SerializeField]
+	Death death;
+
+	public void Demolish()  
+	{
+		if (death != null) 
+		{
+			death.ShowDeath ();
+		}
+		Destroy (gameObject);
+	}
 
 	void Awake () 
 	{	
@@ -30,15 +43,6 @@ public class Ball : MonoBehaviour
 	{
 		audioSource.Play ();
 		knockLightPool.SpawnObject (other.contacts[0].point);
-	}
-
-	public void Demolish()  
-	{
-		if (death != null) 
-		{
-			death.ShowDeath ();
-		}
-		Destroy (gameObject);
 	}
 
 	void OnDisable() 

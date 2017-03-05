@@ -1,25 +1,14 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
 
-public class DestructiblesConfig {
+public class DestructiblesConfig : CreaturesConfig<DestructiblesConfig.Parameters> 
+{
+	[Serializable]
+	public class Parameters
+	{
+		public string name;
 
-	public DestructibleParametersConfig[] parameters;
-
-	public DestructibleParameters GetParametersByName(string name) {
-		foreach (DestructibleParametersConfig config in parameters) {
-			if (config.name == name) {
-				return ConvertConfigToParameters(config);
-			}
-		}
-		return new DestructibleParameters ();
-	}
-
-	private DestructibleParameters ConvertConfigToParameters(DestructibleParametersConfig config) {
-		DestructibleParameters result = new DestructibleParameters ();
-		result.Health = config.health;
-		result.Defense = config.defense;
-
-		return result;
+		public float health;
+		public float defense;
 	}
 }
 

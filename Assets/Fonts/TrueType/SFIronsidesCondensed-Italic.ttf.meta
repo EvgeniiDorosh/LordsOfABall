@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8fd45758e4078694b94f54c14192eb67
+timeCreated: 1488655387
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SF Ironsides Condensed
+  fontNames:
+  - SF Ironsides Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 34c067dd672d85e4e8765b2f4718eba2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

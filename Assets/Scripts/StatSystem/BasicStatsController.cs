@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicStatsController : MonoBehaviour 
+public class BasicStatsController : MonoBehaviour
 {
 	[SerializeField]
 	protected List<Stat> stats;
@@ -11,7 +11,7 @@ public class BasicStatsController : MonoBehaviour
 
 	public virtual void Add(BaseStat stat)
 	{
-		statsSet.Add (stat.Type, stat);
+		statsSet.Add (stat);
 	}
 
 	public BaseStat Get(StatType type)

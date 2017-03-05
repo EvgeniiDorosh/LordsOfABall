@@ -6,14 +6,14 @@ public class Regeneration : MonoBehaviour
 {
 	Damageable target; 
 
-	public bool isRegenerating { get; set;}
-
 	[SerializeField]
 	ParticleSystem regenerationParticles;
-	public float ratePerSecond = 0.05f;
 
+	public float ratePerSecond = 0.05f;
 	float messageRate = 10.0f;
 	WaitForSeconds waiting = null;
+
+	public bool isRegenerating { get; set;}
 
 	void Start() 
 	{
@@ -35,7 +35,7 @@ public class Regeneration : MonoBehaviour
 		while (target.HasWounds) 
 		{
 			yield return waiting;
-			target.ChangeParameter("Health", ratePerSecond * messageRate);
+			target.ChangeStatValue(StatType.CurrentHealth, ratePerSecond * messageRate);
 			regenerationParticles.Play ();
 		}
 		Stop ();

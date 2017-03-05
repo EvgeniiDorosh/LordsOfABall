@@ -1,85 +1,68 @@
 ﻿using UnityEngine;
 using System;
-using System.Reflection;
 using System.Collections;
 
-public class BallMotionController : MonoBehaviour {
-	
-	private float initialSpeed;
-	public float InitialSpeed {
-		get { return initialSpeed;}
-		set { initialSpeed = value;}
+public class BallMotionController : MonoBehaviour 
+{
+	Stat speed;
+    StatsController statsController;
+	Rigidbody2D rigidBody;
+
+	public float Speed
+	{
+		get { return speed.Value; }
 	}
 
-	private float currentSpeed;
-	public float CurrentSpeed {
-		get { return currentSpeed; }
-		set { currentSpeed = value; }
+	public void ChangeDirection(Vector2 direction) 
+	{
+		Debug.Log ("Rigidbody = " + rigidBody + "; speed = " + speed);
+		rigidBody.velocity = direction.normalized * speed.Value;
 	}
 
-	private Rigidbody2D rigidBody;
-
-	void Awake() {
-		rigidBody = GetComponent<Rigidbody2D> ();
-	}
-
-	void OnEnable () {
-		Messenger<StatChange>.AddListener (PaddleEvent.speedWasUpdated, OnSpeedChanged);
-	}
-
-	void OnDisable () { 
-		Messenger<StatChange>.RemoveListener (PaddleEvent.speedWasUpdated, OnSpeedChanged);
-	}
-
-	void OnSpeedChanged(StatChange speedChange) {
-		switch (speedChange.name) {
-		case "Speed":
-			ChangeSpeed (speedChange.diff, 4);
-			break;
-		case "InitialSpeed":
-			initialSpeed = speedChange.current;
-			break;
-		}
-	}
-
-	public void ChangeSpeed(float diff) {
-		currentSpeed += diff;
-		UpdateSpeed ();
-	}
-
-	public void ChangeSpeed(float diff, uint time) {
-		StopCoroutine ("SpeedIncreasing");
-		float newSpeed = currentSpeed + diff;
-		StartCoroutine (SpeedIncreasing (newSpeed, time));
-	}
-
-	public void ChangeSpeed(Vector2 direction) {
-		rigidBody.velocity = direction * currentSpeed;
-	}
-
-	void UpdateSpeed() {
-		rigidBody.velocity = rigidBody.velocity.normalized * currentSpeed;
-	}
-
-	public void Launch(Vector2 direction) {
+	public void Launch(Vector2 direction) 
+	{
 		transform.parent = null;
 		rigidBody.isKinematic = false;
-		ChangeSpeed(direction);
+		ChangeDirection(direction);
 	}
 
-	public void Stop() {
+	public void Stop() 
+	{
 		rigidBody.isKinematic = true;
 		rigidBody.velocity = Vector2.zero;
 	}
 
-	IEnumerator SpeedIncreasing(float targetSpeed, uint time) {
+	void Awake() 
+	{
+		statsController = GetComponent<StatsController> ();
+		rigidBody = GetComponent<Rigidbody2D> ();
+	}
+
+	void Start () 
+	{
+		speed = statsController.Get<Stat> (StatType.Speed);
+		speed.ValueChanged += OnSpeedChanged;
+	}
+
+	void OnSpeedChanged(BaseStat stat) 
+	{
+		StopAllCoroutines ();
+		StartCoroutine (SpeedChanging (4));
+	}
+
+	IEnumerator SpeedChanging(float time)
+	{
 		float timeStep = 0.5f;
+		WaitForSeconds waiting = new WaitForSeconds (timeStep);
+		float currentSpeed = rigidBody.velocity.magnitude;
+		float targetSpeed = speed.Value;
 		float stepValue = Mathf.Abs (targetSpeed - currentSpeed) * timeStep / time;
-		while (currentSpeed != targetSpeed) {
+		while (currentSpeed != targetSpeed) 
+		{
 			currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, stepValue);
-			UpdateSpeed ();
-			yield return new WaitForSeconds (timeStep);
+			rigidBody.velocity = rigidBody.velocity.normalized * currentSpeed;
+			yield return waiting;
 		}
-		StopCoroutine ("SpeedIncreasing");
+		StopAllCoroutines ();
 	}	
 }

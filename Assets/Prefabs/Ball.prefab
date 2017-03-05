@@ -29,11 +29,10 @@ GameObject:
   - component: {fileID: 5010640}
   - component: {fileID: 5866718}
   - component: {fileID: 8275940}
+  - component: {fileID: 114835433526492868}
   - component: {fileID: 11437370}
-  - component: {fileID: 11483288}
   - component: {fileID: 11430664}
   - component: {fileID: 11449560}
-  - component: {fileID: 11459444}
   m_Layer: 9
   m_Name: Ball
   m_TagString: Ball
@@ -216,28 +215,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80f8a9500aff62543ad181729c776c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11459444
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 123254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed359c290663f74b9019ea32462cc08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11483288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 123254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885072d9387003c4e9c5bc281b85fddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!198 &19895160
@@ -2895,3 +2872,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 123254}
   m_IsPrefabParent: 1
+--- !u!114 &114835433526492868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3be32b02f19b6e44a92202419bc51da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: []

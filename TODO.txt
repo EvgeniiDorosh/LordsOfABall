@@ -56,3 +56,9 @@ About probability:
 10. [INCOMPLETE] Laser Impulse: Divide time for charching and time for shooting;
 
 11. [INCOMPLETE] Use properties inside class instead of fields;
+
+*** Gameplay ***
+
+1. [INCOMPLETE] Enemies can't be damaged by ball (some armor around) -> Bottles of acid steam fall from above -> Player should use ball to destroy bottles and make acid damage enemies;
+
+2. [INCOMPLETE] Laser between two random balls that damages all targets on its way;

@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(Weapon))]
-[RequireComponent(typeof(WeaponParametersController))]
 public class WeaponInitializer : MonoBehaviour {
 
-	private WeaponParametersController paramsController;
+	private BasicStatsController statsController;
 	public string weaponName;
 
-	void OnEnable () {
-		paramsController = GetComponent<WeaponParametersController> ();
-		paramsController.InitialParameters = ConfigsParser.instance.weaponsConfig.GetParametersByName (weaponName);
-		paramsController.CurrentParameters = paramsController.InitialParameters.Clone();
+	void Awake () 
+	{
+		statsController = GetComponent<BasicStatsController> ();
+		Stat stat = null;
+		List<StatBlank> blanks = ConfigsParser.WeaponsConfig.GetBlanks (weaponName);
+		foreach (var blank in blanks) 
+		{
+			stat = new Stat (blank.type, blank.value, null, 0);
+			statsController.Add(stat);
+		}
 	}
 }

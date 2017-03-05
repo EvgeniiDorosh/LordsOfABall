@@ -3,32 +3,47 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class LevelManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour 
+{
+	[SerializeField]
+	GameObject paddle;
+	GameObject clonePaddle;
 
-	private static LevelManager instance = null;
-	public static LevelManager Instance {
+	static Rect borders;
+	static LevelManager instance = null;
+
+	public static LevelManager Instance 
+	{
 		get { return instance;}
 	}
 
-	public GameObject paddle;
-	private GameObject clonePaddle;
+	public static Rect Borders
+	{
+		get { return borders;}
+	}
 
-	void Awake () {
-		if (instance != null) {
+	void Awake () 
+	{
+		if (instance != null) 
+		{
 			Destroy (gameObject);
 			return;
 		}
 		instance = this;
+		DefineBorders ();
 		clonePaddle = Instantiate (paddle, Vector2.zero, Quaternion.identity) as GameObject;
-		Cursor.visible = false;
 		//Time.timeScale = 0.5f;
 	}
 
-	void OnEnable() {
+	void OnEnable() 
+	{
+		Cursor.visible = false;
 		AddListeners ();
 	}
 
-	void OnDisable() {
+	void OnDisable() 
+	{
+		Cursor.visible = true;
 		RemoveListeners ();
 	}
 
@@ -72,5 +87,24 @@ public class LevelManager : MonoBehaviour {
 		yield return new WaitForSeconds (1f);
 		StopAllCoroutines ();
 		Messenger.Invoke (LevelEvent.levelIsComplete);
+	}
+
+	void DefineBorders()
+	{
+		GameObject[] borderGameObjects = GameObject.FindGameObjectsWithTag ("PaddleEdge");
+		int length = borderGameObjects.Length;
+		float[] xValues = new float[length];
+		float[] yValues = new float[length];
+		for (int index = 0; index < length; index++) 
+		{
+			xValues [index] = borderGameObjects[index].transform.position.x;
+			yValues [index] = borderGameObjects[index].transform.position.y;
+		}
+
+		borders = new Rect ();
+		borders.xMin = Mathf.Min (xValues);
+		borders.xMax = Mathf.Max (xValues);
+		borders.yMin = Mathf.Min (yValues);
+		borders.yMin = Mathf.Max (yValues);
 	}
 }

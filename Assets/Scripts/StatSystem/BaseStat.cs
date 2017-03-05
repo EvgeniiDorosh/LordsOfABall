@@ -26,7 +26,8 @@ public class BaseStat
 
 	#endregion
 
-	public event EventHandler ValueChanged;
+	public delegate void ValueChangedHandler(BaseStat stat);
+	public event ValueChangedHandler ValueChanged;
 
 	public StatType Type
 	{
@@ -58,10 +59,10 @@ public class BaseStat
 
 	protected virtual void OnValueChanged()
 	{
-		EventHandler handler = ValueChanged;
+		ValueChangedHandler handler = ValueChanged;
 		if (handler != null) 
 		{
-			handler (this, null);
+			handler (this);
 		}
 	}
 }

@@ -1,15 +1,21 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
+﻿using System;
 
-public class EnemiesConfig : CreaturesConfig<EnemyParameteresConfig> {
-	
-	public CreatureParameters GetParametersByName(string name) {
-		foreach (EnemyParameteresConfig config in parameters) {
-			if (config.name == name) {
-				return ConvertConfigToParameters(config);
-			}
-		}
-		return new CreatureParameters ();
+public class EnemiesConfig : CreaturesConfig<EnemiesConfig.Parameters>
+{
+	[Serializable]
+	public class Parameters
+	{
+		public string name;
+
+		public float attack;
+		public float defense;
+		public float minimumDamage;
+		public float maximumDamage;
+		public float initiative;
+		public float health;
+		public float mana;
+		public float spellPower;
+		public float luck;
+		public float morale;
 	}
 }

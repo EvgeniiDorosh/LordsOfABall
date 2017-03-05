@@ -27,9 +27,9 @@ public class InitialParameterSpell : Spell {
 
 	override public void Cast () {
 		ICreature targetCreature = targetObject.GetComponent<ICreature>();
-		if (targetCreature != null) {
+		/*if (targetCreature != null) {
 			targetCreature.ChangeParameter("Initial" + parameterName.ToString(), value);
-		}
+		}*/
 	}
 
 	override public void Finish() { }

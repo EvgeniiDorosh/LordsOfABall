@@ -3,46 +3,58 @@ using System;
 using System.Collections;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(CreatureParametersController))]
+// TODO: Make it abstract;
 public class Attacker : MonoBehaviour, IAttacker {
 
-	private CreatureParametersController paramsController;
+	private BasicStatsController statsController;
 
-	void Awake() {
-		paramsController = GetComponent<CreatureParametersController> ();
+	void Awake() 
+	{
+		statsController = GetComponent<BasicStatsController> ();
 	}
 
-	public float GetCurrentValue (string paramName) {
-		return paramsController.CurrentParameters.GetValue(paramName);
+	public float GetStatValue(StatType type)
+	{
+		return statsController.Get<BaseStat> (type).Value;
 	}
 
-	public float GetInitialValue (string paramName) {
-		return paramsController.InitialParameters.GetValue(paramName);
+	public void ChangeStatValue (StatType type, float diffValue) 
+	{
+		statsController.ChangeValue<BaseStat>(type, diffValue);
 	}
 
-	public void ChangeParameter (string paramName, float diffValue) {
-		paramsController.ChangeParameter (paramName, diffValue);
-	}
-
-	public float GetDamage (ICreature creature) {
+	public float GetDamage (ICreature creature) 
+	{
 		float resultDamage;
-		float pureDamage = Random.Range (GetCurrentValue("MinimumDamage"), GetCurrentValue("MaximumDamage"));
-		float attack = GetCurrentValue("Attack");
-		float defense = creature.GetCurrentValue("Defense");
+		float pureDamage = CalculatePureDamage();
+		float attack = GetStatValue(StatType.Attack);
+		float defense = creature.GetStatValue(StatType.Defense);
 
-		if (attack > defense) {
+		if (attack > defense) 
+		{
 			resultDamage = pureDamage * (1 + 0.05f * (attack - defense));
-		} else {
+		} 
+		else 
+		{
 			resultDamage = pureDamage / (1 + 0.05f * (defense - attack));
 		}
 
 		return resultDamage;
 	}
 
-	protected virtual void OnCollisionEnter2D(Collision2D other) {
+	protected virtual void OnCollisionEnter2D(Collision2D other) 
+	{
 		IDamageable damageable = other.gameObject.GetComponent<IDamageable> ();
-		if (damageable != null) {
+		if (damageable != null) 
+		{
 			damageable.ApplyDamage (this);
 		}
+	}
+
+	float CalculatePureDamage()
+	{
+		float min = GetStatValue (StatType.MinimumDamage);
+		float max = GetStatValue (StatType.MaximumDamage);
+		return Random.Range(min, max);
 	}
 }

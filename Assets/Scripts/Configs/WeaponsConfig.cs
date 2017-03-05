@@ -1,24 +1,16 @@
-﻿public class WeaponsConfig {
+﻿using System;
 
-	public WeaponParametersConfig[] parameters;
+public class WeaponsConfig : CreaturesConfig<WeaponsConfig.Parameters> 
+{
+	[Serializable]
+	public class Parameters  {
 
-	public WeaponParameters GetParametersByName(string name) {
-		foreach (WeaponParametersConfig config in parameters) {
-			if (config.name == name) {
-				return ConvertConfigToParameters(config);
-			}
-		}
-		return new WeaponParameters ();
-	}
+		public string name;
 
-	private WeaponParameters ConvertConfigToParameters(WeaponParametersConfig config) {
-		WeaponParameters result = new WeaponParameters ();
-		result.Attack = config.attack;
-		result.Damage = config.damage;
-		result.Firerate = config.firerate;
-		result.Speed = config.speed;
-		result.DefenseIgnoring = config.defenseIgnoring;
-
-		return result;
+		public float attack;
+		public float damage;
+		public float firerate;
+		public float speed;
+		public float defenseIgnoring;
 	}
 }

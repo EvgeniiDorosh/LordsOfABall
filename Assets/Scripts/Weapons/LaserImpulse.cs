@@ -95,7 +95,7 @@ public class LaserImpulse : MonoBehaviour {
 		laser.Clear ();
 		holdingTime = 0f;
 		powerTime = 0f;
-		maxPowerTime = weapon.GetCurrentValue ("Firerate");
-		damage = weapon.GetCurrentValue ("Damage");
+		maxPowerTime = weapon.GetStatValue (StatType.Firerate);
+		damage = weapon.GetStatValue (StatType.Damage);
 	}
 }

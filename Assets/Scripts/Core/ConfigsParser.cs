@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
 public class ConfigsParser : MonoBehaviour {
 
 	public static ConfigsParser instance = null;
 
-	public TextAsset enemiesJSON;
-	public EnemiesConfig enemiesConfig;
+	[SerializeField]
+	TextAsset enemiesJSON;
+	public static EnemiesConfig EnemiesConfig { get; private set;}
 
-	public TextAsset paddleJSON;
-	public PaddleConfig paddleConfig;
+	[SerializeField]
+	TextAsset paddleJSON;
+	public static PaddleConfig PaddleConfig { get; private set;}
 
-	public TextAsset destructiblesJSON;
-	public DestructiblesConfig destructiblesConfig;
+	[SerializeField]
+	TextAsset destructiblesJSON;
+	public static DestructiblesConfig DestructiblesConfig { get; private set;}
 
-	public TextAsset weaponsJSON;
-	public WeaponsConfig weaponsConfig;
+	[SerializeField]
+	TextAsset weaponsJSON;
+	public static WeaponsConfig WeaponsConfig { get; private set;}
 
 	void Awake () {
 		if (instance != null) {
@@ -26,9 +29,16 @@ public class ConfigsParser : MonoBehaviour {
 
 		instance = this;
 		
-		enemiesConfig = JsonUtility.FromJson<EnemiesConfig>(enemiesJSON.text);
-		destructiblesConfig = JsonUtility.FromJson<DestructiblesConfig>(destructiblesJSON.text);
-		paddleConfig = JsonUtility.FromJson<PaddleConfig>(paddleJSON.text);
-		weaponsConfig = JsonUtility.FromJson<WeaponsConfig>(weaponsJSON.text);
+		EnemiesConfig = JsonUtility.FromJson<EnemiesConfig>(enemiesJSON.text);
+		EnemiesConfig.Initialize ();
+
+		DestructiblesConfig = JsonUtility.FromJson<DestructiblesConfig>(destructiblesJSON.text);
+		DestructiblesConfig.Initialize ();
+
+		PaddleConfig = JsonUtility.FromJson<PaddleConfig> (paddleJSON.text);
+		PaddleConfig.Initialize();
+
+		WeaponsConfig = JsonUtility.FromJson<WeaponsConfig>(weaponsJSON.text);
+		WeaponsConfig.Initialize ();
 	}
 }

@@ -4,11 +4,8 @@ using System.Collections.Generic;
 
 public class StatsController : BasicStatsController
 {
-	protected new StatsSet statsSet = new StatsSet();
-
 	bool isChecking = false;
 	float checkStep = 1f;
-	WaitForSeconds waiting = new WaitForSeconds (checkStep);
 	List<StatModifier> temporalModifiers = new List<StatModifier> ();
 
 	public virtual void AddModifier(StatModifier modifier)
@@ -59,7 +56,7 @@ public class StatsController : BasicStatsController
 	{
 		while (temporalModifiers.Count > 0) 
 		{
-			yield return waiting;
+			yield return new WaitForSeconds (checkStep);
 			foreach (StatModifier modifier in temporalModifiers) 
 			{
 				if (modifier.ChangeDuration (-checkStep) <= 0) 

@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using System.Reflection;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Paddle))]
 [RequireComponent(typeof(PaddleMotionController))]
-[RequireComponent(typeof(PaddleParametersController))]
-[RequireComponent(typeof(CreatureParametersController))]
-public class PaddleInitializer : MonoBehaviour {
-	
-	private CreatureParametersController creatureParamsController;
-	private PaddleParametersController paddleParamsController;
+[RequireComponent(typeof(StatsController))]
+public class PaddleInitializer : MonoBehaviour
+{
+	StatsController statsController;
 
-	void Awake () {
-		creatureParamsController = GetComponent<CreatureParametersController> ();
-		paddleParamsController = GetComponent<PaddleParametersController> ();
+	void Awake () 
+	{
+		statsController = GetComponent<StatsController> ();
 		InitParameters ();
-		InitUIPanel ();
 	}
 
-	void InitParameters() {
+	void InitParameters() 
+	{
 		int currentLevel = GameController.Instance.CurrentLevel;
-		switch (GameController.Instance.CurrentGameMode) {
+		switch (GameController.Instance.CurrentGameMode)
+		{
 		case GameMode.Campaign:
-			if (currentLevel == 0) {
+			if (currentLevel == 0) 
+			{
 				InitFromConfig (currentLevel);
-			} else {
-				InitFromSaveData ();
+			}
+			else 
+			{
+				InitFromConfig (currentLevel);
+				//InitFromSaveData ();
 			}
 			break;
 		case GameMode.Single: 
@@ -37,17 +40,37 @@ public class PaddleInitializer : MonoBehaviour {
 		}
 	}
 
-	void InitFromConfig(int currentLevel) {
-		PaddleConfig config = ConfigsParser.instance.paddleConfig;
-		creatureParamsController.InitialParameters = config.GetInitialParameters();
-		creatureParamsController.CurrentParameters = creatureParamsController.InitialParameters.Clone ();
-		creatureParamsController.DestinationEvent = PaddleEvent.parameterWasUpdated;
+	void InitFromConfig(int currentLevel) 
+	{
+		Stat stat = null;
+		List<StatBlank> blanks = ConfigsParser.PaddleConfig.GetBlanks ("Paddle");
+		foreach (var blank in blanks) 
+		{
+			stat = new Stat (blank.type, blank.value, null, 0);
+			statsController.Add(stat);
+		}
 
-		paddleParamsController.InitialParameters = config.GetPaddleParameters();
-		paddleParamsController.CurrentParameters = paddleParamsController.InitialParameters.Clone();
+		Stat attack = statsController.Get<Stat> (StatType.Attack);
+		attack.AddModifier(new StatModifier(StatModifierType.BaseValue, StatType.Attack, 5));
+
+		Stat defense = statsController.Get<Stat> (StatType.Defense);
+		defense.AddModifier(new StatModifier(StatModifierType.BaseValue, StatType.Defense, 10));
+		defense.AddModifier(new StatModifier(StatModifierType.BaseValuePercent, StatType.Defense, 0.5f));
+
+		Stat health = statsController.Get<Stat> (StatType.Health);
+		Stat mana = statsController.Get<Stat> (StatType.Mana);
+
+		statsController.Add (new BaseClampedStat (StatType.CurrentHealth, health.Value, health));
+		statsController.Add (new BaseClampedStat (StatType.CurrentMana, mana.Value, null, 0));
+
+		Stat maxDamage = statsController.Get<Stat> (StatType.MaximumDamage);
+		Stat minDamage = statsController.Get<Stat> (StatType.MinimumDamage);
+		minDamage.SetMax (maxDamage);
+		minDamage.AddModifier(new StatModifier(StatModifierType.BaseValue, StatType.MinimumDamage, 10f));
+		maxDamage.AddModifier(new StatModifier(StatModifierType.BaseValue, StatType.MaximumDamage, -3f));
 	}
 
-	void InitFromSaveData() {
+	/*void InitFromSaveData() {
 		PrefsManager prefsManager = PrefsManager.Instance;
 		CreatureParameters creatureInitialParams = new CreatureParameters();
 		PropertyInfo[] properties = creatureInitialParams.GetType ().GetProperties ();
@@ -81,5 +104,5 @@ public class PaddleInitializer : MonoBehaviour {
 			//Console.WriteLine ("Property {0} is equal to {1}", property.Name, paddleParamsController.CurrentParameters.GetValue (property.Name));
 			paddleParamsController.ChangeParameter("Initial" + property.Name, 0.0f);
 		}
-	}
+	}*/
 }

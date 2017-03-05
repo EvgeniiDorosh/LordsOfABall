@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b2dbcd0bbdcb31248aaddbc72237c5b0
+timeCreated: 1488655387
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SF Ironsides Extended
+  fontNames:
+  - SF Ironsides Extended
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 212d8479238f44e47828005489ffa32f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

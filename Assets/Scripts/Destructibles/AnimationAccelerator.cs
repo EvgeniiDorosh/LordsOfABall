@@ -11,7 +11,7 @@ public class AnimationAccelerator : MonoBehaviour {
 		animator.speed = 0;
 	}
 
-	void OnEnable() {
+	/*void OnEnable() {
 		string destinationEvent = CreatureEvent.creatureParameterWasUpdated + gameObject.GetInstanceID ();
 		Messenger<StatChange>.AddListener (destinationEvent, OnChangeHealth);
 	}
@@ -26,5 +26,5 @@ public class AnimationAccelerator : MonoBehaviour {
 			float percentage = (1f - Mathf.Clamp01 (statChange.current / statChange.initial));
 			animator.speed = Mathf.Ceil(percentage * maxSpeed);
 		}
-	}
+	}*/
 }

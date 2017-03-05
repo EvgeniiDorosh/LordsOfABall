@@ -10,10 +10,9 @@
 			"mana" : 0,
 			"spellPower" : 0,
 			"luck" : 1,
-			"morale" : 0
+			"morale" : 0,
+			"speed" : 8,
+			"width" : 1
 		}
-	],
-
-	"width" : 1,
-	"speed" : 8
+	]
 }

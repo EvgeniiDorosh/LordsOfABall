@@ -12,7 +12,7 @@ public class SpriteChanger : MonoBehaviour {
 		defaultSprite = spriteRenderer.sprite;
 	}
 
-	void OnEnable() {
+	/*void OnEnable() {
 		spriteRenderer.sprite = defaultSprite;
 		string destinationEvent = CreatureEvent.creatureParameterWasUpdated + gameObject.GetInstanceID ();
 		Messenger<StatChange>.AddListener (destinationEvent, OnChangeHealth);
@@ -29,5 +29,5 @@ public class SpriteChanger : MonoBehaviour {
 			int index = Mathf.CeilToInt(percentage * (sprites.Length - 1));
 			spriteRenderer.sprite = sprites[index];
 		}
-	}
+	}*/
 }

@@ -1,27 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIDamage : MonoBehaviour {
-
-	private Animator anim;
+public class UIDamage : MonoBehaviour 
+{
+	Animator anim;
 
 	string paddleGotDamageEvent;
 
-	void Awake () {
+	void Awake () 
+	{
 		anim = GetComponent<Animator>();
 	}
 	
-	void OnEnable() {
+	void Start() 
+	{
 		int paddleId = GameObject.FindGameObjectWithTag ("Player").GetInstanceID ();
 		paddleGotDamageEvent = CreatureEvent.creatureGotDamage + paddleId;
 		Messenger<float>.AddListener (paddleGotDamageEvent, ShowDamageEffect);
 	}
 
-	void OnDisable() {
+	void OnDestroy() 
+	{
 		Messenger<float>.RemoveListener (paddleGotDamageEvent, ShowDamageEffect);
 	}
 
-	void ShowDamageEffect(float damage) {
+	void ShowDamageEffect(float damage) 
+	{
 		anim.SetTrigger ("GotDamage");
 	}
 }

@@ -75,7 +75,7 @@ public class PrefsManager : MonoBehaviour {
 
 	void WriteProgressData() {
 		GameObject paddle = GameObject.FindGameObjectWithTag ("Player");
-		if (paddle != null) {
+		/*if (paddle != null) {
 			SetValue ("Level", GameController.Instance.CurrentLevel + 1);
 			CreatureParameters creatureParameters = paddle.GetComponent<CreatureParametersController> ().InitialParameters;
 			PropertyInfo[] properties = creatureParameters.GetType ().GetProperties ();
@@ -87,7 +87,7 @@ public class PrefsManager : MonoBehaviour {
 			foreach (PropertyInfo property in properties) {
 				SetValue(property.Name, (float)property.GetValue(paddleParameters, null));
 			}
-		}
+		}*/
 	}
 
 	public void ClearProgress() {

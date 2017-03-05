@@ -1,4 +1,5 @@
-﻿public enum Member {
+﻿public enum Member 
+{
 	Ball,
 	Enemy,
 	Destructible

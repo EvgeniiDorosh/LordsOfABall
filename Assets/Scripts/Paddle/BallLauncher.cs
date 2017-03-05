@@ -1,92 +1,120 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
-public class BallLauncher : MonoBehaviour {
+public class BallLauncher : MonoBehaviour 
+{
+	[SerializeField]
+	Transform platform;
+	[SerializeField]
+	Transform ballInitialSpot;
+	[SerializeField]
+	GameObject ball;
+	GameObject caughtBall;
 
-	public Transform platform;
-	public Transform ballInitialSpot;
-	public GameObject ball;
-	private GameObject caughtBall;
+	StatsController statsController;
+	BoxCollider2D platformCollider;
+	Vector2 defaultColliderSize;
 
-	private bool hasBall = true;
+	bool hasBall = true;
+	float reflectionFactor;
+
+	static string fireKey = "Fire1";
 
 	public bool CatchingIsActive { get; set; }
 
-	private float reflectionFactor;
-	public float ReflectionFactor { 
+	public float ReflectionFactor 
+	{ 
 		get { return reflectionFactor;}
 		set { reflectionFactor = Mathf.Clamp(value, 0.1f, 0.9f); }
 	}
 
-	private BoxCollider2D platformCollider;
-
-	private void SetWidth(StatChange change) {
-		platform.transform.localScale = new Vector3 (change.current, 1f, 1f);
-		platformCollider.size = new Vector2(platformCollider.size.x * change.RelativeDiff, platformCollider.size.y);
+	void UpdateWidth(BaseStat stat) 
+	{
+		platform.transform.localScale = new Vector3 (stat.Value, 1f, 1f);
+		platformCollider.size = new Vector2(defaultColliderSize.x * stat.Value, defaultColliderSize.y);
 	}
 
-	void Awake() {
+	void Awake() 
+	{		
+		statsController = GetComponent<StatsController> ();
+		platformCollider = GetComponent<BoxCollider2D> ();
+		defaultColliderSize = platformCollider.size;
 		ReflectionFactor = 0.5f;
 		SetupBall ();
 	}
 
-	void OnEnable() {
-		Messenger<StatChange>.AddListener (PaddleEvent.widthWasUpdated, SetWidth);
+	void Start() 
+	{
+		statsController.Get<Stat> (StatType.Width).ValueChanged += UpdateWidth;
+	}
+
+	void OnEnable()
+	{
 		Messenger.AddListener(BallEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
 	}
 
-	void OnDisable() {
-		Messenger<StatChange>.RemoveListener (PaddleEvent.widthWasUpdated, SetWidth);
+	void OnDisable() 
+	{
+		CancelInvoke ();
 		Messenger.RemoveListener(BallEvent.ballWasDestroyed, CheckAllBallAreDestroyed);
 	}
-
-	void Start () {
-		platformCollider = GetComponent<BoxCollider2D> ();
-	}
 	
-	void Update () {
-		if (Input.GetButton ("Fire1") && hasBall) {
+	void Update () 
+	{
+		if (Input.GetButton (fireKey) && hasBall) 
+		{
 			LaunchBall (caughtBall);
 			hasBall = false;
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.gameObject.CompareTag ("Ball")) {
-			if (CatchingIsActive && !hasBall) {
+	void OnCollisionEnter2D(Collision2D collision) 
+	{
+		if (collision.gameObject.CompareTag ("Ball")) 
+		{
+			if (CatchingIsActive && !hasBall) 
+			{
 				hasBall = true;
 				CatchBall (collision.gameObject);
-			} else {
+			} 
+			else 
+			{
 				LaunchBall (collision.gameObject);
 			}
 		}
 	}
 
-	void CheckAllBallAreDestroyed() {
-		if (MembersAccount.Count(Member.Ball) == 0) {
+	void CheckAllBallAreDestroyed() 
+	{
+		if (MembersAccount.Count(Member.Ball) == 0) 
+		{
 			Invoke("SetupBall", 0.5f);		
 		}
 	}
 
-	void SetupBall() {
-		caughtBall = Instantiate (ball, ballInitialSpot.position, Quaternion.identity) as GameObject;
-		caughtBall.GetComponent<Transform> ().SetParent (this.transform);
+	void SetupBall() 
+	{
+		caughtBall = Instantiate (ball, ballInitialSpot.position, Quaternion.identity, transform) as GameObject;
 		hasBall = true;
 	}
 
-	void LaunchBall(GameObject ball) {
+	void LaunchBall(GameObject ball) 
+	{
 		float xPos = HitFactor(ball.transform.position);
 		Vector2 direction = new Vector2(xPos, reflectionFactor).normalized;
 		ball.GetComponent<BallMotionController> ().Launch (direction);
 	}
 
-	void CatchBall(GameObject ball) {
+	void CatchBall(GameObject ball) 
+	{
 		caughtBall = ball;
 		caughtBall.GetComponent<BallMotionController> ().Stop ();
-		caughtBall.transform.SetParent (this.transform);
+		caughtBall.transform.SetParent (transform);
 	}
 
-	float HitFactor(Vector2 hitPosition) {
+	float HitFactor(Vector2 hitPosition) 
+	{
 		return (hitPosition.x - transform.position.x) / platformCollider.bounds.size.x;
 	}
 }

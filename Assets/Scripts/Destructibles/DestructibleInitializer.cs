@@ -2,21 +2,30 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(DestructibleParametersController))]
-[RequireComponent(typeof(PassiveDamageable))]
-[RequireComponent(typeof(Destructible))]
 public class DestructibleInitializer : MonoBehaviour {
 
 	public string indexName = "empty";
 
-	void OnEnable () {
-		DestructibleParametersController paramsController = GetComponent<DestructibleParametersController> ();
+	void Awake () 
+	{
+		BasicStatsController statsController = GetComponent<BasicStatsController> ();
 		PassiveDamageable passiveDamageable = GetComponent<PassiveDamageable> ();
-		paramsController.InitialParameters = ConfigsParser.instance.destructiblesConfig.GetParametersByName (indexName);
-		if (passiveDamageable.isStable) {
-			paramsController.InitialParameters.SetValue ("Health", passiveDamageable.level);
+
+		BaseStat stat = null;
+		List<StatBlank> blanks = ConfigsParser.DestructiblesConfig.GetBlanks (indexName);
+		if (blanks != null) {
+			foreach (var blank in blanks) {
+				stat = new BaseClampedStat (blank.type, blank.value, null, 0);
+				statsController.Add (stat);
+			}
+		} 
+		else 
+		{
+			stat = new BaseClampedStat (StatType.Health, passiveDamageable.level, null, 0);
+			statsController.Add (stat);
 		}
-		paramsController.CurrentParameters = paramsController.InitialParameters.Clone();
-		paramsController.DestinationEvent = CreatureEvent.creatureParameterWasUpdated + gameObject.GetInstanceID();
+
+		BaseStat health = statsController.Get (StatType.Health);
+		statsController.Add (new BaseClampedStat (StatType.CurrentHealth, health.Value, health));
 	}
 }

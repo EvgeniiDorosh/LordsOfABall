@@ -1,5 +1,5 @@
-﻿public interface IDamageable : ICreature {
-
+﻿public interface IDamageable : ICreature 
+{
 	void ApplyDamage (IAttacker attacker);
 	void ApplyDamage (float damage);
 

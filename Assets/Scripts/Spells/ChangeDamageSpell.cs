@@ -13,16 +13,16 @@ public class ChangeDamageSpell : Spell {
 
 	override public void Cast() {
 		targetCreature = targetObject.GetComponent<ICreature>();
-		if (targetCreature != null) {
+		/*if (targetCreature != null) {
 			float damageGap = (targetCreature.GetInitialValue("MaximumDamage") - targetCreature.GetInitialValue("MinimumDamage"));
 			diffValue = ((float)percentage / 100f) * damageGap;
 			targetCreature.ChangeParameter(parameterName.ToString(), diffValue);
-		}
+		}*/
 	}
 
 	override public void Finish() {
-		if (targetCreature != null) {
+		/*if (targetCreature != null) {
 			targetCreature.ChangeParameter(parameterName.ToString(), -diffValue);
-		}
+		}*/
 	}
 }

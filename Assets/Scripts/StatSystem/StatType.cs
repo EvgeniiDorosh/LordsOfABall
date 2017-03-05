@@ -14,6 +14,7 @@
 	SpellPower,
 	Luck,
 	Morale,
+	Rage,
 	Speed,
 	Firerate,
 	DefenseIgnoring,

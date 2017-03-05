@@ -2,74 +2,66 @@
 using System.Collections;
 using System;
 
-public class PaddleMotionController : MonoBehaviour {
-	
-	private float moveSpeed = 0.8f;
-	private Collider2D platformCollider;
-	private Edges allowedEdges;
+public class PaddleMotionController : MonoBehaviour 
+{	
+	static string mouseXAxis = "Mouse X";
 
-	private class Edges {
+	[SerializeField]
+	float moveSpeed = 0.8f;
 
-		public float xMin;
-		public float xMax;
+	Rect allowedBorders;
 
-		public Edges(float xMin, float xMax) {
-			this.xMin = xMin;
-			this.xMax = xMax;
-		}
-	}
+	Collider2D platformCollider;
+	StatsController statsController;
 
-	private bool isInverseMotion = false;
-	public bool IsInverseMotion {
+	bool isInverseMotion = false;
+	public bool IsInverseMotion 
+	{
 		get { return isInverseMotion;}
 		set { isInverseMotion = value;}
 	}
 
-	void Awake() {
+	void Awake() 
+	{
 		platformCollider = GetComponent<Collider2D> ();
-		allowedEdges = GetPaddleAllowedEdges ();
-		transform.position = GetInitialPlayerPosition();
+		statsController = GetComponent<StatsController> ();
+		transform.position = GetInitialPosition();
 	}
 
-	void OnEnable() {
-		Messenger.AddListener (PaddleEvent.widthWasUpdated, OnWidthChanged);
-	}
-
-	void OnDisable() {
-		Messenger.RemoveListener (PaddleEvent.widthWasUpdated, OnWidthChanged);
+	void Start() 
+	{
+		allowedBorders = GetPaddleAllowedBorders ();
+		statsController.Get<Stat>(StatType.Width).ValueChanged += OnWidthChanged;
 	}
 	
-	void Update () {
-		float mouseMoveX = moveSpeed * Input.GetAxis ("Mouse X");
+	void Update () 
+	{
+		float mouseMoveX = moveSpeed * Input.GetAxis (mouseXAxis);
 		float playerX = transform.position.x + (isInverseMotion ? -1 : 1) * mouseMoveX;
-		Vector2 playerPosition = new Vector2 (Mathf.Clamp (playerX, allowedEdges.xMin, allowedEdges.xMax), transform.position.y);
+		Vector2 playerPosition = new Vector2 (Mathf.Clamp (playerX, allowedBorders.xMin, allowedBorders.xMax), transform.position.y);
 		transform.position = playerPosition;
 	}
 
-	Edges GetPaddleAllowedEdges() {
-		GameObject[] borderGameObjects = GameObject.FindGameObjectsWithTag ("PaddleEdge");
-		int length = borderGameObjects.Length;
-		float[] xValues = new float[length];
-		for (int index = 0; index < length; index++) {
-			xValues [index] = borderGameObjects[index].transform.position.x;
-		}
-
+	Rect GetPaddleAllowedBorders() 
+	{
 		float paddleOffset = platformCollider.bounds.size.x / 2;
 
-		Edges edges = new Edges (Mathf.Min (xValues) + paddleOffset, Mathf.Max (xValues) - paddleOffset);
+		Rect borders = new Rect ();
+		borders.xMin = LevelManager.Borders.xMin + paddleOffset;
+		borders.xMax = LevelManager.Borders.xMax - paddleOffset;
 
-		return edges;
+		return borders;
 	}
 
-	Vector2 GetInitialPlayerPosition() {
+	Vector2 GetInitialPosition() 
+	{
 		float yPosition = Camera.main.ScreenToWorldPoint (Vector2.zero).y + 0.5f;
-		float xPosition = (allowedEdges.xMax - allowedEdges.xMin) / 2;
-		Vector2 playerPosition = new Vector2 (xPosition, yPosition);
-
-		return playerPosition;
+		float xPosition = (allowedBorders.xMax - allowedBorders.xMin) / 2;
+		return new Vector2 (xPosition, yPosition);
 	}
 
-	void OnWidthChanged() {
-		allowedEdges = GetPaddleAllowedEdges ();
+	void OnWidthChanged(BaseStat stat) 
+	{
+		allowedBorders = GetPaddleAllowedBorders ();
 	}
 }
