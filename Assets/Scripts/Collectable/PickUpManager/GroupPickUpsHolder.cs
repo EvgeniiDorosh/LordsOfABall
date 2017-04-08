@@ -1,42 +1,58 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-public class GroupPickUpsHolder : MonoBehaviour, IPickUpsHolder 
+public class GroupPickUpsHolder : MonoBehaviour 
 {
-	[Serializable]
-	public class GroupPickUpTask 
-	{
-		public List<GameObject> targetObjects;
-		public List<GameObject> pickUps;
+	[SerializeField]
+	List<Task> taskList;
 
-		public Transform spawnPoint;
+	List<Task> pickUpsDistribution = new List<Task>();
+
+	void Awake()
+	{
+		IDestructible destructible;
+		List<GameObject> targets = new List<GameObject> ();
+		foreach (Task task in taskList) 
+		{
+			pickUpsDistribution.Add (task);
+			foreach (GameObject targetObject in task.targetObjects) 
+			{
+				if (targets.Contains (targetObject))
+					continue;
+
+				targets.Add (targetObject);
+				destructible = targetObject.GetComponent<IDestructible> ();
+
+				if (destructible != null)
+					destructible.Destructed += OnTargetDestructed;
+			}
+		}
 	}
 
-	public List<GroupPickUpTask> taskList = new List<GroupPickUpTask> (); 
-
-	public bool InstantiatePickUpFor (GameObject targetObject) 
+	void OnTargetDestructed(GameObject targetObject)
 	{
-		foreach (GroupPickUpTask task in taskList) 
+		foreach (Task task in pickUpsDistribution) 
 		{
 			List<GameObject> currentList = task.targetObjects;
 			currentList.Remove (targetObject);
 			if (currentList.Count == 0) 
 			{
-				GameObject pickUp = Instantiate(task.pickUps [Random.Range (0, task.pickUps.Count)]);
-				if (task.spawnPoint != null) {
-					pickUp.transform.position = task.spawnPoint.position;
-				} else {
-					pickUp.transform.position = targetObject.transform.position;
-				}
+				GameObject pickUp = Instantiate(task.pickUps [Random.Range (0, task.pickUps.Length)]);
+				pickUp.transform.position = (task.spawnPoint != null) ? task.spawnPoint.position : targetObject.transform.position;
 				pickUp.SetActive (true);
-				taskList.Remove (task);
-				return true;
+				pickUpsDistribution.Remove (task);
 			}
 		}
+	}
 
-		return false;
+	[Serializable]
+	public class Task 
+	{
+		public List<GameObject> targetObjects;
+		public GameObject[] pickUps;
+
+		public Transform spawnPoint;
 	}
 }

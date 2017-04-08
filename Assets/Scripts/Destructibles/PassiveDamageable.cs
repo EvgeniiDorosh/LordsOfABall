@@ -1,29 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PassiveDamageable : MonoBehaviour, IDamageable {
-
-	private BasicStatsController statsController;
 
 	public bool isStable = true;
 	[Range(1, 200)]
 	public int level = 1;
 
-	private AudioSource audioSource;
-	public AudioClip hitSound;
+	AudioSource audioSource;
+	[SerializeField]
+	AudioClip hitSound;
+	[SerializeField]
+	Death death;
 
-	public Death death;
+	float damagePerHit = 1f;
 
-	private string onGetDamageEvent;
+	BasicStatsController statsController;
 
-	private float damagePerHit = 1f;
+	public event EventHandler GotDamage;
+	public event DestructDelegate Destructed;
 
 	void Awake() 
 	{
 		statsController = GetComponent<BasicStatsController> ();
 		audioSource = GetComponent<AudioSource> ();
-
-		onGetDamageEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
 	}
 
 	public float GetStatValue(StatType type)
@@ -53,20 +54,21 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 		ChangeStatValue(StatType.CurrentHealth, -damage);
 	}
 
-	private void OnHealthChanged(float diffValue) {
-		if (CurrentHealth <= 0) {
-			Demolish ();
-		} else if (diffValue < 0) {
-			Messenger<float>.Invoke (onGetDamageEvent, diffValue);
-		}
+	private void OnHealthChanged(float diffValue) 
+	{
+		if (CurrentHealth <= 0)
+			Destruct ();
+		else if (diffValue < 0)
+			if (GotDamage != null)
+				GotDamage (this, null);
 	}
 
-	public void Demolish () {
-		if (death != null) {
+	public void Destruct () {
+		if (death != null)
 			death.ShowDeath ();
-		}
 		gameObject.SetActive (false);
-		Messenger<GameObject>.Invoke (CreatureEvent.creatureWasDestroyed, this.gameObject);
+		if (Destructed != null)
+			Destructed (gameObject);
 	}
 
 	public float CurrentHealth 
@@ -80,9 +82,8 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 	}
 
 	void PlaySingle(AudioClip clip) {
-		if (audioSource.isPlaying) {
+		if (audioSource.isPlaying)
 			return;
-		}
 		audioSource.clip = clip;
 		audioSource.Play ();
 	}

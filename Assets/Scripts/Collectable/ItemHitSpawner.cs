@@ -1,42 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using Random = UnityEngine.Random;
 
-public class ItemHitSpawner : MonoBehaviour {
+public class ItemHitSpawner : MonoBehaviour 
+{
+	[SerializeField]
+	GameObject[] spawnedItems;
 
-	public GameObject[] spawnedItems;
-
+	[SerializeField]
 	[Range(1, 300)]
-	public int reloadingTime = 1;
+	int reloadingTime = 1;
 
-	private bool readyToSpawn = true;
+	bool readyToSpawn = true;
+	IDamageable target;
 
-	void OnEnable() {
-		string destinationEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
-		Messenger<float>.AddListener (destinationEvent, OnGetDamage);
+	void Awake()
+	{
+		target = GetComponent<IDamageable> ();
 	}
 
-	void OnDisable() {
-		string destinationEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
-		Messenger<float>.RemoveListener (destinationEvent, OnGetDamage);
+	void OnEnable() 
+	{
+		if (target != null)
+			target.GotDamage += OnGetDamage;
+	}
+
+	void OnDisable() 
+	{
+		if (target != null)
+			target.GotDamage -= OnGetDamage;
 		StopAllCoroutines ();
 	}
 
-	void OnGetDamage(float damage) {
-		if (!readyToSpawn) {
+	void OnGetDamage(object sender, EventArgs e) 
+	{
+		if (!readyToSpawn)
 			return;
-		}
-
+		
 		readyToSpawn = false;
 		Spawn();
 		StartCoroutine (Reload ());
 	}
 
-	void Spawn() {
+	void Spawn() 
+	{
 		GameObject spawnedItem = Instantiate(spawnedItems [Random.Range (0, spawnedItems.Length)], transform.position, Quaternion.identity) as GameObject;
 		spawnedItem.SetActive(true);
 	}
 
-	IEnumerator Reload() {
+	IEnumerator Reload() 
+	{
 		yield return new WaitForSeconds (reloadingTime);
 		readyToSpawn = true;
 		StopCoroutine (Reload ());

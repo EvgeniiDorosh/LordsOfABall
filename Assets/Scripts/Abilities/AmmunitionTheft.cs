@@ -19,7 +19,7 @@ public class AmmunitionTheft : MonoBehaviour
 				if (Random.value < probability) 
 				{
 					GameObject stolenBall = MembersAccount.Get (Member.Ball) [Random.Range (0, ballsCount)];
-					stolenBall.GetComponent<Ball>().Demolish();
+					stolenBall.GetComponent<Ball>().Destruct();
 				}
 			}
 		}

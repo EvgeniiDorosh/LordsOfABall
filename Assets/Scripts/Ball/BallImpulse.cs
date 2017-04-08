@@ -11,6 +11,7 @@ public class BallImpulse : MonoBehaviour
 		statsController = GetComponent<StatsController> ();
 		float diff = statsController.Get<Stat> (StatType.Speed).Value;
 		StatModifier modifier = new StatModifier (StatModifierType.BaseValue, StatType.Speed, diff, 1f);
+		statsController.AddModifier (modifier);
 		Destroy (this, 2f);
 	}
 }

@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
 		StopBalls ();
 		while (MembersAccount.Count (Member.Ball) != 0) {
 			Ball ball = MembersAccount.Get (Member.Ball) [0].GetComponent<Ball> ();
-			ball.Demolish ();
+			ball.Destruct ();
 			yield return new WaitForSeconds (0.5f);
 		}
 		while (InitialParameterSpell.createdInitialSpells.Count != 0) {

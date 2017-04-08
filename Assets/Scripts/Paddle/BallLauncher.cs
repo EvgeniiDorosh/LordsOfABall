@@ -4,6 +4,9 @@ using System.Collections;
 
 public class BallLauncher : MonoBehaviour 
 {
+	static string fireKey = "Fire1";
+	static string ballTag = "Ball";
+
 	[SerializeField]
 	Transform platform;
 	[SerializeField]
@@ -18,8 +21,6 @@ public class BallLauncher : MonoBehaviour
 
 	bool hasBall = true;
 	float reflectionFactor;
-
-	static string fireKey = "Fire1";
 
 	public bool CatchingIsActive { get; set; }
 
@@ -71,7 +72,7 @@ public class BallLauncher : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D collision) 
 	{
-		if (collision.gameObject.CompareTag ("Ball")) 
+		if (collision.gameObject.CompareTag (ballTag)) 
 		{
 			if (CatchingIsActive && !hasBall) 
 			{
@@ -88,9 +89,7 @@ public class BallLauncher : MonoBehaviour
 	void CheckAllBallAreDestroyed() 
 	{
 		if (MembersAccount.Count(Member.Ball) == 0) 
-		{
 			Invoke("SetupBall", 0.5f);		
-		}
 	}
 
 	void SetupBall() 

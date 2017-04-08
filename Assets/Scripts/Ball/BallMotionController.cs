@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class BallMotionController : MonoBehaviour 
+public class BallMotionController : MonoBehaviour
 {
 	Stat speed;
     StatsController statsController;
@@ -10,20 +10,19 @@ public class BallMotionController : MonoBehaviour
 
 	public float Speed
 	{
-		get { return speed.Value; }
-	}
-
-	public void ChangeDirection(Vector2 direction) 
-	{
-		Debug.Log ("Rigidbody = " + rigidBody + "; speed = " + speed);
-		rigidBody.velocity = direction.normalized * speed.Value;
+		get 
+		{ 
+			if (speed == null) 
+				speed = statsController.Get<Stat> (StatType.Speed);
+			return speed.Value; 
+		}
 	}
 
 	public void Launch(Vector2 direction) 
 	{
 		transform.parent = null;
 		rigidBody.isKinematic = false;
-		ChangeDirection(direction);
+		rigidBody.velocity = direction.normalized * Speed;
 	}
 
 	public void Stop() 
@@ -46,23 +45,8 @@ public class BallMotionController : MonoBehaviour
 
 	void OnSpeedChanged(BaseStat stat) 
 	{
-		StopAllCoroutines ();
-		StartCoroutine (SpeedChanging (4));
+		if (rigidBody.isKinematic)
+			return;
+		rigidBody.velocity = rigidBody.velocity.normalized * Speed;
 	}
-
-	IEnumerator SpeedChanging(float time)
-	{
-		float timeStep = 0.5f;
-		WaitForSeconds waiting = new WaitForSeconds (timeStep);
-		float currentSpeed = rigidBody.velocity.magnitude;
-		float targetSpeed = speed.Value;
-		float stepValue = Mathf.Abs (targetSpeed - currentSpeed) * timeStep / time;
-		while (currentSpeed != targetSpeed) 
-		{
-			currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, stepValue);
-			rigidBody.velocity = rigidBody.velocity.normalized * currentSpeed;
-			yield return waiting;
-		}
-		StopAllCoroutines ();
-	}	
 }

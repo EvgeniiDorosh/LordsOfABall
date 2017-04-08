@@ -1,16 +1,62 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-public class SinglePickUpsHolder : MonoBehaviour, IPickUpsHolder {
+public class SinglePickUpsHolder : MonoBehaviour 
+{
+	[SerializeField]
+	Task[] taskList;
+
+	Dictionary<GameObject, GameObject> pickUpsDistribution = new Dictionary<GameObject, GameObject> ();
+
+	void Awake () 
+	{
+		IDestructible destructible;
+		foreach (Task task in taskList) 
+		{
+			float probability = task.initialProbability;
+			foreach(GameObject targetObject in task.targetObjects) 
+			{
+				if (pickUpsDistribution.ContainsKey (targetObject))
+					continue;
+
+				destructible = targetObject.GetComponent<IDestructible> ();
+				if(destructible == null)
+					continue;
+
+				if (Random.value < probability) 
+				{
+					GameObject pickUp = task.pickUps [Random.Range (0, task.pickUps.Length)];
+					destructible.Destructed += OnTargetDestructed;
+					pickUpsDistribution [targetObject] = pickUp;
+
+					if (task.useDynamicBalance)
+						probability = Mathf.Clamp (probability - task.unitProbability, 0, 1f);
+					continue;
+				}
+
+				if (task.useDynamicBalance)
+					probability = Mathf.Clamp (probability + task.unitProbability, 0, 1f);
+			}		
+		}
+	}
+
+	void OnTargetDestructed(GameObject targetObject)
+	{
+		if (pickUpsDistribution.ContainsKey (targetObject)) 
+		{
+			GameObject pickUp = Instantiate(pickUpsDistribution [targetObject]);
+			pickUp.transform.position = targetObject.transform.position;
+			pickUp.SetActive (true);
+		}
+	}
 
 	[Serializable]
-	public class SinglePickUpTask {
-		
-		public List<GameObject> targetObjects;
-		public List<GameObject> pickUps;
+	public class Task
+	{
+		public GameObject[] targetObjects;
+		public GameObject[] pickUps;
 
 		[Range(0, 1)]
 		public float initialProbability;
@@ -18,43 +64,5 @@ public class SinglePickUpsHolder : MonoBehaviour, IPickUpsHolder {
 		public bool useDynamicBalance;
 		[Range(0, 1)]
 		public float unitProbability;
-	}
-
-	public List<SinglePickUpTask> taskList = new List<SinglePickUpTask>();
-	Dictionary<GameObject, GameObject> pickUps = new Dictionary<GameObject, GameObject> ();
-
-	public bool InstantiatePickUpFor (GameObject targetObject) {
-		if (pickUps.ContainsKey (targetObject)) {
-			GameObject pickUp = Instantiate(pickUps [targetObject]);
-			pickUp.transform.position = targetObject.transform.position;
-			pickUp.SetActive (true);
-			return true;
-		}
-
-		return false;
-	}
-
-	void Awake () {
-		foreach (SinglePickUpTask task in taskList) {
-			float probability = task.initialProbability;
-			foreach(GameObject targetObject in task.targetObjects) {
-				if (pickUps.ContainsKey (targetObject)) {
-					continue;
-				}
-
-				if (Random.value < probability) {
-					GameObject pickUp = task.pickUps [Random.Range (0, task.pickUps.Count)];
-					pickUps [targetObject] = pickUp;
-					if (task.useDynamicBalance) {
-						probability = Mathf.Clamp (probability - task.unitProbability, 0, 1);
-					}
-					continue;
-				}
-
-				if (task.useDynamicBalance) {
-					probability = Mathf.Clamp (probability + task.unitProbability, 0, 1);
-				}
-			}		
-		}
 	}
 }

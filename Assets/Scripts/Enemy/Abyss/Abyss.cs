@@ -3,8 +3,13 @@ using System.Collections;
 
 public class Abyss : MonoBehaviour, IAttacker 
 {
-	private bool isReflexive;
-	private BoxCollider2D boxCollider;
+	bool isReflexive;
+	BoxCollider2D boxCollider;
+
+	BasicStatsController statsController;
+	IDamageable paddle;
+
+	WaitForSeconds attackIncreasingWait = new WaitForSeconds (20f);
 
 	public bool IsReflexive 
 	{
@@ -15,9 +20,6 @@ public class Abyss : MonoBehaviour, IAttacker
 			boxCollider.isTrigger = !value;
 		}
 	}
-
-	private BasicStatsController statsController;
-	private IDamageable paddle;
 
 	public float GetStatValue(StatType type)
 	{
@@ -37,13 +39,9 @@ public class Abyss : MonoBehaviour, IAttacker
 		float defense = creature.GetStatValue(StatType.Defense);
 
 		if (attack > defense) 
-		{
 			resultDamage = pureDamage * (1 + 0.05f * (attack - defense));
-		}
 		else 
-		{
 			resultDamage = pureDamage / (1 + 0.05f * (defense - attack));
-		}
 
 		return resultDamage;
 	}
@@ -54,42 +52,41 @@ public class Abyss : MonoBehaviour, IAttacker
 		IsReflexive = false;
 	}
 
-	void OnEnable () 
-	{
-		statsController = GetComponent<BasicStatsController> ();
-		statsController.Add(new BaseStat(StatType.Attack, 0));
-		statsController.Add (new BaseStat (StatType.Damage, 1f));
-		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasDestroyed, OnCreatureDestroy);
-	}
-
 	void Start()
 	{
 		paddle = GameObject.FindGameObjectWithTag ("Player").GetComponent<IDamageable> ();
 	}
 
-	void OnDisable() 
+	void OnEnable()
 	{
-		Messenger<GameObject>.RemoveListener (CreatureEvent.creatureWasDestroyed, OnCreatureDestroy);
+		statsController = GetComponent<BasicStatsController> ();
+		statsController.Add(new BaseStat(StatType.Attack, 0));
+		statsController.Add (new BaseStat (StatType.Damage, 1f));
+		StartCoroutine (AttackIncreasing());
 	}
 
-	void OnCreatureDestroy(GameObject target) 
+	void OnDisable()
 	{
-		ICreature creature = target.GetComponent<ICreature> ();
-		if (creature != null) 
+		StopAllCoroutines ();
+	}
+
+	IEnumerator AttackIncreasing()	
+	{
+		while (true) 
 		{
-			float creatureHealth = creature.GetStatValue (StatType.Health);
-			float attackIncrease = Mathf.Log (creatureHealth);
-			ChangeStatValue (StatType.Attack, attackIncrease);
+			yield return attackIncreasingWait;
+			ChangeStatValue (StatType.Attack, 1f);
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
+	void OnTriggerEnter2D(Collider2D other) 
+	{
 		GameObject otherGameObject = other.gameObject;
-		if (otherGameObject.CompareTag ("Ball")) {
-			if (MembersAccount.Count(Member.Ball) == 1) {
+		if (otherGameObject.CompareTag ("Ball")) 
+			if (MembersAccount.Count(Member.Ball) == 1)
 				paddle.ApplyDamage (this);
-			}
-			otherGameObject.GetComponent<Ball>().Demolish();
-		}
+		
+		IDestructible destructible = otherGameObject.GetComponent<IDestructible> ();
+		destructible.Destruct ();
 	}
 }

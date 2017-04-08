@@ -3,10 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Ball : MonoBehaviour 
+public class Ball : MonoBehaviour, IDestructible
 {	
-	public static StatType[] statTypes = { StatType.Attack, StatType.MinimumDamage, StatType.MaximumDamage, StatType.Speed};
-
 	AudioSource audioSource;
 	[SerializeField]
 	GameObject knockLight;
@@ -18,12 +16,14 @@ public class Ball : MonoBehaviour
 	[SerializeField]
 	Death death;
 
-	public void Demolish()  
+	public event DestructDelegate Destructed;
+
+	public void Destruct()  
 	{
 		if (death != null) 
-		{
 			death.ShowDeath ();
-		}
+		if (Destructed != null)
+			Destructed (gameObject);
 		Destroy (gameObject);
 	}
 

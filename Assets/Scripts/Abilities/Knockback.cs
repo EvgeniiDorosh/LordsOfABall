@@ -16,10 +16,8 @@ public class Knockback : MonoBehaviour
 		if (otherObject.CompareTag (targetTag)) 
 		{
 			if (otherObject.GetComponent<BallImpulse> () != null) 
-			{
 				return;
-			}
-
+			
 			if (Random.value < probability)
 			{
 				audioSource.Play ();

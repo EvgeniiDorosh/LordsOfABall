@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class UIDamage : MonoBehaviour 
 {
 	Animator anim;
 
-	string paddleGotDamageEvent;
+	IDamageable paddle;
 
 	void Awake () 
 	{
@@ -14,17 +15,11 @@ public class UIDamage : MonoBehaviour
 	
 	void Start() 
 	{
-		int paddleId = GameObject.FindGameObjectWithTag ("Player").GetInstanceID ();
-		paddleGotDamageEvent = CreatureEvent.creatureGotDamage + paddleId;
-		Messenger<float>.AddListener (paddleGotDamageEvent, ShowDamageEffect);
+		paddle = GameObject.FindGameObjectWithTag ("Player").GetComponent<IDamageable> ();
+		paddle.GotDamage += ShowDamageEffect;
 	}
 
-	void OnDestroy() 
-	{
-		Messenger<float>.RemoveListener (paddleGotDamageEvent, ShowDamageEffect);
-	}
-
-	void ShowDamageEffect(float damage) 
+	void ShowDamageEffect(object sender, EventArgs e) 
 	{
 		anim.SetTrigger ("GotDamage");
 	}

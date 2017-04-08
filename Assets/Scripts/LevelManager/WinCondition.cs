@@ -2,41 +2,36 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class WinCondition : MonoBehaviour {
+public class WinCondition : MonoBehaviour 
+{
+	[SerializeField]
+	List<GameObject> objectsThatMustBeDestrusted;
 
-	public List<GameObject> objectsThatMustBeDestroyed;
-
-	void Awake() {
-		if (objectsThatMustBeDestroyed.Count == 0) {
+	void Awake() 
+	{
+		if (objectsThatMustBeDestrusted.Count == 0) 
+		{
 			Debug.LogError ("There are no objects that should be destroyed!");
 		}
 	}
 
-	void OnEnable() {
-		AddListeners ();
+	void Start()
+	{
+		IDestructible destructible;
+		foreach (GameObject target in objectsThatMustBeDestrusted) 
+		{
+			destructible = target.GetComponent<IDestructible> ();
+
+			if (destructible != null)
+				destructible.Destructed += OnTargetDestructed;
+		}
 	}
 
-	void OnDisable() {
-		RemoveListeners ();
-	}
-
-	void AddListeners() {
-		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasCreated, ObjectWasCreated);
-		Messenger<GameObject>.AddListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
-	}
-
-	void RemoveListeners() {
-		Messenger<GameObject>.RemoveListener (CreatureEvent.creatureWasCreated, ObjectWasCreated);
-		Messenger<GameObject>.RemoveListener (CreatureEvent.creatureWasDestroyed, ObjectWasDestroyed);
-	}
-
-	void ObjectWasCreated(GameObject createdObject) {
-		objectsThatMustBeDestroyed.Add (createdObject);
-	}
-
-	void ObjectWasDestroyed(GameObject destroyedObject) {
-		objectsThatMustBeDestroyed.Remove (destroyedObject);
-		if (objectsThatMustBeDestroyed.Count == 0) {
+	void OnTargetDestructed(GameObject destructedObject)
+	{
+		objectsThatMustBeDestrusted.Remove (destructedObject);
+		if (objectsThatMustBeDestrusted.Count == 0) 
+		{
 			Messenger.Invoke (LevelEvent.allEnemiesAreDestroyed);
 		}
 	}

@@ -47,18 +47,18 @@ public class StatsController : BasicStatsController
 	public virtual void ClearModifiers()
 	{
 		foreach (var stat in stats) 
-		{
 			stat.ClearModifiers ();
-		}			
 	}
 
 	IEnumerator UpdateModifiers() 
 	{
+		StatModifier modifier;
 		while (temporalModifiers.Count > 0) 
 		{
 			yield return new WaitForSeconds (checkStep);
-			foreach (StatModifier modifier in temporalModifiers) 
+			for (int i = temporalModifiers.Count - 1; i >= 0; i--) 
 			{
+				modifier = temporalModifiers [i];
 				if (modifier.ChangeDuration (-checkStep) <= 0) 
 				{
 					temporalModifiers.Remove (modifier);

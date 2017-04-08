@@ -13,17 +13,17 @@ public class Attacker : MonoBehaviour, IAttacker {
 		statsController = GetComponent<BasicStatsController> ();
 	}
 
-	public float GetStatValue(StatType type)
+	public virtual float GetStatValue(StatType type)
 	{
 		return statsController.Get<BaseStat> (type).Value;
 	}
 
-	public void ChangeStatValue (StatType type, float diffValue) 
+	public virtual void ChangeStatValue (StatType type, float diffValue) 
 	{
 		statsController.ChangeValue<BaseStat>(type, diffValue);
 	}
 
-	public float GetDamage (ICreature creature) 
+	public virtual float GetDamage (ICreature creature) 
 	{
 		float resultDamage;
 		float pureDamage = CalculatePureDamage();
@@ -46,9 +46,7 @@ public class Attacker : MonoBehaviour, IAttacker {
 	{
 		IDamageable damageable = other.gameObject.GetComponent<IDamageable> ();
 		if (damageable != null) 
-		{
 			damageable.ApplyDamage (this);
-		}
 	}
 
 	float CalculatePureDamage()

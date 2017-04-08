@@ -1,27 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Damageable : MonoBehaviour, IDamageable 
 {
-	private BasicStatsController statsController;
+	BasicStatsController statsController;
 
-	private HealthBar healthBar;
+	AudioSource audioSource;
+	[SerializeField]
+	AudioClip hitSound;
+	[SerializeField]
+	Death death;
 
-	private AudioSource audioSource;
-	public AudioClip hitSound;
-
-	public Death death;
-
-	private string onGetDamageEvent;
+	public event EventHandler GotDamage;
+	public event DestructDelegate Destructed;
 
 	void Awake() 
 	{
 		statsController = GetComponent<BasicStatsController> ();
-
-		healthBar = GetComponent<HealthBar> ();
 		audioSource = GetComponent<AudioSource> ();
-
-		onGetDamageEvent = CreatureEvent.creatureGotDamage + gameObject.GetInstanceID ();
 	}
 
 	public float GetStatValue(StatType type)
@@ -53,29 +50,20 @@ public class Damageable : MonoBehaviour, IDamageable
 
 	private void OnHealthChanged(float diffValue) 
 	{
-		if (CurrentHealth <= 0) 
-		{
-			Demolish ();
-		}
-		else if (diffValue < 0) 
-		{
-			Messenger<float>.Invoke (onGetDamageEvent, diffValue);
-		}
-
-		if (healthBar) 
-		{
-			healthBar.UpdateHealthBar (CurrentHealth / InitialHealth);
-		}
+		if (CurrentHealth <= 0)
+			Destruct ();
+		else if (diffValue < 0)
+			if (GotDamage != null)
+				GotDamage (this, null);
 	}
 
-	public void Demolish () 
+	public void Destruct () 
 	{
 		if (death != null) 
-		{
 			death.ShowDeath ();
-		}
 		gameObject.SetActive(false);
-		Messenger<GameObject>.Invoke (CreatureEvent.creatureWasDestroyed, this.gameObject);
+		if (Destructed != null)
+			Destructed (gameObject);
 	}
 
 	public bool HasWounds 
