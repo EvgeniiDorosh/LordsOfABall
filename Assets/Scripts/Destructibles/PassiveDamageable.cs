@@ -2,8 +2,8 @@
 using System.Collections;
 using System;
 
-public class PassiveDamageable : MonoBehaviour, IDamageable {
-
+public class PassiveDamageable : MonoBehaviour, IDamageable 
+{
 	public bool isStable = true;
 	[Range(1, 200)]
 	public int level = 1;
@@ -11,8 +11,6 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 	AudioSource audioSource;
 	[SerializeField]
 	AudioClip hitSound;
-	[SerializeField]
-	Death death;
 
 	float damagePerHit = 1f;
 
@@ -35,7 +33,8 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 	public void ChangeStatValue (StatType type, float diffValue) 
 	{
 		statsController.ChangeValue<BaseStat>(type, diffValue);
-		switch (type) {
+		switch (type) 
+		{
 		case StatType.CurrentHealth:
 			OnHealthChanged (diffValue);
 			break;
@@ -64,8 +63,6 @@ public class PassiveDamageable : MonoBehaviour, IDamageable {
 	}
 
 	public void Destruct () {
-		if (death != null)
-			death.ShowDeath ();
 		gameObject.SetActive (false);
 		if (Destructed != null)
 			Destructed (gameObject);

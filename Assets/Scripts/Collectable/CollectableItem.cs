@@ -4,14 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 [Serializable]
-public class CollectableItem : MonoBehaviour {
-
+public class CollectableItem : MonoBehaviour 
+{
 	public string itemName;
 	public Vector2 speed = Vector2.down;
 	public List<string> targetTags;
 
 	public GameObject spell;
-	public Death collectedEffect;
 
 	void Update() {
 		transform.Translate (speed * Time.deltaTime);
@@ -21,9 +20,6 @@ public class CollectableItem : MonoBehaviour {
 		string otherTag = other.gameObject.tag;
 		if (targetTags.Contains (otherTag)) {
 			AddSpell (other.gameObject);
-			if (collectedEffect != null) {
-				collectedEffect.ShowDeath ();
-			}
 			Destroy(gameObject);
 		}
 	}

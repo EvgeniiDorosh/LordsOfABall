@@ -9,8 +9,6 @@ public class Damageable : MonoBehaviour, IDamageable
 	AudioSource audioSource;
 	[SerializeField]
 	AudioClip hitSound;
-	[SerializeField]
-	Death death;
 
 	public event EventHandler GotDamage;
 	public event DestructDelegate Destructed;
@@ -59,8 +57,6 @@ public class Damageable : MonoBehaviour, IDamageable
 
 	public void Destruct () 
 	{
-		if (death != null) 
-			death.ShowDeath ();
 		gameObject.SetActive(false);
 		if (Destructed != null)
 			Destructed (gameObject);

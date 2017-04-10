@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 public class Ball : MonoBehaviour, IDestructible
 {	
@@ -12,16 +10,10 @@ public class Ball : MonoBehaviour, IDestructible
 	AudioClip knockSound;
 	Pool knockLightPool;
 
-	// TODO: Remove this;
-	[SerializeField]
-	Death death;
-
 	public event DestructDelegate Destructed;
 
 	public void Destruct()  
 	{
-		if (death != null) 
-			death.ShowDeath ();
 		if (Destructed != null)
 			Destructed (gameObject);
 		Destroy (gameObject);

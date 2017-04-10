@@ -46,13 +46,9 @@ public class Pool : Object
 		lock (this) 
 		{
 			foreach (GameObject item in predefinedObjects) 
-			{
 				if (!item.activeInHierarchy) 
-				{
 					return item;
-				}
-			}
-
+			
 			GameObject cloneObject = Instantiate(target, parent) as GameObject;
 			predefinedObjects.Add(cloneObject);
 			return cloneObject;
@@ -61,7 +57,8 @@ public class Pool : Object
 
 	public void Clear()
 	{
+		foreach (GameObject predefined in predefinedObjects)
+			Destroy (predefined);
 		predefinedObjects.Clear ();
 	}
 }
-

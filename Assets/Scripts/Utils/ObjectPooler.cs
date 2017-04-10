@@ -7,7 +7,8 @@ public class ObjectPooler : MonoBehaviour
 {
 	static ObjectPooler instance = null;
 
-	private static readonly Dictionary<int, Pool> objectPoolers = new Dictionary<int, Pool>();
+	static List<GameObject> poolsParents = new List<GameObject>();
+	static Dictionary<int, Pool> objectPoolers = new Dictionary<int, Pool>();
 
 	void Awake () 
 	{
@@ -22,10 +23,11 @@ public class ObjectPooler : MonoBehaviour
 
 	void OnSceneUnloaded(Scene scene)
 	{
-		foreach (KeyValuePair<int, Pool> pool in objectPoolers) 
-		{
+		foreach (KeyValuePair<int, Pool> pool in objectPoolers)
 			pool.Value.Clear ();
-		}
+		foreach (GameObject parent in poolsParents)
+			Destroy (parent);
+		poolsParents.Clear ();
 		objectPoolers.Clear ();
 	}
 
@@ -33,10 +35,9 @@ public class ObjectPooler : MonoBehaviour
 	{
 		int key = item.type;
 		if (objectPoolers.ContainsKey (key)) 
-		{
 			return objectPoolers [key];
-		}
 		GameObject parent = Instantiate (new GameObject (item.target.name), instance.transform) as GameObject;
+		poolsParents.Add (parent);
 		Pool pool = new Pool (item, parent.transform);
 		objectPoolers.Add(key, pool);
 		return pool;
@@ -45,9 +46,7 @@ public class ObjectPooler : MonoBehaviour
 	public static Pool GetPool(int key)
 	{
 		if (objectPoolers.ContainsKey (key)) 
-		{
 			return objectPoolers [key];
-		}
 		return null;
 	}
 }
